@@ -3,8 +3,8 @@ package com.capstone.rideitout.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "messages")
-public class messages {
+@Table(name = "ratings")
+public class Ratings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,10 +25,10 @@ public class messages {
     @Column(name = "time_stamp")
     private String timeStamp;
 
-    public messages() {
+    public Ratings() {
     }
 
-    public messages(long id, String content, int score, long carId, long userId, String timeStamp) {
+    public Ratings(long id, String content, int score, long carId, long userId, String timeStamp) {
         this.id = id;
         this.content = content;
         this.score = score;
@@ -87,7 +87,7 @@ public class messages {
 
     @Override
     public String toString() {
-        return "messages{" +
+        return "ratings{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", score=" + score +

@@ -1,6 +1,7 @@
 package com.capstone.rideitout.Controller;
 
 import com.capstone.rideitout.Model.Users;
+import com.capstone.rideitout.Model.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

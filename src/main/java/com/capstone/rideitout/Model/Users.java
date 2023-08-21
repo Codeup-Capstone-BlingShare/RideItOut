@@ -1,7 +1,9 @@
 package com.capstone.rideitout.Model;
 
 
+
 import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.User;
 
 
 @Entity
@@ -19,11 +21,41 @@ public class Users {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "username", unique = true)
+    private String username;
+
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", unique = true)
     private String password;
+
+    public Users() {
+    }
+
+    public Users(long id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+
+    public Users(long id, String firstName, String lastName, String email, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Users(Users copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
 
     public long getId() {
         return id;
@@ -65,16 +97,6 @@ public class Users {
         this.password = password;
     }
 
-    public Users() {
-    }
-
-    public Users(long id, String firstName, String lastName, String email, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
 
     @Override
     public String toString() {

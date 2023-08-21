@@ -132,4 +132,20 @@ public class Cars {
     public void setUserID(long userID) {
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", mileage=" + mileage +
+                ", isAvailable=" + isAvailable +
+                ", rented=" + rented +
+                ", pricePerDay=" + pricePerDay +
+                ", CarLocationZip=" + CarLocationZip +
+                ", userID=" + userID +
+                '}';
+    }
 }

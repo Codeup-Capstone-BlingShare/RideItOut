@@ -23,7 +23,17 @@ public class usersSeeder implements CommandLineRunner {
         Users user2 = new Users("user2@example.com", "Jane", "Smith", passwordEncoder.encode("password2"), "janesmith");
 
         // Save users to the database
-        userRepository.save(user1);
-        userRepository.save(user2);
+        try {
+            userRepository.save(user1);
+        }catch (RuntimeException e){
+            System.out.println("User exists already");
+        }
+
+        try {
+            userRepository.save(user2);
+        } catch (RuntimeException e){
+            System.out.println("User exists already.");
+        }
+
     }
 }

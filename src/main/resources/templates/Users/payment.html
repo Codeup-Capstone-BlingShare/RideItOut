@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-	<link rel="stylesheet" href="/reference/sdks/web/static/styles/code-preview.css" preload>
 	<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 </head>
 <body>
@@ -13,7 +12,9 @@
 	<button id="card-button" type="button">Pay</button>
 </div>
 <script type="module">
-	const payments = Square.payments('{squareUser}', 'main');
+	const squareUser = "[[${squareUser}]]";
+	const squareKey = "[[${squareKey}]]}";
+	const payments = Square.payments(squareUser, 'main');
 	const card = await payments.card();
 	await card.attach('#card-container');
 

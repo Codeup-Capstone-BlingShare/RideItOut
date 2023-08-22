@@ -12,7 +12,5 @@ public class AuthenticationController {
     public String showLoginPage() {
         return "Users/login";
     }
-
-
 }
 

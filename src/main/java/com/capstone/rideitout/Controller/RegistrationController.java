@@ -25,15 +25,17 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute Users user){
+    public String saveUser(@ModelAttribute Users user, Model model){
         String hash = passwordEncoder.encode(user.getPassword());
-        user.setUsername(user.getUsername());
-        user.setEmail(user.getEmail());
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
         user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login";
+        if(userDao.findByUsername(user.getUsername()) == null) {
+            userDao.save(user);
+            return "redirect:/login";
+        }
+        else{
+            model.addAttribute("errorMessage", "Username is already taken, please choose a different username.");
+            return "Users/register";
+        }
     }
 }
 

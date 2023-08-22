@@ -7,8 +7,30 @@
 
 <div>
     <form th:action="@{/listyourride}" method="post" th:object="${car}">
-        <h3><label for="make">Post Title</label><br></h3>
-        <input type="text" id="make" th:field="*{make}" /><br>
+        <h3><label for="make">Car Make</label><br></h3>
+        <input type="text" id="make" th:field="*{make}"/><br>
+
+        <h3><label for="model">Car Model</label><br></h3>
+        <input type="text" id="model" th:field="*{model}"/><br>
+
+        <h3><label for="year">Year</label><br></h3>
+        <input type="text" id="year" th:field="*{year}"/><br>
+
+        <h3><label for="mileage">Mileage</label><br></h3>
+        <input type="text" id="mileage" th:field="*{mileage}"/><br>
+
+        <h3><label for="price">Daily Price</label><br></h3>
+        <input type="text" id="price" th:field="*{pricePerDay}"/><br>
+
+        <h3><label for="location">Zip code</label><br></h3>
+        <input type="text" id="location" th:field="*{carLocationZip}"/><br>
+
+        <label for="is_available">Is your ride available?</label>
+        <select id="is_available" th:field="*{available}">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+
 
 
         <button type="submit">List Ride</button>

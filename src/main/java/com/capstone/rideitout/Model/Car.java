@@ -32,7 +32,7 @@ public class Car {
     private int pricePerDay;
 
      @Column(name = "car_location_zip")
-    private int CarLocationZip;
+    private int carLocationZip;
 
      @Column(name = "user_id")
     private long userID;
@@ -49,8 +49,18 @@ public class Car {
         this.isAvailable = isAvailable;
         this.rented = rented;
         this.pricePerDay = pricePerDay;
-        CarLocationZip = carLocationZip;
+        this.carLocationZip = carLocationZip;
         this.userID = userID;
+    }
+
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.mileage = mileage;
+        this.isAvailable = isAvailable;
+        this.pricePerDay = pricePerDay;
+        this.carLocationZip = carLocationZip;
     }
 
     public Car(String make) {
@@ -122,12 +132,13 @@ public class Car {
     }
 
     public int getCarLocationZip() {
-        return CarLocationZip;
+        return carLocationZip;
     }
 
     public void setCarLocationZip(int carLocationZip) {
-        CarLocationZip = carLocationZip;
+        this.carLocationZip = carLocationZip;
     }
+
 
     public long getUserID() {
         return userID;
@@ -148,7 +159,7 @@ public class Car {
                 ", isAvailable=" + isAvailable +
                 ", rented=" + rented +
                 ", pricePerDay=" + pricePerDay +
-                ", CarLocationZip=" + CarLocationZip +
+                ", CarLocationZip=" + carLocationZip +
                 ", userID=" + userID +
                 '}';
     }

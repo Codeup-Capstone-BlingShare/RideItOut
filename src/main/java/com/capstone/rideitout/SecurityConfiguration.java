@@ -39,16 +39,16 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
-                         * only authenticated users can create and edit ads */
-                        .requestMatchers("/profile", "/payment", "/manage").authenticated()
+                         * only authenticated users can create and edit cars */
+                        .requestMatchers("/profile", "/payment", "/manage", "/listyourride").authenticated()
                         /* Pages that do not require authentication
-                         * anyone can visit the home page, register, login, and view ads */
-                        .requestMatchers("/", "/listing", "/ads/*", "/register", "/login", "/search", "/index").permitAll()
+                         * anyone can visit the home page, register, login, and view cars */
+                        .requestMatchers("/", "/listings", "", "/register", "/login", "/search", "/index").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )
                 /* Login configuration */
-                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/ads"))
+                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/profile"))
                 /* Logout configuration */
                 .logout((logout) -> logout.logoutSuccessUrl("/"))
                 .httpBasic(withDefaults());

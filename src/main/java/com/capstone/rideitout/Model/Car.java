@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name= "cars")
-public class Cars {
+public class Car {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -37,10 +37,10 @@ public class Cars {
      @Column(name = "user_id")
     private long userID;
 
-    public Cars() {
+    public Car() {
     }
 
-    public Cars(long id, String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, long userID) {
+    public Car(long id, String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, long userID) {
         this.id = id;
         this.make = make;
         this.model = model;
@@ -51,6 +51,10 @@ public class Cars {
         this.pricePerDay = pricePerDay;
         CarLocationZip = carLocationZip;
         this.userID = userID;
+    }
+
+    public Car(String make) {
+        this.make = make;
     }
 
     public long getId() {
@@ -135,7 +139,7 @@ public class Cars {
 
     @Override
     public String toString() {
-        return "Cars{" +
+        return "Car{" +
                 "id=" + id +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +

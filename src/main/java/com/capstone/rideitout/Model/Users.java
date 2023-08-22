@@ -33,6 +33,14 @@ public class Users {
     public Users() {
     }
 
+    public Users(String email, String firstName, String lastName, String password, String username){
+        this.email = email;
+        this.username = username;
+        this.firstName= firstName;
+        this.lastName=lastName;
+        this.password=password;
+    }
+
     public Users(long id, String username, String email, String password) {
         this.id = id;
         this.username = username;

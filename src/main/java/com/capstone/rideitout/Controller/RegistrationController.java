@@ -1,26 +1,39 @@
 package com.capstone.rideitout.Controller;
 
+import com.capstone.rideitout.Model.Users;
+import com.capstone.rideitout.repositories.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/registration")
 public class RegistrationController {
+    private UserRepository userDao;
+    private PasswordEncoder passwordEncoder;
 
-    @GetMapping
-    public String showRegistrationForm() {
-        return "registration"; // return the name of the registration form template file
+    public RegistrationController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping
-    public ModelAndView registerUser(@RequestParam("username") String username, @RequestParam("password") String password) {
-        // Save user registration information to the database or perform necessary actions
-        ModelAndView modelAndView = new ModelAndView("registration-success"); // return the name of the registration success template file
-        modelAndView.addObject("username", username);
-        return modelAndView;
+    @GetMapping("/register")
+    public String showSignupForm(Model model){
+        model.addAttribute("user", new Users());
+        return "Users/register";
+    }
+
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute Users user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setUsername(user.getUsername());
+        user.setEmail(user.getEmail());
+        user.setFirstName(user.getFirstName());
+        user.setLastName(user.getLastName());
+        user.setPassword(hash);
+        userDao.save(user);
+        return "redirect:/login";
     }
 }
+

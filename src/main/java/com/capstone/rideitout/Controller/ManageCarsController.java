@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/managecars")
+@RequestMapping("/manage")
 public class ManageCarsController {
 
     @GetMapping
     public String showManageCarsPage() {
-        return "managecars"; // return the name of the manage cars page template file
+        return "Users/manage"; // return the name of the manage cars page template file
     }
 
     @PostMapping("/add")

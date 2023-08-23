@@ -8,7 +8,7 @@ import java.util.Collection;
 public class UserWithRoles extends Users implements UserDetails {
 
     public UserWithRoles(Users user) {
-        super(user);  // Call the copy constructor defined in User
+        super(user);
     }
 
     @Override

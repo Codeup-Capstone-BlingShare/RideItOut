@@ -56,7 +56,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(long id, String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, long userID) {
+    public Car(long id, String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, Users user) {
         this.id = id;
         this.make = make;
         this.model = model;
@@ -66,7 +66,7 @@ public class Car {
         this.rented = rented;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
-        this.userID = userID;
+        this.user = user;
     }
 
     public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
@@ -155,12 +155,12 @@ public class Car {
         this.carLocationZip = carLocationZip;
     }
 
-    public long getUserID() {
-        return userID;
+    public Users getUserID() {
+        return user;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setUserID(Users user) {
+        this.user = user;
     }
   
     @Override
@@ -175,7 +175,7 @@ public class Car {
                 ", rented=" + rented +
                 ", pricePerDay=" + pricePerDay +
                 ", CarLocationZip=" + carLocationZip +
-                ", userID=" + userID +
+                ", userID=" + user.getId() +
                 '}';
     }
 }

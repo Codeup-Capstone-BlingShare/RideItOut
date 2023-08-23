@@ -13,7 +13,7 @@
 </div>
 <script type="module">
 	const squareUser = "[[${squareUser}]]";
-	const squareKey = "[[${squareKey}]]}";
+	const squareKey = "[[${squareKey}]]";
 	const payments = Square.payments(squareUser, 'main');
 	const card = await payments.card();
 	await card.attach('#card-container');

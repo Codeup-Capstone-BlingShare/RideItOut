@@ -1,17 +1,22 @@
 package com.capstone.rideitout.Controller;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class SearchController {
 
+    @Value("${mapBoxKey}")
+    private String MB_KEY;
     @GetMapping("/search")
-    public String search(@RequestParam("query") String query) {
+    public String search(Model model) {
+        model.addAttribute("mapBoxKey", MB_KEY);
         // Perform search functionality
-        return "Searching for: " + query;
+        return "Users/search";
     }
 
     @GetMapping("/cars")

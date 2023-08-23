@@ -32,18 +32,18 @@ public class ListingController {
         return "Users/listing"; // return the name of the listings page template file
     }
 
-    @GetMapping("/search")
-    public String searchListings(@RequestParam("query") String query, Model model) {
-        List<String> matchedListings = new ArrayList<>();
-
-        // Perform search functionality
-        for (String listing : carListings) {
-            if (listing.contains(query)) {
-                matchedListings.add(listing);
-            }
-        }
-
-        model.addAttribute("listings", matchedListings);
-        return "listings"; // return the name of the listings page template file
-    }
+//    @GetMapping("/search")
+//    public String searchListings(@RequestParam("query") String query, Model model) {
+//        List<String> matchedListings = new ArrayList<>();
+//
+//        // Perform search functionality
+//        for (String listing : carListings) {
+//            if (listing.contains(query)) {
+//                matchedListings.add(listing);
+//            }
+//        }
+//
+//        model.addAttribute("listings", matchedListings);
+//        return "listings"; // return the name of the listings page template file
+//    }
 }

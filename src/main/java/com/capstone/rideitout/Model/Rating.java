@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ratings")
-public class Ratings {
+public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,21 +19,25 @@ public class Ratings {
     @Column(name = "car_id")
     private long carId;
 
-    @Column(name = "user_id")
-    private long userId;
+//    @Column(name = "user_id")
+//    private long userId;
 
     @Column(name = "time_stamp")
     private String timeStamp;
 
-    public Ratings() {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
+
+    public Rating() {
     }
 
-    public Ratings(long id, String content, int score, long carId, long userId, String timeStamp) {
+    public Rating(long id, String content, int score, long carId, long userId, String timeStamp) {
         this.id = id;
         this.content = content;
         this.score = score;
         this.carId = carId;
-        this.userId = userId;
+//        this.userId = userId;
         this.timeStamp = timeStamp;
     }
 
@@ -69,13 +73,13 @@ public class Ratings {
         this.carId = carId;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+//    public long getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(long userId) {
+//        this.userId = userId;
+//    }
 
     public String getTimeStamp() {
         return timeStamp;
@@ -92,7 +96,7 @@ public class Ratings {
                 ", content='" + content + '\'' +
                 ", score=" + score +
                 ", carId=" + carId +
-                ", userId=" + userId +
+//                ", userId=" + userId +
                 ", timeStamp='" + timeStamp + '\'' +
                 '}';
     }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Trips")
-public class Trips {
+public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -22,11 +22,11 @@ public class Trips {
     @Column(name = "total_cost")
     private int totalCost;
 
-    @Column(name = "renter_id")
-    private long renterId;
+//    @Column(name = "renter_id")
+//    private long renterId;
 
-    @Column(name = "car_id")
-    private long carId;
+//    @Column(name = "car_id")
+//    private long carId;
 
     @Column(name = "is_approved")
     private boolean approved;
@@ -37,17 +37,33 @@ public class Trips {
     @Column(name = "Staged_zip")
     private int staged_zip;
 
-    public Trips() {
+    @ManyToOne
+    @JoinColumn(name = "renter_id")
+    private Users renter;
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
+    public Car getCar() {
+        return car;
     }
 
-    public Trips(long id, String startDate, String endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Trip() {
+    }
+
+    public Trip(long id, String startDate, String endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.pickupLocationZip = pickupLocationZip;
         this.totalCost = totalCost;
-        this.renterId = renterId;
-        this.carId = carId;
+//        this.renterId = renterId;
+//        this.carId = carId;
         this.approved = approved;
         this.wantStaged = wantStaged;
         this.staged_zip = staged_zip;
@@ -93,21 +109,21 @@ public class Trips {
         this.totalCost = totalCost;
     }
 
-    public long getRenterId() {
-        return renterId;
-    }
+//    public long getRenterId() {
+//        return renterId;
+//    }
+//
+//    public void setRenterId(long renterId) {
+//        this.renterId = renterId;
+//    }
 
-    public void setRenterId(long renterId) {
-        this.renterId = renterId;
-    }
-
-    public long getCarId() {
-        return carId;
-    }
-
-    public void setCarId(long carId) {
-        this.carId = carId;
-    }
+//    public long getCarId() {
+//        return carId;
+//    }
+//
+//    public void setCarId(long carId) {
+//        this.carId = carId;
+//    }
 
     public boolean isApproved() {
         return approved;

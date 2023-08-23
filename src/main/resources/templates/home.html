@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Featured Vehicles Carousel</title>
+	<!-- Add your CSS and other dependencies here -->
+</head>
+<body>
+
+<h1>Welcome Ride It Out Featured Vehicles Carousel</h1>
+
+<div id="carousel">
+	<div id="slide-1" class="carousel-slide" th:each="vehicle : ${vehicle1}">
+		<h2 th:text="${vehicle.make} + ' ' + ${vehicle.model}"></h2>
+	</div>
+	<div id="slide-2" class="carousel-slide" th:each="vehicle : ${vehicle2}">
+		<h2 th:text="${vehicle.make} + ' ' + ${vehicle.model}"></h2>
+	</div>
+	<div id="slide-3" class="carousel-slide" th:each="vehicle : ${vehicle3}">
+		<h2 th:text="${vehicle.make} + ' ' + ${vehicle.model}"></h2>
+	</div>
+</div>
+
+<!-- Add your JavaScript for the carousel logic here -->
+<script th:src="@{/carousel.js}"></script>
+</body>
+</html>

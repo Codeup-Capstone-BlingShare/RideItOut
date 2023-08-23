@@ -1,9 +1,7 @@
 package com.capstone.rideitout.Model;
-
-
-
 import jakarta.persistence.*;
-import org.springframework.security.core.userdetails.User;
+
+import java.util.List;
 
 
 @Entity
@@ -30,7 +28,27 @@ public class Users {
     @Column(name = "password", unique = true)
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List<Car> listedCars;
+
+    @OneToMany(mappedBy = "sender")
+    private List<Message> sentMessages;
+
+    @OneToMany(mappedBy = "renter")
+    private List<Trip> rentedTrips;
+
+    @OneToMany(mappedBy = "user")
+    private List<Rating> givenRatings;
+
     public Users() {
+    }
+
+    public Users(String email, String firstName, String lastName, String password, String username){
+        this.email = email;
+        this.username = username;
+        this.firstName= firstName;
+        this.lastName=lastName;
+        this.password=password;
     }
 
     public Users(long id, String username, String email, String password) {

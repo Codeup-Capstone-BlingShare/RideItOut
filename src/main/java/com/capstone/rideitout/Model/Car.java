@@ -1,6 +1,9 @@
 package com.capstone.rideitout.Model;
+import com.capstone.rideitout.Model.Trip;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name= "cars")
@@ -34,8 +37,21 @@ public class Car {
      @Column(name = "car_location_zip")
     private int carLocationZip;
 
-     @Column(name = "user_id")
-    private long userID;
+//     @Column(name = "user_id")
+//    private long userID;
+
+
+     //*** This is giving me issues
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
+
+    @OneToMany(mappedBy = "car")
+    private List<Trip> trips;
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
 
     public Car() {
     }
@@ -139,7 +155,6 @@ public class Car {
         this.carLocationZip = carLocationZip;
     }
 
-
     public long getUserID() {
         return userID;
     }
@@ -147,7 +162,7 @@ public class Car {
     public void setUserID(long userID) {
         this.userID = userID;
     }
-
+  
     @Override
     public String toString() {
         return "Car{" +

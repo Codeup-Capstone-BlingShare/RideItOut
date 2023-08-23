@@ -66,7 +66,7 @@ public class Car {
         this.rented = rented;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
-        this.userID = userID;
+//        this.userID = userID;
     }
 
     public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
@@ -155,13 +155,17 @@ public class Car {
         this.carLocationZip = carLocationZip;
     }
 
-    public long getUserID() {
-        return userID;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
-    }
+//    public long getUserID() {
+//        return userID;
+//    }
+
+//    public void setUserID(long userID) {
+//        this.userID = userID;
+//    }
   
     @Override
     public String toString() {
@@ -175,7 +179,7 @@ public class Car {
                 ", rented=" + rented +
                 ", pricePerDay=" + pricePerDay +
                 ", CarLocationZip=" + carLocationZip +
-                ", userID=" + userID +
+//                ", userID=" + userID +
                 '}';
     }
 }

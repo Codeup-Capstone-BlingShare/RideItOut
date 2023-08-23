@@ -29,7 +29,7 @@ public class ListingController {
     @GetMapping
     public String showListingsPage(Model model) {
         model.addAttribute("listings", carListings);
-        return "listings"; // return the name of the listings page template file
+        return "Users/listing"; // return the name of the listings page template file
     }
 
     @GetMapping("/search")

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div>
+    <form th:action="@{/listyourride}" method="post" th:object="${car}">
+        <h3><label for="make">Post Title</label><br></h3>
+        <input type="text" id="make" th:field="*{make}" /><br>
+
+
+        <button type="submit">List Ride</button>
+    </form>
+</div>
+</body>
+</html>

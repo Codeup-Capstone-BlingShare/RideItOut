@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Trips")
-public class trips {
+public class Trips {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -37,10 +37,10 @@ public class trips {
     @Column(name = "Staged_zip")
     private int staged_zip;
 
-    public trips() {
+    public Trips() {
     }
 
-    public trips(long id, String startDate, String endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
+    public Trips(long id, String startDate, String endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;

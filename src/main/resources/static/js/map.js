@@ -4,7 +4,6 @@
 
 	//-------------------------Initial Calls---------------------------//
 	updateMap();
-// console.log(cars)
 
 	//-------------------------Creates and updates map---------------------------//
 	function updateMap() {

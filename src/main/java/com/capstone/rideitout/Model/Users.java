@@ -40,6 +40,9 @@ public class Users {
     @OneToMany(mappedBy = "user")
     private List<Rating> givenRatings;
 
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Car> cars;
+
     public Users() {
     }
 

@@ -32,3 +32,33 @@
 .faq-item.open p {
     display: block;
 }
+
+.title{
+    color: ghostwhite;
+    font-weight: lighter;
+    font-size: large;
+}
+
+body{
+    font-family: "Helvetica Neue", serif;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar{
+ background-color: black;
+}
+
+.nav-item{
+    color: ghostwhite;
+}
+
+.header{
+    color: ghostwhite;
+}
+
+.footer{
+    margin-top: auto;
+}

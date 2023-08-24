@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
 <input type="text" placeholder="Search">
@@ -16,6 +18,20 @@
   <option>Price High-to-Low</option>
   <option>Rating</option>
 </select>
+<div>
+	<label for="searchCity"></label>
+	<input class="my-1 w-25" type="text" name="searchAddress" id="searchCity" placeholder="Enter City"><br>
+	<button id="submit" class="w-25 ms-1">Search</button>
+</div>
+<div id="map" style="width: 100%; height: 400px;"></div>
 
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous">
+</script>
+<script>const mapBoxKey = "[[${mapBoxKey}]]";</script>
+<script th:src="@{/js/map.js}"></script>
 </body>
 </html>

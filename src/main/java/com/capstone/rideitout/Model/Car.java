@@ -58,7 +58,6 @@ public class Car {
         this.trips = trips;
     }
 
-
     public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, List<String> photoUrls) {
         this.make = make;
         this.model = model;

@@ -1,4 +1,4 @@
-package com.capstone.rideitout;
+package com.capstone.rideitout.security;
 
 import com.capstone.rideitout.services.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Autowired;

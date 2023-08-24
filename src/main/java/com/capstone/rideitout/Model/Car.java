@@ -2,13 +2,19 @@ package com.capstone.rideitout.Model;
 import com.capstone.rideitout.Model.Trip;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name= "cars")
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Car {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
          private long id;
@@ -37,11 +43,10 @@ public class Car {
      @Column(name = "car_location_zip")
     private int carLocationZip;
 
-//     @Column(name = "user_id")
-//    private long userID;
+//    @Column(name = "photo_urls")
+//    @ElementCollection
+//    private List<String> photoUrls;
 
-
-     //*** This is giving me issues
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
@@ -53,11 +58,7 @@ public class Car {
         this.trips = trips;
     }
 
-    public Car() {
-    }
-
-    public Car(long id, String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, Users user) {
-        this.id = id;
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, List<String> photoUrls) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -66,7 +67,7 @@ public class Car {
         this.rented = rented;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
-        this.user = user;
+//        this.photoUrls = photoUrls;
     }
 
     public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
@@ -77,109 +78,5 @@ public class Car {
         this.isAvailable = isAvailable;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
-    }
-
-    public Car(String make) {
-        this.make = make;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getMake() {
-        return make;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
-    public boolean isRented() {
-        return rented;
-    }
-
-    public void setRented(boolean rented) {
-        this.rented = rented;
-    }
-
-    public int getPricePerDay() {
-        return pricePerDay;
-    }
-
-    public void setPricePerDay(int pricePerDay) {
-        this.pricePerDay = pricePerDay;
-    }
-
-    public int getCarLocationZip() {
-        return carLocationZip;
-    }
-
-    public void setCarLocationZip(int carLocationZip) {
-        this.carLocationZip = carLocationZip;
-    }
-
-    public Users getUserID() {
-        return user;
-    }
-
-    public void setUserID(Users user) {
-        this.user = user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
-  
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", year=" + year +
-                ", mileage=" + mileage +
-                ", isAvailable=" + isAvailable +
-                ", rented=" + rented +
-                ", pricePerDay=" + pricePerDay +
-                ", CarLocationZip=" + carLocationZip +
-                ", userID=" + user.getId() +
-                '}';
     }
 }

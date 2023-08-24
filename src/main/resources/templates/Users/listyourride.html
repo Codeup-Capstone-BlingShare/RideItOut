@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+    <script src="//static.filestackapi.com/filestack-drag-and-drop-js/3.x.x/filestack-drag-and-drop.min.js"></script>
 </head>
 <body>
 
@@ -23,16 +25,35 @@
         <input type="text" id="price" th:field="*{pricePerDay}"/><br>
 
         <h3><label for="location">Zip code</label><br></h3>
-        <input type="text" id="location" th:field="*{carLocationZip}"/><br>
+        <input type="text" id="location" th:field="*{carLocationZip}"/><br><br>
 
         <label for="is_available">Is your ride available?</label>
         <select id="is_available" th:field="*{available}">
             <option value="true">Yes</option>
             <option value="false">No</option>
-        </select>
+        </select><br><br>
+
+        <input type="hidden" id="photoURL" name="photoUrl">
+        <button id="filepicker" th:for="photoUrl">Upload Image</button><br><br>
 
         <button type="submit">List Ride</button>
     </form>
+
+    <script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
+    <script th:inline="javascript">
+        var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
+        document.getElementById('filepicker').addEventListener('click', function(e) {
+            e.preventDefault();
+            var options = {
+                onUploadDone: function(response) {
+                    document.getElementById('photoUrl5').value = response.filesUploaded[0].url;
+                    document.getElementById('submit-button5').disabled = false;
+                }
+            };
+            var picker5 = client.picker(options);
+            picker5.open();
+        });
+    </script>
 </div>
 </body>
 </html>

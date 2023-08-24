@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Create Trip</title>
+</head>
+<body>
+<form th:action="@{/create/{id}(id=${car.id})}" th:object="${trip}" th:method="POST">
+	<div class="mb-3">
+		<label for="startDate" class="form-label">Start Date</label>
+		<input type="text" class="form-control" th:field="*{startDate}" id="startDate">
+	</div>
+	<div class="mb-3">
+		<label for="endDate" class="form-label">End Date</label>
+		<input type="text" class="form-control" th:field="*{endDate}" id="endDate">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

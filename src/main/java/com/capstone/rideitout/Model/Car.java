@@ -1,5 +1,6 @@
 package com.capstone.rideitout.Model;
 import com.capstone.rideitout.Model.Trip;
+import com.capstone.rideitout.Model.Users;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +11,6 @@ import java.util.List;
 @Table(name= "cars")
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Getter
 @Setter
 public class Car {
@@ -43,32 +43,15 @@ public class Car {
      @Column(name = "car_location_zip")
     private int carLocationZip;
 
-//    @Column(name = "photo_urls")
-//    @ElementCollection
-//    private List<String> photoUrls;
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Photo> photos;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Users user;
 
     @OneToMany(mappedBy = "car")
     private List<Trip> trips;
-
-    public void setTrips(List<Trip> trips) {
-        this.trips = trips;
-    }
-
-    public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, List<String> photoUrls) {
-        this.make = make;
-        this.model = model;
-        this.year = year;
-        this.mileage = mileage;
-        this.isAvailable = isAvailable;
-        this.rented = rented;
-        this.pricePerDay = pricePerDay;
-        this.carLocationZip = carLocationZip;
-//        this.photoUrls = photoUrls;
-    }
 
     public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
         this.make = make;
@@ -78,5 +61,47 @@ public class Car {
         this.isAvailable = isAvailable;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.mileage = mileage;
+        this.isAvailable = isAvailable;
+        this.rented = rented;
+        this.pricePerDay = pricePerDay;
+        this.carLocationZip = carLocationZip;
+    }
+
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, List<Photo> photos) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.mileage = mileage;
+        this.isAvailable = isAvailable;
+        this.pricePerDay = pricePerDay;
+        this.carLocationZip = carLocationZip;
+        this.photos = photos;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", mileage=" + mileage +
+                ", isAvailable=" + isAvailable +
+                ", rented=" + rented +
+                ", pricePerDay=" + pricePerDay +
+                ", carLocationZip=" + carLocationZip +
+                // Exclude photos field from toString()
+                '}';
     }
 }

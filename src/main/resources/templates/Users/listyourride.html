@@ -8,7 +8,7 @@
 <body>
 
 <div>
-    <form th:action="@{/listyourride}" method="post" th:object="${car}">
+    <form th:action="@{/listyourride}" method="post" th:object="${carForm}">
         <h3><label for="make">Car Make</label><br></h3>
         <input type="text" id="make" th:field="*{make}"/><br>
 
@@ -16,16 +16,16 @@
         <input type="text" id="model" th:field="*{model}"/><br>
 
         <h3><label for="year">Year</label><br></h3>
-        <input type="text" id="year" th:field="*{year}"/><br>
+        <input type="number" id="year" th:field="*{year}"/><br>
 
         <h3><label for="mileage">Mileage</label><br></h3>
-        <input type="text" id="mileage" th:field="*{mileage}"/><br>
+        <input type="number" id="mileage" th:field="*{mileage}"/><br>
 
         <h3><label for="price">Daily Price</label><br></h3>
-        <input type="text" id="price" th:field="*{pricePerDay}"/><br>
+        <input type="number" id="price" th:field="*{pricePerDay}"/><br>
 
         <h3><label for="location">Zip code</label><br></h3>
-        <input type="text" id="location" th:field="*{carLocationZip}"/><br><br>
+        <input type="number" id="location" th:field="*{carLocationZip}"/><br><br>
 
         <label for="is_available">Is your ride available?</label>
         <select id="is_available" th:field="*{available}">
@@ -33,8 +33,8 @@
             <option value="false">No</option>
         </select><br><br>
 
-        <input type="hidden" id="photoURL" name="photoUrl">
-        <button id="filepicker" th:for="photoUrl">Upload Image</button><br><br>
+        <input type="hidden" id="carPhotoURL" name="carPhotoURL" th:field="*{carPhotoURL}">
+        <button id="filepicker">Upload Image</button><br><br>
 
         <button type="submit">List Ride</button>
     </form>
@@ -46,12 +46,12 @@
             e.preventDefault();
             var options = {
                 onUploadDone: function(response) {
-                    document.getElementById('photoUrl5').value = response.filesUploaded[0].url;
-                    document.getElementById('submit-button5').disabled = false;
+                    document.getElementById('carPhotoURL').value = response.filesUploaded[0].url;
+                    document.getElementById('submit-button').disabled = false;
                 }
             };
-            var picker5 = client.picker(options);
-            picker5.open();
+            var picker = client.picker(options);
+            picker.open();
         });
     </script>
 </div>

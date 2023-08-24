@@ -2,6 +2,8 @@ package com.capstone.rideitout.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "Trips")
 public class Trip {
@@ -11,23 +13,16 @@ public class Trip {
     private long id;
 
     @Column(name = "start_date")
-    private String startDate;
+    private Date startDate;
 
     @Column(name = "end_date")
-    private String endDate;
+    private Date endDate;
 
     @Column(name = "pickup_location_zip")
     private int pickupLocationZip;
 
     @Column(name = "total_cost")
-    private int totalCost;
-
-//    @Column(name = "renter_id")
-//    private long renterId;
-
-//    @Column(name = "car_id")
-//    private long carId;
-
+    private long totalCost;
     @Column(name = "is_approved")
     private boolean approved;
 
@@ -56,14 +51,22 @@ public class Trip {
     public Trip() {
     }
 
-    public Trip(long id, String startDate, String endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
+    public Trip(long id, Date startDate, Date endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.pickupLocationZip = pickupLocationZip;
         this.totalCost = totalCost;
-//        this.renterId = renterId;
-//        this.carId = carId;
+        this.approved = approved;
+        this.wantStaged = wantStaged;
+        this.staged_zip = staged_zip;
+    }
+
+    public Trip(Date startDate, Date endDate, int pickupLocationZip, int totalCost, boolean approved, boolean wantStaged, int staged_zip) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.pickupLocationZip = pickupLocationZip;
+        this.totalCost = totalCost;
         this.approved = approved;
         this.wantStaged = wantStaged;
         this.staged_zip = staged_zip;
@@ -77,19 +80,19 @@ public class Trip {
         this.id = id;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -101,29 +104,21 @@ public class Trip {
         this.pickupLocationZip = pickupLocationZip;
     }
 
-    public int getTotalCost() {
+    public long getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(int totalCost) {
+    public void setTotalCost(Long totalCost) {
         this.totalCost = totalCost;
     }
 
-//    public long getRenterId() {
-//        return renterId;
-//    }
-//
-//    public void setRenterId(long renterId) {
-//        this.renterId = renterId;
-//    }
+    public Users getRenter() {
+        return renter;
+    }
 
-//    public long getCarId() {
-//        return carId;
-//    }
-//
-//    public void setCarId(long carId) {
-//        this.carId = carId;
-//    }
+    public void setRenter(Users renter) {
+        this.renter = renter;
+    }
 
     public boolean isApproved() {
         return approved;

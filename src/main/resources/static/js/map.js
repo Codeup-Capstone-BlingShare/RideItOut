@@ -14,13 +14,21 @@
 			zoom: 10,
 			center: coordinates
 		})
-		updateMarker(map);
+		$(document).ready(function () {
+			$('.location').each(function (){
+				console.log($(this))
+				geocode($(this).html(), mapBoxKey).then(function (result) {
+					coordinates = result;
+					updateMarker(map)
+				})
+			})
+		})
 	}
 
 	//-------------------------Creates and updates marker---------------------------//
 	function updateMarker(map) {
 		new mapboxgl.Marker({
-			draggable: true
+			draggable: false
 		})
 			.setLngLat(coordinates)
 			.addTo(map);
@@ -32,6 +40,8 @@ $(`#submit`).on(`click`, function () {
 		updateMap();
 	})
 })
+
+
 
 function geocode(search, token) {
 	let baseUrl = 'https://api.mapbox.com';
@@ -45,6 +55,7 @@ function geocode(search, token) {
 			return data.features[0].center;
 		});
 }
+
 	// var map = L.map('map').setView([51.505, -0.09], 13);
 	//
 	// // Add a tile layer to the map

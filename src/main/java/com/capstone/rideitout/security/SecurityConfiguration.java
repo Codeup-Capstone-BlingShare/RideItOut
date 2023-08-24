@@ -1,4 +1,4 @@
-package com.capstone.rideitout;
+package com.capstone.rideitout.security;
 
 import com.capstone.rideitout.services.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +40,10 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit cars */
-                        .requestMatchers("/profile", "/payment", "/manage", "/listyourride").authenticated()
+                        .requestMatchers("/profile", "/payment", "/manage",  "/listyourride", "/car/*/edit", "/car/*/delete").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view cars */
-                        .requestMatchers("/", "/listings", "", "/register", "/login", "/search", "/index").permitAll()
+                        .requestMatchers("/", "/listings", "","/register", "/login", "/search", "/index").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )

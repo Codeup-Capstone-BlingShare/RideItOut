@@ -1,16 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Manage Cars</title>
 </head>
 <body>
 <h1>Manage Cars</h1>
+<a th:href="@{/listyourride}"><h2>Add</h2></a>
 <h3>Cars for rent</h3>
-<div>Car cards here</div>
+<div th:each="car : ${cars}">
+	<div th:if="${car.isAvailable() == true and car.isRented() == false}">
+		<a th:href="@{/car/{id}/edit (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
+		<p th:text="${car.model}"></p>
+		<p th:text="${car.year}"></p>
+		<p th:text="${car.mileage}"></p>
+		<p th:text="${car.pricePerDay}"></p>
+		<p th:text="${car.carLocationZip}"></p>
+	</div>
+</div>
+<hr>
 <h3>Cars rented</h3>
-<div>Cars currently rented here</div>
+<div th:each="car : ${cars}">
+	<div th:if="${car.isAvailable() == true and car.isRented() == true}">
+		<a th:href="@{/car/{id}/edit (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
+		<p th:text="${car.model}"></p>
+		<p th:text="${car.year}"></p>
+		<p th:text="${car.mileage}"></p>
+		<p th:text="${car.pricePerDay}"></p>
+		<p th:text="${car.carLocationZip}"></p>
+	</div>
+</div>
+<hr>
 <h3>Cars not Listed</h3>
-<div>Cars not listed here</div>
+<div th:each="car : ${cars}">
+	<div th:if="${car.isAvailable() == false}">
+		<a th:href="@{/car/{id}/edit (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
+		<p th:text="${car.model}"></p>
+		<p th:text="${car.year}"></p>
+		<p th:text="${car.mileage}"></p>
+		<p th:text="${car.pricePerDay}"></p>
+		<p th:text="${car.carLocationZip}"></p>
+	</div>
+</div>
+<hr>
 </body>
 </html>

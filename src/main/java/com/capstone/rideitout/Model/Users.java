@@ -28,7 +28,7 @@ public class Users {
     @Column(name = "password", unique = true)
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Car> listedCars;
 
     @OneToMany(mappedBy = "sender")
@@ -39,6 +39,9 @@ public class Users {
 
     @OneToMany(mappedBy = "user")
     private List<Rating> givenRatings;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Car> cars;
 
     public Users() {
     }

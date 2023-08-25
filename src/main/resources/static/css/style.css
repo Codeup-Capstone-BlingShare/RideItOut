@@ -1,13 +1,61 @@
 /* Set the desired height for the carousel */
 .carousel-item {
-    height: 400px;
+    height: auto;
 }
 
 /* Center the content vertically and horizontally */
 .carousel-item img {
-    object-fit: contain;
+    object-fit: cover;
     width: 100%;
     height: 100%;
     display: block;
     margin: 0 auto;
+}
+
+.container {
+    text-align: justify-all;
+}
+
+.steps-container {
+    list-style-type: none;
+    padding: 0;
+}
+
+.step {
+    margin: 20px 0;
+}
+
+.header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+.cover {
+    position: relative;
+}
+
+.container h1 {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+.container img {
+    width: 100%;
+}
+
+/* Reduce font size for steps */
+.steps-container li.step p {
+    font-optical-sizing: auto;
+    font-family:"Lucida Console", "Courier New", monospace;
+    font-size: 10px;
+}
+
+/* Make <h2> elements bold and use a different font */
+.steps-container li.step h2 {
+    font-weight: lighter;
+    font-family:"Lucida Console", "Courier New", monospace;
+    font-size: 20px;
 }

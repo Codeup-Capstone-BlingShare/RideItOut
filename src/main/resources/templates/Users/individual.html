@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rent This Car</title>
+</head>
+<body>
+<div>
+	<h1 th:text="${car.make}"></h1>
+	<p th:text="${car.model}"></p>
+	<p th:text="${car.year}"></p>
+	<p th:text="${car.mileage}"></p>
+	<p th:text="${car.pricePerDay}"></p>
+	<p th:text="${car.carLocationZip}" class="location"></p>
+</div>
+<a th:href="@{/create/{id}(id=${car.id})}"><h3>Create trip</h3></a>
+</body>
+</html>

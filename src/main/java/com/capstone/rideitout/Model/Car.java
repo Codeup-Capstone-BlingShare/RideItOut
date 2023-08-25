@@ -1,11 +1,20 @@
 package com.capstone.rideitout.Model;
+import com.capstone.rideitout.Model.Trip;
+import com.capstone.rideitout.Model.Users;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name= "cars")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Car {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
          private long id;
@@ -32,16 +41,33 @@ public class Car {
     private int pricePerDay;
 
      @Column(name = "car_location_zip")
-    private int CarLocationZip;
+    private int carLocationZip;
 
-     @Column(name = "user_id")
-    private long userID;
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Photo> photos;
 
-    public Car() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Users user;
+
+    @OneToMany(mappedBy = "car")
+    private List<Trip> trips;
+
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.mileage = mileage;
+        this.isAvailable = isAvailable;
+        this.pricePerDay = pricePerDay;
+        this.carLocationZip = carLocationZip;
     }
 
-    public Car(long id, String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, long userID) {
-        this.id = id;
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -49,92 +75,18 @@ public class Car {
         this.isAvailable = isAvailable;
         this.rented = rented;
         this.pricePerDay = pricePerDay;
-        CarLocationZip = carLocationZip;
-        this.userID = userID;
+        this.carLocationZip = carLocationZip;
     }
 
-    public Car(String make) {
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, List<Photo> photos) {
         this.make = make;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getMake() {
-        return make;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
         this.model = model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
         this.year = year;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
         this.mileage = mileage;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
-    public boolean isRented() {
-        return rented;
-    }
-
-    public void setRented(boolean rented) {
-        this.rented = rented;
-    }
-
-    public int getPricePerDay() {
-        return pricePerDay;
-    }
-
-    public void setPricePerDay(int pricePerDay) {
+        this.isAvailable = isAvailable;
         this.pricePerDay = pricePerDay;
-    }
-
-    public int getCarLocationZip() {
-        return CarLocationZip;
-    }
-
-    public void setCarLocationZip(int carLocationZip) {
-        CarLocationZip = carLocationZip;
-    }
-
-    public long getUserID() {
-        return userID;
-    }
-
-    public void setUserID(long userID) {
-        this.userID = userID;
+        this.carLocationZip = carLocationZip;
+        this.photos = photos;
     }
 
     @Override
@@ -148,8 +100,8 @@ public class Car {
                 ", isAvailable=" + isAvailable +
                 ", rented=" + rented +
                 ", pricePerDay=" + pricePerDay +
-                ", CarLocationZip=" + CarLocationZip +
-                ", userID=" + userID +
+                ", carLocationZip=" + carLocationZip +
+                // Exclude photos field from toString()
                 '}';
     }
 }

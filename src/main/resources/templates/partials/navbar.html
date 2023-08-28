@@ -18,13 +18,18 @@
     <div class="nav-item">
         <a th:href="@{/contact}" class="nav-link">Contact</a>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" th:if="${not #authentication.authenticated}">
         <a th:href="@{/login}" class="nav-link">Login</a>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" th:if="${not #authentication.authenticated}">
         <a th:href="@{/register}" class="nav-link">Register</a>
     </div>
-    <!--  </div>-->
+    <div th:if="${#authentication.authenticated}" class="nav-item">
+        <a th:href="@{/profile}" class="nav-link">Profile</a>
+    </div>
+    <div class="nav-item" th:if="${#authentication.authenticated}">
+        <a th:href="@{/logout}" class="nav-link">Logout</a>
+    </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>

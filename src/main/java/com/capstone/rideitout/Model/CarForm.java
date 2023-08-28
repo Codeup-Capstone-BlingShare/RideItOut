@@ -16,4 +16,7 @@ public class CarForm {
     private int pricePerDay;
     private int carLocationZip;
     private String carPhotoURL;
+    private String carPhotoURL1;
+    private String carPhotoURL2;
+    private String carPhotoURL3;
 }

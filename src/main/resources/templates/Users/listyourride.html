@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="/partials/navbar :: navbar"></div>
+<div th:replace="~{partials/navbar :: navbar}"></div>
 <div>
     <form th:action="@{/listyourride}" method="post" th:object="${carForm}">
         <h3><label for="make">Car Make</label><br></h3>
@@ -39,6 +39,15 @@
         <input type="hidden" id="carPhotoURL" name="carPhotoURL" th:field="*{carPhotoURL}">
         <button id="filepicker">Upload Image</button><br><br>
 
+       <input type="hidden" id="carPhotoURL1" name="carPhotoURL1" th:field="*{carPhotoURL1}">
+        <button id="filepicker1">Upload Image</button><br><br>
+
+       <input type="hidden" id="carPhotoURL2" name="carPhotoURL2" th:field="*{carPhotoURL2}">
+        <button id="filepicker2">Upload Image</button><br><br>
+
+       <input type="hidden" id="carPhotoURL3" name="carPhotoURL3" th:field="*{carPhotoURL3}">
+        <button id="filepicker3">Upload Image</button><br><br>
+
         <button type="submit">List Ride</button>
     </form>
 
@@ -56,6 +65,40 @@
             var picker = client.picker(options);
             picker.open();
         });
+             document.getElementById('filepicker1').addEventListener('click', function(e) {
+            e.preventDefault();
+            var options = {
+                onUploadDone: function(response) {
+                    document.getElementById('carPhotoURL1').value = response.filesUploaded[0].url;
+                    document.getElementById('submit-button').disabled = false;
+                }
+            };
+            var picker = client.picker(options);
+            picker.open();
+        });
+             document.getElementById('filepicker2').addEventListener('click', function(e) {
+            e.preventDefault();
+            var options = {
+                onUploadDone: function(response) {
+                    document.getElementById('carPhotoURL2').value = response.filesUploaded[0].url;
+                    document.getElementById('submit-button').disabled = false;
+                }
+            };
+            var picker = client.picker(options);
+            picker.open();
+        });
+             document.getElementById('filepicker3').addEventListener('click', function(e) {
+            e.preventDefault();
+            var options = {
+                onUploadDone: function(response) {
+                    document.getElementById('carPhotoURL3').value = response.filesUploaded[0].url;
+                    document.getElementById('submit-button').disabled = false;
+                }
+            };
+            var picker = client.picker(options);
+            picker.open();
+        });
+
     </script>
 </div>
 <div th:replace="/partials/footer :: footer"></div>

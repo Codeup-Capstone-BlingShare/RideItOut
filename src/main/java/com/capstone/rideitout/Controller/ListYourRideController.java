@@ -52,7 +52,41 @@ public class ListYourRideController {
         Photo photo = new Photo();
         photo.setCarPhotoURL(carForm.getCarPhotoURL());
         photo.setCar(car);
-        car.setPhotos(Collections.singletonList(photo));
+        car.getPhotos().add(photo);
+        System.out.println(carForm.getCarPhotoURL());
+        System.out.println(car.getPhotos());
+//        car.setPhotos(Collections.singletonList(photo));
+
+        Photo photo1 = new Photo();
+        photo1.setCarPhotoURL(carForm.getCarPhotoURL1());
+        photo1.setCar(car);
+        car.getPhotos().add(photo1);
+        System.out.println(carForm.getCarPhotoURL1());
+
+        System.out.println(car.getPhotos());
+
+
+//        car.setPhotos(Collections.singletonList(photo));
+
+        Photo photo2 = new Photo();
+        photo2.setCarPhotoURL(carForm.getCarPhotoURL2());
+        photo2.setCar(car);
+        car.getPhotos().add(photo2);
+        System.out.println(carForm.getCarPhotoURL2());
+
+        System.out.println(car.getPhotos());
+
+//        car.setPhotos(Collections.singletonList(photo));
+
+        Photo photo3 = new Photo();
+        photo3.setCarPhotoURL(carForm.getCarPhotoURL3());
+        photo3.setCar(car);
+        car.getPhotos().add(photo3);
+        System.out.println(carForm.getCarPhotoURL3());
+
+        System.out.println(car.getPhotos());
+
+//        car.setPhotos(Collections.singletonList(photo));
 
         car.setUser(user);
         System.out.println(car.getUser().getId());

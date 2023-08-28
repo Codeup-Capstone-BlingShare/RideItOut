@@ -5,6 +5,7 @@ import com.capstone.rideitout.Model.Users;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -61,6 +62,7 @@ public class Car {
         this.isAvailable = isAvailable;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
+        photos = new ArrayList<>();
     }
 
     public void setTrips(List<Trip> trips) {

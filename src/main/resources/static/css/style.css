@@ -58,70 +58,68 @@ html {
     font-weight: lighter;
     font-family: "Lucida Console", "Courier New", monospace;
     font-size: 20px;
-    /* Styling for FAQ section */
+}
+/* Styling for FAQ section */
+.faq {
+    background-color: #f5f5f5;
+    padding: 40px 0;
+}
 
-    .faq {
-        background-color: #f5f5f5;
-        padding: 40px 0;
-    }
+.faq h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-    .faq h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #333;
-    }
+.faq-item {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
 
-    .faq-item {
-        padding: 20px;
-        border-bottom: 1px solid #ddd;
-        cursor: pointer;
-    }
+.faq-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
 
-    .faq-item h3 {
-        margin: 0;
-        font-size: 18px;
-        color: #333;
-    }
+.faq-item p {
+    display: none; /* Hide answers by default */
+    margin: 10px 0 0;
+    color: #666;
+}
 
-    .faq-item p {
-        display: none; /* Hide answers by default */
-        margin: 10px 0 0;
-        color: #666;
-    }
+/* Styling for open answers */
+.faq-item.open p {
+    display: block;
+}
 
-    /* Styling for open answers */
+.title{
+    color: ghostwhite;
+    font-weight: lighter;
+    font-size: large;
+}
 
-    .faq-item.open p {
-        display: block;
-    }
+body{
+    font-family: "Helvetica Neue", serif;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-    .title {
-        color: ghostwhite;
-        font-weight: lighter;
-        font-size: large;
-    }
+.navbar{
+    background-color: black;
+}
 
-    & body {
-        font-family: "Helvetica Neue", serif;
-        height: 100vh;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+.nav-item{
+    color: ghostwhite;
+}
 
-    .navbar {
-        background-color: black;
-    }
+.header{
+    color: ghostwhite;
+}
 
-    .nav-item {
-        color: ghostwhite;
-    }
-
-    .header {
-        color: ghostwhite;
-    }
-
-    .footer {
-        margin-top: auto;
-    }
+.footer {
+    margin-top: auto;
 }

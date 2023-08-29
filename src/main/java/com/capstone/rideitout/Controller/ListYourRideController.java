@@ -43,18 +43,15 @@ public class ListYourRideController {
         model.addAttribute("carForm", carForm);
         return "Users/listyourride";
     }
-//, Principal principal
 
     @PostMapping
     public String addCar(@ModelAttribute("carForm") CarForm carForm) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        System.out.println(user.getId());
 
         user = userRepository.getById(user.getId());
-//        System.out.println(user.getId());
+
         Car car = new Car(carForm.getMake(), carForm.getModel(), carForm.getYear(), carForm.getMileage(),
-                carForm.isAvailable(), carForm.getPricePerDay(), carForm.getCarLocationZip());
-        System.out.println("car data " + carForm.getCarPhotoURL());
+                          carForm.isAvailable(), carForm.getPricePerDay(), carForm.getCarLocationZip());
 
         car.setUser(user);
         carDao.save(car);

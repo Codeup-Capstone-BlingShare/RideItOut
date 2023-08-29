@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Listing</title>
@@ -12,20 +12,24 @@
 <body>
 <div th:replace="/partials/navbar :: navbar"></div>
 <h1>Car Listing</h1>
-<div><img alt="img example"></div>
+<div></div>
 <h2>Information about Car</h2>
 <div>
-	<form th:action="@{/listings}" th:object="${trip}">
+	<form th:action="@{/search}" th:mehod="get" th:object="${search}">
 		<label for="startDate"></label>
 		<input id="startDate" class="form-control" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy">
-		<button type="submit">Start Date</button>
+
 		<label for="endDate"></label>
 		<input id="endDate" class="form-control" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy">
-		<button type="submit">End Date</button>
+
+		<label for="searchLocation"></label>
+		<input id="searchLocation" class="form-control" th:field="*{searchLocation}" type="text" placeholder="Enter a city">
+		<button type="submit">Search</button>
 	</form>
 </div>
 <div th:each="car : ${listings}">
 	<div>
+		<img th:src="${car.getPhotos()}" alt="img example">
 		<a th:href="@{/listings/{id} (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
 		<p th:text="${car.model}"></p>
 		<p th:text="${car.year}"></p>
@@ -35,6 +39,8 @@
 	</div> <hr>
 </div>
 <div id="map" style="width: 100%; height: 400px;"></div>
+<div th:replace="/partials/footer :: footer"></div>
+
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -44,7 +50,6 @@
 <script>
 	const mapBoxKey = "[[${mapBoxKey}]]";
 </script>
-<div th:replace="/partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>
 <script th:src="@{/js/map.js}"></script>

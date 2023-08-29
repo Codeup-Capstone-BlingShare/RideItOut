@@ -3,6 +3,8 @@ package com.capstone.rideitout.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "photos")
 @AllArgsConstructor
@@ -21,6 +23,7 @@ public class Photo {
 
 
     @Column(name = "car_photo_url")
+//    @ElementCollection
     private String carPhotoURL;
 
     @Override
@@ -30,6 +33,11 @@ public class Photo {
                 ", carPhotoURL='" + carPhotoURL + '\'' +
                 // Exclude car field from toString()
                 '}';
+    }
+
+    public Photo(Car car, String carPhotoURL) {
+        this.car = car;
+        this.carPhotoURL = carPhotoURL;
     }
 
     public Photo(String carPhotoURL) {

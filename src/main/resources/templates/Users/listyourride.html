@@ -12,7 +12,7 @@
 <body>
 <div th:replace="~{partials/navbar :: navbar}"></div>
 <div>
-    <form th:action="@{/listyourride}" method="post" th:object="${carForm}">
+    <form class="formContainer" th:action="@{/listyourride}" method="post" th:object="${carForm}">
         <h3><label for="make">Car Make</label><br></h3>
         <input type="text" id="make" th:field="*{make}"/><br>
 
@@ -40,17 +40,29 @@
             <option value="false">No</option>
         </select><br><br>
 
-        <input type="hidden" id="carPhotoURL" name="carPhotoURL" th:field="*{carPhotoURL}">
+<!--        <input type="hidden" class="carPhotoURL" name="carPhotoURL">-->
+
+        <input type="hidden" class="hiddenInput"
+               th:field="*{carPhotoURL[0]}" value=""/>
+        <input type="hidden" class="hiddenInput"
+               th:field="*{carPhotoURL[1]}" value=""/>
+        <input type="hidden" class="hiddenInput"
+               th:field="*{carPhotoURL[2]}" value=""/>
+        <input type="hidden" class="hiddenInput"
+               th:field="*{carPhotoURL[3]}" value=""/>
+<!--        <input type="hidden" class="carPhotoURL" name="carPhotoURL[]" th:field="*{carPhotoURL[0]}">-->
         <button id="filepicker">Upload Image</button><br><br>
 
-       <input type="hidden" id="carPhotoURL1" name="carPhotoURL1" th:field="*{carPhotoURL1}">
-        <button id="filepicker1">Upload Image</button><br><br>
 
-       <input type="hidden" id="carPhotoURL2" name="carPhotoURL2" th:field="*{carPhotoURL2}">
-        <button id="filepicker2">Upload Image</button><br><br>
 
-       <input type="hidden" id="carPhotoURL3" name="carPhotoURL3" th:field="*{carPhotoURL3}">
-        <button id="filepicker3">Upload Image</button><br><br>
+        <!--       <input type="hidden" id="carPhotoURL1" name="carPhotoURL1" th:field="*{carPhotoURL1}">-->
+<!--        <button id="filepicker1">Upload Image</button><br><br>-->
+
+<!--       <input type="hidden" id="carPhotoURL2" name="carPhotoURL2" th:field="*{carPhotoURL2}">-->
+<!--        <button id="filepicker2">Upload Image</button><br><br>-->
+
+<!--       <input type="hidden" id="carPhotoURL3" name="carPhotoURL3" th:field="*{carPhotoURL3}">-->
+<!--        <button id="filepicker3">Upload Image</button><br><br>-->
 
         <button type="submit">List Ride</button>
     </form>
@@ -61,42 +73,33 @@
         document.getElementById('filepicker').addEventListener('click', function(e) {
             e.preventDefault();
             var options = {
+                maxFiles: 3,
                 onUploadDone: function(response) {
-                    document.getElementById('carPhotoURL').value = response.filesUploaded[0].url;
-                    document.getElementById('submit-button').disabled = false;
-                }
-            };
-            var picker = client.picker(options);
-            picker.open();
-        });
-             document.getElementById('filepicker1').addEventListener('click', function(e) {
-            e.preventDefault();
-            var options = {
-                onUploadDone: function(response) {
-                    document.getElementById('carPhotoURL1').value = response.filesUploaded[0].url;
-                    document.getElementById('submit-button').disabled = false;
-                }
-            };
-            var picker = client.picker(options);
-            picker.open();
-        });
-             document.getElementById('filepicker2').addEventListener('click', function(e) {
-            e.preventDefault();
-            var options = {
-                onUploadDone: function(response) {
-                    document.getElementById('carPhotoURL2').value = response.filesUploaded[0].url;
-                    document.getElementById('submit-button').disabled = false;
-                }
-            };
-            var picker = client.picker(options);
-            picker.open();
-        });
-             document.getElementById('filepicker3').addEventListener('click', function(e) {
-            e.preventDefault();
-            var options = {
-                onUploadDone: function(response) {
-                    document.getElementById('carPhotoURL3').value = response.filesUploaded[0].url;
-                    document.getElementById('submit-button').disabled = false;
+                    const formContainer = document.querySelector(".formContainer")
+                    const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
+                    console.log(formContainer);
+                    console.log(hiddenInputs);
+                    // let inputElements = document.getElementById('carPhotoURL');
+                  for(let i = 0; i < hiddenInputs.length; i++){
+                      if(response.filesUploaded[i] != null) {
+                          hiddenInputs[i].value = response.filesUploaded[i].url;
+                      }
+                          // if (imageObj.url != null) {
+                          //     element.value = imageObj?.url;
+                          //     console.log(element);
+                          //     console.log(url);
+                          //     break;
+                          // }
+                          else {
+                              element.value = "";
+                          }
+                      }
+
+                  //   for(element of hiddenInputs){
+                  //       console.log(element);
+                  //   }
+                    document.getElementById('submit-button');
+                    console.log(response.filesUploaded);
                 }
             };
             var picker = client.picker(options);

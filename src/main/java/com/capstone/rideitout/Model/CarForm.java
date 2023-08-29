@@ -15,5 +15,9 @@ public class CarForm {
     private boolean isAvailable;
     private int pricePerDay;
     private int carLocationZip;
+    private String carLocationCity;
     private String carPhotoURL;
+    private String carPhotoURL1;
+    private String carPhotoURL2;
+    private String carPhotoURL3;
 }

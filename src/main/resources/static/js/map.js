@@ -1,9 +1,11 @@
 // map.js
 	// Initialize the map
-	let coordinates = [-121.866126, 42.577636];
+	let coordinates = [-98.5795, 39.8283];
+	let z = 3;
 
 	//-------------------------Initial Calls---------------------------//
 	updateMap();
+	moveCenter();
 
 	//-------------------------Creates and updates map---------------------------//
 	function updateMap() {
@@ -11,12 +13,14 @@
 		let map = new mapboxgl.Map({
 			container: 'map',
 			style: 'mapbox://styles/mapbox/streets-v9',
-			zoom: 10,
-			center: coordinates
+			zoom: z,
+			center: coordinates,
+			// LtileLayer: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			// 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			// }).addTo(map);
 		})
 		$(document).ready(function () {
 			$('.location').each(function (){
-				console.log($(this))
 				geocode($(this).html(), mapBoxKey).then(function (result) {
 					coordinates = result;
 					updateMarker(map)
@@ -33,13 +37,16 @@
 			.setLngLat(coordinates)
 			.addTo(map);
 	}
-
-$(`#submit`).on(`click`, function () {
-	geocode($(`#searchCity`).val(), mapBoxKey).then(function (result) {
-		coordinates = result;
-		updateMap();
-	})
-})
+	function moveCenter() {
+		let ifSearch = $(`#searchLocation`).val();
+		if (ifSearch !== "") {
+			geocode(ifSearch, mapBoxKey).then(function (result) {
+				coordinates = result;
+				z = 9;
+				updateMap();
+			})
+		}
+	}
 
 
 

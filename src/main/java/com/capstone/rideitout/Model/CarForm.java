@@ -2,6 +2,8 @@ package com.capstone.rideitout.Model;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,8 +17,6 @@ public class CarForm {
     private boolean isAvailable;
     private int pricePerDay;
     private int carLocationZip;
-    private String carPhotoURL;
-    private String carPhotoURL1;
-    private String carPhotoURL2;
-    private String carPhotoURL3;
+    private List<String> carPhotoURL;
+
 }

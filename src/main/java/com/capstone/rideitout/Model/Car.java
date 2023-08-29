@@ -87,6 +87,7 @@ public class Car {
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
         this.carLocationCity = carLocationCity;
+        this.photos = photos;
     }
 
     @Override

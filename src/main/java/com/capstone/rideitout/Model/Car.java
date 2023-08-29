@@ -1,6 +1,4 @@
 package com.capstone.rideitout.Model;
-import com.capstone.rideitout.Model.Trip;
-import com.capstone.rideitout.Model.Users;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,6 +42,9 @@ public class Car {
      @Column(name = "car_location_zip")
     private int carLocationZip;
 
+     @Column(name = "car_location_city")
+    private String carLocationCity;
+
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Photo> photos;
 
@@ -54,7 +55,7 @@ public class Car {
     @OneToMany(mappedBy = "car")
     private List<Trip> trips;
 
-    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip) {
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, String carLocationCity) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -62,14 +63,10 @@ public class Car {
         this.isAvailable = isAvailable;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
-        photos = new ArrayList<>();
+        this.carLocationCity = carLocationCity;
     }
 
-    public void setTrips(List<Trip> trips) {
-        this.trips = trips;
-    }
-
-    public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip) {
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, boolean rented, int pricePerDay, int carLocationZip, String carLocationCity) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -78,9 +75,10 @@ public class Car {
         this.rented = rented;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
+        this.carLocationCity = carLocationCity;
     }
 
-    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, List<Photo> photos) {
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, String carLocationCity, List<Photo> photos) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -88,6 +86,7 @@ public class Car {
         this.isAvailable = isAvailable;
         this.pricePerDay = pricePerDay;
         this.carLocationZip = carLocationZip;
+        this.carLocationCity = carLocationCity;
         this.photos = photos;
     }
 

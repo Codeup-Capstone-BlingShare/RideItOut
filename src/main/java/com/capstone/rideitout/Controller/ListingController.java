@@ -2,14 +2,13 @@ package com.capstone.rideitout.Controller;
 
 
 import com.capstone.rideitout.Model.Car;
-import com.capstone.rideitout.Model.Trip;
+import com.capstone.rideitout.Model.Search;
 import com.capstone.rideitout.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,34 +23,14 @@ public class ListingController {
     }
 
     @GetMapping("/listings")
-    public String showListingsPage(Model model, @ModelAttribute Trip trip) {
+    public String showListingsPage(Model model) {
         model.addAttribute("mapBoxKey", MB_KEY);
-        List<Car> cars = carDoa.findAll();
-        List<Car> available = new ArrayList<>();
+        model.addAttribute("search", new Search());
 
-        if (trip.getStartDate() == null && trip.getEndDate() == null) {
-            model.addAttribute("trip", new Trip());
-            model.addAttribute("listings", cars);
-        } else {
-            for (Car car : cars) {
-                boolean notAvailable = false;
-                List<Trip> trips = car.getTrips();
-                    for (Trip planned : trips) {
-                        if (trip.getStartDate().after(planned.getStartDate()) &&
-                                trip.getStartDate().before(planned.getEndDate())) {
-                            notAvailable = true;
-                            break;
-                        } else if (trip.getEndDate().after(planned.getStartDate())) {
-                            notAvailable = true;
-                            break;
-                        }
-                    }
-                    if (!notAvailable) {
-                        available.add(car);
-                    }
-            }
-            model.addAttribute("listings", available);
-        }
+        List<Car> cars = carDoa.findAll();
+
+        model.addAttribute("listings", cars);
+
         return "Users/listing"; // return the name of the listings page template file
     }
 

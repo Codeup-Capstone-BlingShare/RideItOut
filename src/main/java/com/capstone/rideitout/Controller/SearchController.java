@@ -7,6 +7,7 @@ import com.capstone.rideitout.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,23 +25,8 @@ public class SearchController {
         this.carDoa = carDoa;
     }
 
-//    @GetMapping(value = "/search", params = {"searchLocation"})
-//    public String search(Model model, @RequestParam("searchLocation") String searchLocation) {
-//        model.addAttribute("mapBoxKey", MB_KEY);
-//
-//        List<Car> cars = carDoa.findAll();
-//
-//        if (searchLocation != null && !searchLocation.equals("")) {
-//            cars = carDoa.findByCarLocationCity(searchLocation);
-//        }
-//
-//        model.addAttribute("listings", cars);
-//
-//        return "Users/listing"; // return the name of the listings page template file
-//    }
-
     @GetMapping(value = "/search")
-    public String search(Model model, @ModelAttribute Search search) {
+    public String search(Model model, @ModelAttribute Search search, BindingResult result) {
         System.out.println("here");
         model.addAttribute("mapBoxKey", MB_KEY);
         List<Car> cars = carDoa.findAll();
@@ -50,7 +36,7 @@ public class SearchController {
             cars = carDoa.findByCarLocationCity(search.getSearchLocation());
         }
 
-        if (search.getStartDate().toString().equals("") && search.getEndDate().toString().equals("")) {
+        if (search.getStartDate() == null || search.getEndDate() == null){
             model.addAttribute("listings", cars);
         } else {
             for (Car car : cars) {
@@ -74,23 +60,5 @@ public class SearchController {
             model.addAttribute("listings", available);
         }
         return "Users/listing"; // return the name of the listings page template file
-    }
-
-    @GetMapping("/cars")
-    public String getCars() {
-        // Get all cars available for rental
-        return "List of cars";
-    }
-
-    @GetMapping("/login/{username}")
-    public String login(@PathVariable String username) {
-        // Perform login functionality
-        return "Logged in as: " + username;
-    }
-
-    @GetMapping("/logout")
-    public String logout() {
-        // Perform logout functionality
-        return "Logged out successfully";
     }
 }

@@ -13,8 +13,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<title>Landing Page</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<script src="../static/js/carousel.js"></script>
 </head>
+<body>
 <div th:replace="/partials/navbar :: navbar"></div>
 <br>
 <div class="header d-flex justify-content-center">
@@ -24,10 +24,10 @@
 <div class="cover">
 	<form action="#" class="flex-form">
 		<input type="search" class="destination" placeholder="City, airport, address or hotel">
-		
+
 		<label>From</label>
 		<input type="date" id="from">
-		
+
 		<label>To</label>
 		<input type="date" id="to">
 		<input type="submit" class="btn-primary" value="search for cars">
@@ -93,7 +93,7 @@
 		</ol>
 	</div>
 </div>
-	<script src="carousel.js"></script>
+	<script src="/js/carousel.js"></script>
 </body>
 </html>
 

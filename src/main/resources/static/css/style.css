@@ -5,7 +5,6 @@
 
 /* Center the content vertically and horizontally */
 .carousel-item img {
-    object-fit: cover;
     width: 100%;
     height: 100%;
     display: block;
@@ -14,6 +13,8 @@
 
 .container {
     text-align: justify-all;
+    padding:0 !important;
+    margin:0 !important;
 }
 
 .steps-container {
@@ -36,6 +37,11 @@ html {
 
 .cover {
     position: relative;
+    top:35px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width:100%;
 }
 
 .container h1 {

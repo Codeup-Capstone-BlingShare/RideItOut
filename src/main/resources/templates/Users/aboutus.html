@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-secondary bg-gradient justify-content-center">
+<div th:replace="~{partials/navbar :: navbar}"></div>
+<br>
+<div class="header d-flex justify-content-center">
+    <h1>About Us</h1>
+</div>
+<br>
+<div class="d-flex flex-column align-items-center">
+    <div class="nav-item">
+        <h3>What we are:</h3>
+    </div>
+    <div class="container">
+        <h5>Ride It Out is a ride-share service devoted to connecting the High Status individuals
+            of the world by providing a seamless
+            rental experience for spectacular vehicles. Whether you are traveling
+            and still want to drive in style without
+            exorbitant shipping costs,
+            or would like to add another stream of income, Ride It Out
+            is here to fit your needs.</h5>
+    </div>
+    <br>
+    <h3 class="nav-item">Our Team:</h3>
+    <h4>Elliot Anderton</h4>
+    <p>Backend, MapBox, Square payments</p>
+    <h4>Brenden Ferguson</h4>
+    <p>Frontend, Styling and Design, CSS</p>
+    <h4>Emilia Mata</h4>
+    <p>Frontend, Animations and Images, Javascript</p>
+    <h4>James O'Sullivan</h4>
+    <p>Backend, Database Design, CRUD Functionality</p>
+</div>
+<div class="mt-auto d-flex justify-content-center">
+<div th:replace="partials/footer :: footer"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

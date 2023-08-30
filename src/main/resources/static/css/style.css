@@ -23,11 +23,11 @@
     margin: 20px 0;
 }
 
-/*.header {*/
-/*    border-bottom: 1px solid #ccc;*/
-/*    padding-bottom: 20px;*/
-/*    color: black;*/
-
+.header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    color: ghostwhite;
+}
 
 html {
     box-sizing: border-box;
@@ -150,4 +150,15 @@ html {
     /*    width: 100px;*/
     /*    height: 100px;*/
     /*}*/
+
+.nav-item{
+    color: ghostwhite;
+}
+
+.footer {
+    margin-top: auto;
+}
+ .big-img {
+     width: 100vw;
+ }
 

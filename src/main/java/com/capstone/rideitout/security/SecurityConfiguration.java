@@ -43,7 +43,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/profile", "/payment", "/manage",  "/listyourride", "/car/*/edit", "/car/*/delete", "/create/**").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view cars */
-                        .requestMatchers("/", "/listings", "/listings/**", "","/register", "/login", "/search", "/index").permitAll()
+                        .requestMatchers("/", "/listings", "/listings/**", "","/register", "/login", "/search", "/index", "/aboutus").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )

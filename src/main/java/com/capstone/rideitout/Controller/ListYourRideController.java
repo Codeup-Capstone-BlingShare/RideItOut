@@ -51,7 +51,7 @@ public class ListYourRideController {
         user = userRepository.getById(user.getId());
 
         Car car = new Car(carForm.getMake(), carForm.getModel(), carForm.getYear(), carForm.getMileage(),
-                          carForm.isAvailable(), carForm.getPricePerDay(), carForm.getCarLocationZip());
+                          carForm.isAvailable(), carForm.getPricePerDay(), carForm.getCarLocationZip(), carForm.getCarLocationCity());
 
         car.setUser(user);
         carDao.save(car);

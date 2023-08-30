@@ -90,6 +90,21 @@ public class Car {
         this.photos = photos;
     }
 
+    public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, List<Photo> photos) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.mileage = mileage;
+        this.isAvailable = isAvailable;
+        this.pricePerDay = pricePerDay;
+        this.carLocationZip = carLocationZip;
+        this.photos = photos;
+    }
+
+
+    public Car(String make, String model, int year, int mileage, boolean available, int pricePerDay, int carLocationZip) {
+    }
+
     @Override
     public String toString() {
         return "Car{" +

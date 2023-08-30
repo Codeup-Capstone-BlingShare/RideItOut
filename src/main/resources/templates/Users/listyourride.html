@@ -28,11 +28,11 @@
         <h3><label for="price">Daily Price</label><br></h3>
         <input type="number" id="price" th:field="*{pricePerDay}"/><br>
 
-        <h3><label for="locationCity">City</label><br></h3>
-        <input type="text" id="locationCity" th:field="*{carLocationCity}"/><br>
-
         <h3><label for="location">Zip code</label><br></h3>
         <input type="number" id="location" th:field="*{carLocationZip}"/><br><br>
+
+        <h3><label for="locationCity">City</label><br></h3>
+        <input type="text" id="locationCity" th:field="*{carLocationCity}"/><br>
 
         <label for="is_available">Is your ride available?</label>
         <select id="is_available" th:field="*{available}">
@@ -40,7 +40,6 @@
             <option value="false">No</option>
         </select><br><br>
 
-<!--        <input type="hidden" class="carPhotoURL" name="carPhotoURL">-->
 
         <input type="hidden" class="hiddenInput"
                th:field="*{carPhotoURL[0]}" value=""/>
@@ -50,19 +49,9 @@
                th:field="*{carPhotoURL[2]}" value=""/>
         <input type="hidden" class="hiddenInput"
                th:field="*{carPhotoURL[3]}" value=""/>
-<!--        <input type="hidden" class="carPhotoURL" name="carPhotoURL[]" th:field="*{carPhotoURL[0]}">-->
+
         <button id="filepicker">Upload Image</button><br><br>
 
-
-
-        <!--       <input type="hidden" id="carPhotoURL1" name="carPhotoURL1" th:field="*{carPhotoURL1}">-->
-<!--        <button id="filepicker1">Upload Image</button><br><br>-->
-
-<!--       <input type="hidden" id="carPhotoURL2" name="carPhotoURL2" th:field="*{carPhotoURL2}">-->
-<!--        <button id="filepicker2">Upload Image</button><br><br>-->
-
-<!--       <input type="hidden" id="carPhotoURL3" name="carPhotoURL3" th:field="*{carPhotoURL3}">-->
-<!--        <button id="filepicker3">Upload Image</button><br><br>-->
 
         <button type="submit">List Ride</button>
     </form>

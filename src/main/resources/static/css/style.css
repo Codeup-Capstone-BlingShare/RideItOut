@@ -1,20 +1,22 @@
 /* Set the desired height for the carousel */
 .carousel-item {
     height: auto;
+    width: 100vw;
+    margin:0;
 }
 
 /* Center the content vertically and horizontally */
 .carousel-item img {
     width: 100%;
     height: 100%;
-    display: block;
-    margin: 0 auto;
+    /*display: block;*/
+    margin: 0;
 }
 
 .container {
-    text-align: justify-all;
-    padding:0 !important;
-    margin:0 !important;
+    /*text-align: justify-all;*/
+    padding:0;
+    margin:0;
 }
 
 .steps-container {
@@ -37,7 +39,7 @@ html {
 
 .cover {
     position: relative;
-    top:35px;
+    top:45px;
     z-index: 100;
     display: flex;
     justify-content: center;
@@ -129,3 +131,6 @@ body{
 .footer {
     margin-top: auto;
 }
+ .big-img {
+     width: 100vw;
+ }

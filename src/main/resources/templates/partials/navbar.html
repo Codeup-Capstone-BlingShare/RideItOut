@@ -13,7 +13,7 @@
         <a th:href="@{/}" class="nav-link">Ride It Out</a>
     </div>
     <div class="nav-item">
-        <a th:href="@{/about}" class="nav-link">About</a>
+        <a th:href="@{/aboutus}" class="nav-link">About</a>
     </div>
     <div class="nav-item">
         <a th:href="@{/contact}" class="nav-link">Contact</a>
@@ -29,7 +29,7 @@
     </div>
     <div sec:authorize="isAuthenticated()" class="nav-item" >
         <form th:action="@{/logout}" th:method="post">
-            <button class="btn-link btn">Logout</button>
+            <button class="btn nav-link">Logout</button>
         </form>
     </div>
 </nav>

@@ -31,6 +31,7 @@
 .header {
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
+    color: ghostwhite;
 }
 
 html {
@@ -124,13 +125,10 @@ body{
     color: ghostwhite;
 }
 
-.header{
-    color: ghostwhite;
-}
-
 .footer {
     margin-top: auto;
 }
  .big-img {
      width: 100vw;
  }
+

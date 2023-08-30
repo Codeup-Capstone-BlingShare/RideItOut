@@ -60,13 +60,13 @@
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 					<form sec:authorize="isAuthenticated()"
 					      th:if="${search.getStartDate() != null and search.getEndDate() != null}"
-					      th:action="@{/payment}" method="get">
+					      th:action="@{/payment}" method="post">
 
 						<input type="hidden" name="startDate" th:value="${search.getStartDate()}">
 						<input type="hidden" name="endDate" th:value="${search.getEndDate()}">
-						<input type="hidden" name="car" th:value="${car}">
+						<input type="hidden" name="car" th:value="${car.id}">
 
-						<button type="submit" class="btn btn-primary">Book Trip</button>
+						<button type="submit" class="btn btn-primary" th:id="${car.id}">Book Trip</button>
 					</form>
 					<div sec:authorize="isAuthenticated()"
 					     th:if="${search.getStartDate() == null or search.getEndDate() == null}">

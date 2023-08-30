@@ -1,26 +1,55 @@
 package com.capstone.rideitout.Controller;
 
+import com.capstone.rideitout.Model.Car;
+import com.capstone.rideitout.Model.Trip;
+import com.capstone.rideitout.Model.Users;
+import com.capstone.rideitout.repositories.CarRepository;
+import com.capstone.rideitout.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 @Controller
 public class PaymentController {
 
-@Value("${squareUser}")
-private String SQUARE_USER;
-@Value("${squareKey}")
-private String SQUARE_KEY;
+    private final UserRepository userRepository;
+
+
+    private final CarRepository carDao;
+
+    @Value("${squareUser}")
+    private String SQUARE_USER;
+    @Value("${squareKey}")
+    private String SQUARE_KEY;
+
+    public PaymentController(UserRepository userRepository, CarRepository carDao) {
+        this.userRepository = userRepository;
+        this.carDao = carDao;
+    }
 
     @GetMapping("/payment")
-    public String showPaymentForm(Model model) {
+    public String showPaymentForm(Model model,
+                                  @RequestParam(name = "startDate") Date startDate,
+                                  @RequestParam(name = "endDate") Date endDate,
+                                  @RequestParam(name = "carID") Car car) {
+        System.out.println("here");
         model.addAttribute("squareKey", SQUARE_KEY);
         model.addAttribute("squareUser", SQUARE_USER);
+
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Trip trip = new Trip(startDate, endDate, car);
+        trip.setRenter(user);
+        trip.setTotalCost((trip.getStartDate().getTime() - trip.getEndDate().getTime()) / -86400000 * car.getPricePerDay());
+
+        model.addAttribute("trip", trip);
+
         return "Users/payment"; // return the name of the payment form template file
     }
 

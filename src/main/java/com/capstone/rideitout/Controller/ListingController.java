@@ -3,6 +3,7 @@ package com.capstone.rideitout.Controller;
 
 import com.capstone.rideitout.Model.Car;
 import com.capstone.rideitout.Model.Search;
+import com.capstone.rideitout.Model.Trip;
 import com.capstone.rideitout.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class ListingController {
     public String showListingsPage(Model model) {
         model.addAttribute("mapBoxKey", MB_KEY);
         model.addAttribute("search", new Search());
+        model.addAttribute("trip", new Trip());
 
         List<Car> cars = carDoa.findAll();
 

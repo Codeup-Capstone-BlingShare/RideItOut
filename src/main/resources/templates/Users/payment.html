@@ -10,6 +10,15 @@
 </head>
 <body>
 <div th:replace="/partials/navbar :: navbar"></div>
+<div>
+	<h1>Your Reservation:</h1>
+	<h3>Year: <span th:text="${trip.car.year}"></span></h3>
+	<h3>Make: <span th:text="${trip.car.make}"></span></h3>
+	<h3>Model: <span th:text="${trip.car.model}"></span></h3>
+	<h3>From: <span th:text="${trip.startDate}"></span> - To: <span th:text="${trip.endDate}"></span></h3>
+	<h3>Total cost: <span th:text="${trip.totalCost}"></span></h3>
+</div>
+<h2>Please enter your payment information</h2>
 <div id="payment-form">
 	<div id="payment-status-container"></div>
 	<div id="card-container"></div>
@@ -17,7 +26,6 @@
 </div>
 <div th:replace="/partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script th:src="@{/js/scripts.js}"></script>
 <script type="module">
 	const squareUser = "[[${squareUser}]]";
 	const squareKey = "[[${squareKey}]]";

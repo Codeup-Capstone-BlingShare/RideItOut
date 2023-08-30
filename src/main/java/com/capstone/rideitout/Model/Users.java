@@ -95,4 +95,8 @@ public class Users {
                 ", profilePhoto='" + profilePhoto + '\'' +
                 '}';
     }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
 }

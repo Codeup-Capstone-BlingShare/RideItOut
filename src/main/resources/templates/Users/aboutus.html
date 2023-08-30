@@ -29,17 +29,71 @@
     </div>
     <br>
     <h3 class="nav-item">Our Team:</h3>
-    <h4>Elliot Anderton</h4>
-    <p>Backend, MapBox, Square payments</p>
-    <h4>Brenden Ferguson</h4>
-    <p>Frontend, Styling and Design, CSS</p>
-    <h4>Emilia Mata</h4>
-    <p>Frontend, Animations and Images, Javascript</p>
-    <h4>James O'Sullivan</h4>
-    <p>Backend, Database Design, CRUD Functionality</p>
+    <div class="d-flex">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Elliot Anderton</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Backend</li>
+                <li class="list-group-item">MapBox</li>
+                <li class="list-group-item">Square Payments</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">LinkedIn</a>
+                <a href="#" class="card-link">GitHub</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Brenden Ferguson</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Front End</li>
+                <li class="list-group-item">Styling and Design</li>
+                <li class="list-group-item">CSS</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">LinkedIn</a>
+                <a href="#" class="card-link">GitHub</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Emilia Mata</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Front End</li>
+                <li class="list-group-item">Animations and Images</li>
+                <li class="list-group-item">JavaScript</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">LinkedIn</a>
+                <a href="#" class="card-link">GitHub</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">James O'Sullivan</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Back End</li>
+                <li class="list-group-item">Database Design</li>
+                <li class="list-group-item">CRUD Functionality</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">LinkedIn</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="mt-auto d-flex justify-content-center">
-<div th:replace="partials/footer :: footer"></div>
+    <div th:replace="partials/footer :: footer"></div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>

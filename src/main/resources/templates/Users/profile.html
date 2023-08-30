@@ -11,9 +11,12 @@
 </head>
 <body>
 <div th:replace="~{partials/navbar :: navbar}"></div>
-<h1>Profile Picture Here</h1>
 
-<form class="formContainer" th:action="@{/profile}" method="post" th:object="${user}">
+<div>
+<img th:src="${user.getProfilePhoto()}" alt="img example">
+</div>
+
+<form class="formContainer" th:action="@{/profile}" method="post" th:object="${user}" th:value="${user.profilePhoto}">
     <input type="hidden" th:field="*{id}" />
     <div class="container">
         <div class="drop-container"></div>

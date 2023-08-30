@@ -31,7 +31,6 @@ public class ProfileController {
     public String addProfilePicture(@ModelAttribute Users user){
         Users currentUser = userRepository.getById(user.getId());
         currentUser.setProfilePhoto(user.getProfilePhoto());
-        System.out.println("***" + currentUser);
         userRepository.save(currentUser);
         return "redirect:/profile";
     }

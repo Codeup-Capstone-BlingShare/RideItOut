@@ -39,9 +39,11 @@ public class ProfileController {
     @GetMapping("/profile")
     public String showProfilePage(Model model) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("photo", user.getProfilePhoto());
+        // I have to instantiate a new obj to access the DB values instead of the session values
+        Users user1 = userRepository.getById(user.getId());
+        model.addAttribute("photo", user1.getProfilePhoto());
         System.out.println(user.getProfilePhoto());
-        model.addAttribute("user", user);
+        model.addAttribute("user", user1);
 //        model.addAttribute("fileStackKey", fileStackKey);
         return "Users/profile";
     }

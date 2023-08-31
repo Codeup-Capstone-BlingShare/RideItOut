@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<title>Landing Page</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-secondary bg-gradient">
+<div th:replace="/partials/navbar :: navbar"></div>
+<br>
+<div class="header d-flex justify-content-center">
+	<h1>Frequently Asked Questions:</h1>
+</div>
+<div class="accordion-flush" id="Q:1">
+	<div class="accordion-item">
+		<h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+				1. How do I make a reservation?
+			</button>
+		</h2>
+		<div id="flush-collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+			<div class="accordion-body">Making a reservation is easy! Just visit our website and enter your desired pickup and drop-off locations, along with the dates and times. Our system will display available cars, and you can choose the one that suits your needs. Follow the prompts to complete your booking.</div>
+		</div>
+		<div class="accordion-flush" id="Q:2">
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+						2. What documents do I need to rent a car?
+					</button>
+				</h2>
+				<div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">You will need a valid driver's license, a major credit card in your name for payment and security deposit, and a government-issued ID as proof of identity.</div>
+				</div>
+				<div class="accordion-flush" id="Q:3">
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+								3. Can I rent a car if I'm under 25 years old?
+							</button>
+						</h2>
+						<div id="flush-collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+							<div class="accordion-body">Yes, we offer rentals to drivers aged 21 and above, but there might be an additional fee for drivers under 25 due to insurance considerations. This fee varies depending on the location.</div>
+						</div>
+						<div class="accordion-flush" id="Q:4">
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+										3. Can I rent a car if I'm under 25 years old?
+									</button>
+								</h2>
+								<div id="flush-collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+									<div class="accordion-body">Yes, we offer rentals to drivers aged 21 and above, but there might be an additional fee for drivers under 25 due to insurance considerations. This fee varies depending on the location.</div>
+								</div>
+								<div class="accordion-flush" id="Q:5">
+									<div class="accordion-item">
+										<h2 class="accordion-header">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+												4. Can I add a driver to the rental? Is there a fee?
+											</button>
+										</h2>
+										<div id="flush-collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">Yes, you can add additional drivers. Some rental plans might include an extra driver for free, while others could have a small daily fee. Make sure to inquire about this when booking.</div>
+										</div>
+										<div class="accordion-flush" id="Q:6">
+											<div class="accordion-item">
+												<h2 class="accordion-header">
+													<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+														5. What's included in the rental price?
+													</button>
+												</h2>
+												<div id="flush-collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+													<div class="accordion-body">The rental price usually includes the basic rental fee and standard insurance coverage. Additional services like GPS, child seats, and additional insurance options are available for an extra charge.</div>
+												</div>
+												<div class="accordion accordion-flush" id="Q:7">
+													<div class="accordion-item">
+														<h2 class="accordion-header">
+															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+																6. Can I pick up the car at one location and drop it off at another?
+															</button>
+														</h2>
+														<div id="flush-collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+															<div class="accordion-body">Yes, we offer one-way rentals to many locations. There might be a drop-off fee associated with this service, which varies based on the locations involved.</div>
+														</div>
+													</div>
+													<div class="accordion accordion-flush" id="Q:8">
+														<div class="accordion-item">
+															<h2 class="accordion-header">
+																<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+																	7. What if I need to extend my rental period?
+																</button>
+															</h2>
+															<div id="flush-collapse8" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+																<div class="accordion-body">If you need to extend your rental, contact our customer support as soon as possible. Extension options depend on availability and may incur additional charges.</div>
+															</div>
+														</div>
+														<div class="accordion accordion-flush" id="Q:9">
+															<div class="accordion-item">
+																<h2 class="accordion-header">
+																	<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+																		8. What's your cancellation policy?
+																	</button>
+																</h2>
+																<div id="flush-collapse9" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+																	<div class="accordion-body">Our cancellation policy varies based on the rental plan you choose. Generally, cancellations made within a certain timeframe before the pickup time are eligible for a full or partial refund. Refer to the terms and conditions during the booking process.
+																	</div>
+																</div>
+															</div>
+															<div class="accordion accordion-flush" id="Q:10">
+																<div class="accordion-item">
+																	<h2 class="accordion-header">
+																		<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+																			9. How does fuel work? Do I need to return the car with a full tank?
+																		</button>
+																	</h2>
+																	<div id="flush-collapse" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+																		<div class="accordion-body">You'll receive the car with a full tank of fuel, and we expect you to return it with a full tank as well. If the car is returned with less fuel, you may be charged for refueling at a higher rate.</div>
+																	</div>
+																</div>
+																<div class="accordion accordion-flush" id="Q:11">
+																	<div class="accordion-item">
+																		<h2 class="accordion-header">
+																			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+																				10. What should I do in case of an accident or breakdown?
+																			</button>
+																		</h2>
+																		<div id="flush-collapse11" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+																			<div class="accordion-body">In case of an accident, call emergency services if necessary, and then inform us immediately. If the car breaks down, contact our roadside assistance line provided in the rental agreement.
+																			</div>
+																		</div>
+																	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

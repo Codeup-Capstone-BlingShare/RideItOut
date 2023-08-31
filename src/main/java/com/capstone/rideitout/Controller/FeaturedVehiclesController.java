@@ -1,9 +1,5 @@
 package com.capstone.rideitout.Controller;
-
-
-
 import com.capstone.rideitout.Model.Search;
-import com.capstone.rideitout.Model.Vehicle;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

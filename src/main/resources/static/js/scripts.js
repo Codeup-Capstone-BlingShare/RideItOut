@@ -13,3 +13,10 @@ function nextSlide() {
 
 setInterval(nextSlide, 5000); // Change slide every 5 seconds
 showSlide(currentIndex); // Show initial slide
+
+$(document).ready(function() {
+	$('.question').click(function() {
+		$(this).toggleClass('active');
+		$(this).next('.answer').slideToggle();
+	});
+});

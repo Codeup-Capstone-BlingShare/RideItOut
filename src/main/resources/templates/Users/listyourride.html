@@ -52,6 +52,9 @@
 
         <button id="filepicker">Upload Image</button><br><br>
 
+        <div id="thumbnailContainer"></div>
+
+
 
         <button type="submit">List Ride</button>
     </form>
@@ -62,7 +65,7 @@
         document.getElementById('filepicker').addEventListener('click', function(e) {
             e.preventDefault();
             var options = {
-                maxFiles: 3,
+                maxFiles: 6,
                 onUploadDone: function(response) {
                     const formContainer = document.querySelector(".formContainer")
                     const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
@@ -72,6 +75,10 @@
                   for(let i = 0; i < hiddenInputs.length; i++){
                       if(response.filesUploaded[i] != null) {
                           hiddenInputs[i].value = response.filesUploaded[i].url;
+                          const thumbnail = document.createElement('img');
+                          thumbnail.src = response.filesUploaded[i].url;
+                          thumbnail.style.maxWidth = '100px'; // Adjust the size as needed
+                          thumbnailContainer.appendChild(thumbnail);
                       }
                           else {
                               element.value = "";

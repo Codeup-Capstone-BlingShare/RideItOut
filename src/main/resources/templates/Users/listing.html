@@ -47,7 +47,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<h1 th:text="${car.user.getUsername()}">Owner's info</h1>
+					<h1 th:text="${car.user.username}">Owner's info</h1>
 					<p th:text="${car.model}"></p>
 					<p th:text="${car.year}"></p>
 					<p>MPG: <span th:text="${car.mileage}"></span></p>
@@ -64,7 +64,7 @@
 
 						<input type="hidden" name="startDate" th:value="${search.getStartDate()}">
 						<input type="hidden" name="endDate" th:value="${search.getEndDate()}">
-						<input type="hidden" name="car" th:value="${car.id}">
+						<input type="hidden" name="carID" th:value="${car.id}">
 
 						<button type="submit" class="btn btn-primary" th:id="${car.id}">Book Trip</button>
 					</form>

@@ -27,7 +27,6 @@ public class ListingController {
     public String showListingsPage(Model model) {
         model.addAttribute("mapBoxKey", MB_KEY);
         model.addAttribute("search", new Search());
-        model.addAttribute("trip", new Trip());
 
         List<Car> cars = carDoa.findAll();
 

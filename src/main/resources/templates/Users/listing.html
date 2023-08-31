@@ -6,8 +6,9 @@
 	<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet'/>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/listings.css}">
 </head>
 <body>
 <div th:replace="/partials/navbar :: navbar"></div>
@@ -16,69 +17,125 @@
 <h2>Information about Car</h2>
 <div>
 	<form th:action="@{/search}" th:mehod="get" th:object="${search}">
-		<label for="startDate"></label>
-		<input id="startDate" class="form-control" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy">
+		<div class="form-control">
+			<label for="startDate"></label>
+			<input id="startDate" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy">
 
-		<label for="endDate"></label>
-		<input id="endDate" class="form-control" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy">
+			<label for="endDate"></label>
+			<input id="endDate" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy">
 
-		<label for="searchLocation"></label>
-		<input id="searchLocation" class="form-control" th:field="*{searchLocation}" type="text"
-		       placeholder="Enter a city">
-		<button type="submit">Search</button>
+			<label for="searchLocation"></label>
+			<input id="searchLocation" th:field="*{searchLocation}" type="text"
+			       placeholder="Enter a city">
+			<button type="submit">Search</button>
+		</div>
 	</form>
 </div>
-<div th:each="car : ${listings}">
-	<div><!-- Button trigger modal -->
-		<a type="button" data-bs-toggle="modal" class="listing">
-			<h1 class="make" th:text="${car.make}"></h1>
-			<p th:text="${car.model}"></p>
-			<p th:text="${car.year}"></p>
-			<p th:text="${car.carLocationZip}" class="location"></p>
-		</a>
-	</div>
+<div class="container ms-5 row">
+	<div class="col-6 listings">
+		<div th:each="car : ${listings}">
+			<div class="w-100"><!-- Button trigger modal -->
 
-	<!-- Modal -->
-	<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg modal-fullscreen-md-down">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${car.make}"></h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="card ms-3 mb-3" style="max-width: 540px;">
+				<div class="row g-0">
+					<div class="col-md-4 d-flex" th:if="${car.photos != null && !car.photos.isEmpty()}">
+						<img th:src="${car.photos[0].getCarPhotoURL()}"
+						     class="rounded-start align-center" alt="car photo">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<a type="button" data-bs-toggle="modal" class="listing w-100">
+								<h1 class="w-100" th:text="${car.make}"></h1>
+								<p th:text="${car.model}"></p>
+								<p th:text="${car.year}"></p>
+								<p th:text="${car.carLocationZip}" class="location"></p>
+							</a>
+						</div>
+					</div>
 				</div>
-				<div class="modal-body">
-					<h1 th:text="${car.user.username}">Owner's info</h1>
-					<p th:text="${car.model}"></p>
-					<p th:text="${car.year}"></p>
-					<p>MPG: <span th:text="${car.mileage}"></span></p>
-					<h4>Price:</h4>
-					<p>$<span th:text="${car.pricePerDay}"></span> per day</p>
-					<h4>Location:</h4>
-					<p th:text="${car.carLocationZip}" class="location"></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<form sec:authorize="isAuthenticated()"
-					      th:if="${search.getStartDate() != null and search.getEndDate() != null}"
-					      th:action="@{/payment}" method="post">
+			</div>
 
-						<input type="hidden" name="startDate" th:value="${search.getStartDate()}">
-						<input type="hidden" name="endDate" th:value="${search.getEndDate()}">
-						<input type="hidden" name="carID" th:value="${car.id}">
+			<!-- Modal -->
+			<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg modal-fullscreen-md-down">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${car.make}"></h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body row">
+							<div class="col">
+								<h1 th:text="${car.user.username}">Owner's info</h1>
+								<p th:text="${car.model}"></p>
+								<p th:text="${car.year}"></p>
+								<p>MPG: <span th:text="${car.mileage}"></span></p>
+								<h4>Price:</h4>
+								<p>$<span th:text="${car.pricePerDay}"></span> per day</p>
+								<h4>Location:</h4>
+								<p th:text="${car.carLocationZip}" class="location"></p>
+							</div>
+							<div th:if="${car.photos != null && !car.photos.isEmpty()}">
+								<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+									<div class="carousel-indicators">
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+									</div>
+									<div class="carousel-inner">
 
-						<button type="submit" class="btn btn-primary" th:id="${car.id}">Book Trip</button>
-					</form>
-					<div sec:authorize="isAuthenticated()"
-					     th:if="${search.getStartDate() == null or search.getEndDate() == null}">
-						<p>please select dates</p>
+										<div th:each="photo : ${car.photos}">
+											<div class="col-md-4 d-flex carousel-item active">
+												<img th:src="${photo.getCarPhotoURL()}"
+												     class="rounded-start align-center" alt="car photo">
+											</div>
+										</div>
+										<div class="carousel-item active">
+											<img src="..." class="d-block w-100" alt="...">
+										</div>
+										<div class="carousel-item">
+											<img src="..." class="d-block w-100" alt="...">
+										</div>
+										<div class="carousel-item">
+											<img src="..." class="d-block w-100" alt="...">
+										</div>
+									</div>
+									<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<form sec:authorize="isAuthenticated()"
+							      th:if="${search.getStartDate() != null and search.getEndDate() != null}"
+							      th:action="@{/payment}" method="post">
+
+								<input type="hidden" name="startDate" th:value="${search.getStartDate()}">
+								<input type="hidden" name="endDate" th:value="${search.getEndDate()}">
+								<input type="hidden" name="carID" th:value="${car.id}">
+
+								<button type="submit" class="btn btn-primary" th:id="${car.id}">Book Trip</button>
+							</form>
+							<div sec:authorize="isAuthenticated()"
+							     th:if="${search.getStartDate() == null or search.getEndDate() == null}">
+								<p>please select dates</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="map" class="col-6"></div>
 </div>
-<div id="map" style="width: 100%; height: 400px; flex-shrink: 0;"></div>
-
 <div th:replace="/partials/footer :: footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"

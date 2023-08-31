@@ -28,8 +28,9 @@ public class ListingController {
         model.addAttribute("mapBoxKey", MB_KEY);
         model.addAttribute("search", new Search());
 
-        List<Car> cars = carDoa.findAll();
 
+
+        List<Car> cars = carDoa.findAll();
         model.addAttribute("listings", cars);
 
         return "Users/listing"; // return the name of the listings page template file

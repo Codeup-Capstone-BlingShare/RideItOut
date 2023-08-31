@@ -51,14 +51,11 @@ html {
 .container h1 {
     border-top: 1px solid #ccc;
     padding-top: 20px;
-    text-align: center;
 
 
     }
     .container img {
-        width: 50%;
-        float: left;
-
+        width: 100%;
     }
 
 
@@ -66,13 +63,8 @@ html {
     .steps-container li.step p {
         font-optical-sizing: auto;
         font-family: "Lucida Console", "Courier New", monospace;
-        font-size: 50%;
+        font-size: 10px;
         color: ghostwhite;
-        margin-top: 0;
-        padding-left: 1em;
-    }
-    #img2 {
-        margin: 2em;
     }
 
 
@@ -128,7 +120,6 @@ html {
 
     :is(body) {
         font-family: "Lucida Console", "Courier New", monospace;
-        height: 100vh;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -169,4 +160,5 @@ html {
  .big-img {
      width: 100vw;
  }
+
 

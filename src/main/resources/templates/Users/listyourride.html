@@ -73,20 +73,11 @@
                       if(response.filesUploaded[i] != null) {
                           hiddenInputs[i].value = response.filesUploaded[i].url;
                       }
-                          // if (imageObj.url != null) {
-                          //     element.value = imageObj?.url;
-                          //     console.log(element);
-                          //     console.log(url);
-                          //     break;
-                          // }
                           else {
                               element.value = "";
                           }
                       }
 
-                  //   for(element of hiddenInputs){
-                  //       console.log(element);
-                  //   }
                     document.getElementById('submit-button');
                     console.log(response.filesUploaded);
                 }

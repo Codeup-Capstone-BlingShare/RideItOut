@@ -1,6 +1,7 @@
 package com.capstone.rideitout.Controller;
 
 import com.capstone.rideitout.Model.Car;
+import com.capstone.rideitout.Model.CarForm;
 import com.capstone.rideitout.Model.Search;
 import com.capstone.rideitout.Model.Trip;
 import com.capstone.rideitout.repositories.CarRepository;
@@ -26,8 +27,7 @@ public class SearchController {
     }
 
     @GetMapping(value = "/search")
-    public String search(Model model, @ModelAttribute Search search, BindingResult result) {
-        System.out.println("here");
+    public String search(Model model, @ModelAttribute("search") Search search, BindingResult result) {
         model.addAttribute("mapBoxKey", MB_KEY);
         List<Car> cars = carDoa.findAll();
         List<Car> available = new ArrayList<>();

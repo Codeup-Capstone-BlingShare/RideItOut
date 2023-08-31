@@ -51,6 +51,12 @@ public class Trip {
     public Trip() {
     }
 
+    public Trip(Date startDate, Date endDate, Car car) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.car = car;
+    }
+
     public Trip(long id, Date startDate, Date endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
         this.id = id;
         this.startDate = startDate;

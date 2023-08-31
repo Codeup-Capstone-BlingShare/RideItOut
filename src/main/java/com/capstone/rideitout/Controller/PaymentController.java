@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
 @SessionAttributes("tripToSave")
@@ -53,7 +54,9 @@ public class PaymentController {
 
         Trip trip = new Trip(startDate, endDate, car);
         trip.setRenter(user);
-        trip.setTotalCost((trip.getStartDate().getTime() - trip.getEndDate().getTime()) / -86400000 * car.getPricePerDay());
+        trip.setTotalCost((trip.getStartDate().getTime() -
+                trip.getEndDate().getTime()) / -86400000 * car.getPricePerDay());
+        trip.setConfirmationNumber(random());
 
         model.addAttribute("tripToSave", trip);
 
@@ -63,12 +66,17 @@ public class PaymentController {
     @GetMapping("/confirmed")
     public String confirmPayment(Model model, @ModelAttribute("tripToSave") Trip tripToSave) {
         model.addAttribute("tripToSave", tripToSave);
+        tripsDao.save(tripToSave);
         return "Users/confirmed";
     }
 
-    @PostMapping("/process")
-    public String processPayment() {
+    private static long random() {
+        /* return a random long of 16 length */
+        long smallest = 1000_0000_0000_0000L;
+        long biggest =  9999_9999_9999_9999L;
 
-        return "redirect: /listings";
+        // return a long between smallest and biggest (+1 to include biggest as well with the upper bound)
+        long random = ThreadLocalRandom.current().nextLong(smallest, biggest+1);
+        return random;
     }
 }

@@ -1,5 +1,6 @@
 package com.capstone.rideitout.Model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -29,6 +30,9 @@ public class Trip {
     @Column(name = "want_staged")
     private boolean wantStaged;
 
+    @Column(name = "confirmation", nullable = true)
+    private long confirmationNumber;
+
     @Column(name = "Staged_zip")
     private int staged_zip;
 
@@ -57,7 +61,7 @@ public class Trip {
         this.car = car;
     }
 
-    public Trip(long id, Date startDate, Date endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip) {
+    public Trip(long id, Date startDate, Date endDate, int pickupLocationZip, int totalCost, long renterId, long carId, boolean approved, boolean wantStaged, int staged_zip, long confirmationNumber) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -66,6 +70,7 @@ public class Trip {
         this.approved = approved;
         this.wantStaged = wantStaged;
         this.staged_zip = staged_zip;
+        this.confirmationNumber = confirmationNumber;
     }
 
     public Trip(Date startDate, Date endDate, int pickupLocationZip, int totalCost, boolean approved, boolean wantStaged, int staged_zip) {
@@ -148,5 +153,17 @@ public class Trip {
 
     public void setStaged_zip(int staged_zip) {
         this.staged_zip = staged_zip;
+    }
+
+    public void setTotalCost(long totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public long getConfirmationNumber() {
+        return confirmationNumber;
+    }
+
+    public void setConfirmationNumber(long confirmationNumber) {
+        this.confirmationNumber = confirmationNumber;
     }
 }

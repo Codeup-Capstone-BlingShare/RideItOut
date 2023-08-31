@@ -63,12 +63,7 @@ public class PaymentController {
     @GetMapping("/confirmed")
     public String confirmPayment(Model model, @ModelAttribute("tripToSave") Trip tripToSave) {
         model.addAttribute("tripToSave", tripToSave);
+        tripsDao.save(tripToSave);
         return "Users/confirmed";
-    }
-
-    @PostMapping("/process")
-    public String processPayment() {
-
-        return "redirect: /listings";
     }
 }

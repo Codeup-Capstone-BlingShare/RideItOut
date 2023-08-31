@@ -44,15 +44,11 @@ html {
     margin:-13px;
     height: 20px;
     box-shadow: dimgrey;
-;
-
 }
 
 .container h1 {
     border-top: 1px solid #ccc;
     padding-top: 20px;
-
-
     }
     .container img {
         width: 100%;

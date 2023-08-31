@@ -27,6 +27,17 @@
 		<input type="date" id="to">
 		<input type="submit" class="btn-primary" value="search for cars">
 	</form>
+	<form th:action="@{/search}" th:mehod="get" th:object="${search}">
+		<label for="startDate"></label>
+		<input id="startDate" class="form-control" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy">
+		
+		<label for="endDate"></label>
+		<input id="endDate" class="form-control" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy">
+		
+		<label for="searchLocation"></label>
+		<input id="searchLocation" class="form-control" th:field="*{searchLocation}" type="text" placeholder="Enter a city">
+		<button type="submit">Search</button>
+	</form>
 </div>
 <div>
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">

@@ -49,6 +49,11 @@
                th:field="*{carPhotoURL[2]}" value=""/>
         <input type="hidden" class="hiddenInput"
                th:field="*{carPhotoURL[3]}" value=""/>
+        <input type="hidden" class="hiddenInput"
+               th:field="*{carPhotoURL[4]}" value=""/>
+        <input type="hidden" class="hiddenInput"
+               th:field="*{carPhotoURL[5]}" value=""/>
+
 
         <button id="filepicker">Upload Image</button><br><br>
 
@@ -71,13 +76,12 @@
                     const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
                     console.log(formContainer);
                     console.log(hiddenInputs);
-                    // let inputElements = document.getElementById('carPhotoURL');
                   for(let i = 0; i < hiddenInputs.length; i++){
                       if(response.filesUploaded[i] != null) {
                           hiddenInputs[i].value = response.filesUploaded[i].url;
                           const thumbnail = document.createElement('img');
                           thumbnail.src = response.filesUploaded[i].url;
-                          thumbnail.style.maxWidth = '100px'; // Adjust the size as needed
+                          thumbnail.style.maxWidth = '100px';
                           thumbnailContainer.appendChild(thumbnail);
                       }
                           else {

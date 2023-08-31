@@ -12,9 +12,8 @@
 <body>
 <div th:replace="~{partials/navbar :: navbar}"></div>
 
-<div>
-<img th:src="${user.getProfilePhoto()}" alt="img example">
-</div>
+<img class="img-fluid" th:src="${user.profilePhoto}" alt="img example">
+
 
 <form class="formContainer" th:action="@{/profile}" method="post" th:object="${user}" th:value="${user.profilePhoto}">
     <input type="hidden" th:field="*{id}" />
@@ -57,12 +56,14 @@
 </script>
 <br>
 <h2>First & Last Name</h2>
+<p><span th:text="${user.firstName}"></span></p>
+
 <br>
 <h2>Username</h2>
 <br>
 <h2>E-Mail</h2>
 <button>Edit Information</button>
-<button>Manage Cars</button>
+<a th:href="@{/manage}"><h2>Manage Cars</h2></a>
 
 <h1>MAKE SURE TO ADD A MODAL</h1>
 

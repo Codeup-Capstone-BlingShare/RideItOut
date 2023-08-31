@@ -161,4 +161,6 @@ html {
  .big-img {
      width: 100vw;
  }
-
+ .img-fluid{
+     max-width: 40%;
+ }

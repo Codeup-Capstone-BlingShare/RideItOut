@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileController {
-    @Value("fileStackKey")
-    private String fileStackKey;
+//    @Value("fileStackKey")
+//    private String fileStackKey;
     private final UserRepository userRepository;
 
     private final PhotoRepository photoDao;
@@ -31,6 +31,7 @@ public class ProfileController {
     public String addProfilePicture(@ModelAttribute Users user){
         Users currentUser = userRepository.getById(user.getId());
         currentUser.setProfilePhoto(user.getProfilePhoto());
+//        System.out.println(user.getProfilePhoto());
         userRepository.save(currentUser);
         return "redirect:/profile";
     }
@@ -38,25 +39,27 @@ public class ProfileController {
     @GetMapping("/profile")
     public String showProfilePage(Model model) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("photo", user.getProfilePhoto());
+        System.out.println(user.getProfilePhoto());
         model.addAttribute("user", user);
-        model.addAttribute("fileStackKey", fileStackKey);
+//        model.addAttribute("fileStackKey", fileStackKey);
         return "Users/profile";
     }
 
 
-    @PostMapping("/profile/edit")
-    public String updateProfile(@ModelAttribute("updatedUser") Users updatedUser) {
-        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        user.setUsername(updatedUser.getUsername());
-        user.setEmail(updatedUser.getEmail());
-        userRepository.save(user);
-        return "redirect:/profile";
-    }
-
-    @PostMapping("/profile/delete")
-    public String deleteProfile() {
-        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        userRepository.delete(user);
-        return "redirect:/logout";
-    }
+//    @PostMapping("/profile/edit")
+//    public String updateProfile(@ModelAttribute("updatedUser") Users updatedUser) {
+//        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user.setUsername(updatedUser.getUsername());
+//        user.setEmail(updatedUser.getEmail());
+//        userRepository.save(user);
+//        return "redirect:/profile";
+//    }
+//
+//    @PostMapping("/profile/delete")
+//    public String deleteProfile() {
+//        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        userRepository.delete(user);
+//        return "redirect:/logout";
+//    }
 }

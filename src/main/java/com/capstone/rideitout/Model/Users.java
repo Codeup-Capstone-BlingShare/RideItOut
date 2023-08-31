@@ -7,8 +7,6 @@ import java.util.List;
 
 
 @Entity
-@Getter
-@Setter
 @Table(name="users")
 public class Users {
 
@@ -79,11 +77,20 @@ public class Users {
     }
 
     public Users(Users copy) {
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-        email = copy.email;
-        username = copy.username;
-        password = copy.password;
+        this.id = copy.id;
+        this.firstName = copy.firstName;
+        this.lastName = copy.lastName;
+        this.username = copy.username;
+        this.email = copy.email;
+        this.password = copy.password;
+        this.profilePhoto = copy.profilePhoto;
+        this.listedCars = copy.listedCars;
+        this.sentMessages = copy.sentMessages;
+        this.rentedTrips = copy.rentedTrips;
+        this.givenRatings = copy.givenRatings;
+        this.cars = copy.cars;
     }
+
 
     @Override
     public String toString() {
@@ -96,7 +103,99 @@ public class Users {
                 '}';
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getProfilePhoto() {
         return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
+    public List<Car> getListedCars() {
+        return listedCars;
+    }
+
+    public void setListedCars(List<Car> listedCars) {
+        this.listedCars = listedCars;
+    }
+
+    public List<Message> getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(List<Message> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public List<Trip> getRentedTrips() {
+        return rentedTrips;
+    }
+
+    public void setRentedTrips(List<Trip> rentedTrips) {
+        this.rentedTrips = rentedTrips;
+    }
+
+    public List<Rating> getGivenRatings() {
+        return givenRatings;
+    }
+
+    public void setGivenRatings(List<Rating> givenRatings) {
+        this.givenRatings = givenRatings;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 }

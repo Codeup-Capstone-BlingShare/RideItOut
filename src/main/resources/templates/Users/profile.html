@@ -33,16 +33,20 @@
     document.getElementById('filepicker').addEventListener('click', function(e) {
         e.preventDefault();
         var options = {
+
             maxFiles: 1,
             onUploadDone: function(response) {
-                const formContainer = document.querySelector(".formContainer")
-                const hiddenInputs = document.getElementById('hidden');
+                // let newSize = "?resize=w:100,h:200,fit:clip";
+                let formContainer = document.querySelector(".formContainer")
+                let hiddenInputs = document.getElementById('hidden');
                 console.log(formContainer);
                 console.log(response.filesUploaded);
                 if (response.filesUploaded[0] != null) {
-                        hiddenInputs.value = response.filesUploaded[0].url;
+                    let uploadedUrl = response.filesUploaded[0].url;
+                    hiddenInputs.value = uploadedUrl;
                         console.log(hiddenInputs);
                         console.log(hiddenInputs.value);
+
                     } else {
                         element.value = "";
                     }

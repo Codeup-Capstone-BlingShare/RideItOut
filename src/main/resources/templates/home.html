@@ -3,8 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-		  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<title>Landing Page</title>
@@ -28,6 +27,17 @@
 		<input type="date" id="to">
 		<input type="submit" class="btn-primary" value="search for cars">
 	</form>
+	<form th:action="@{/search}" th:mehod="get" th:object="${search}">
+		<label for="startDate"></label>
+		<input id="startDate" class="form-control" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy">
+		
+		<label for="endDate"></label>
+		<input id="endDate" class="form-control" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy">
+		
+		<label for="searchLocation"></label>
+		<input id="searchLocation" class="form-control" th:field="*{searchLocation}" type="text" placeholder="Enter a city">
+		<button type="submit">Search</button>
+	</form>
 </div>
 <div>
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -45,7 +55,7 @@
 	<br>
 	<h1>How It Works</h1>
 	<br>
-	<img class="img-responsive" src="/img/keys.jpeg" alt="Keys hand off" width="460" height="345">
+	<img id="img2" class="img-responsive" src="/img/keys.jpeg" alt="Keys hand off">
 	<br>
 	<ol class="steps-container">
 		<li class="step">

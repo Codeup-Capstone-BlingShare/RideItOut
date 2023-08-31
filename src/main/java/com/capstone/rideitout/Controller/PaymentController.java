@@ -1,49 +1,97 @@
 package com.capstone.rideitout.Controller;
 
+import com.capstone.rideitout.Model.Car;
+import com.capstone.rideitout.Model.Trip;
+import com.capstone.rideitout.Model.Users;
+import com.capstone.rideitout.repositories.CarRepository;
+import com.capstone.rideitout.repositories.TripsRepository;
+import com.capstone.rideitout.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
+import java.util.Date;
 
 @Controller
+@SessionAttributes("tripToSave")
 public class PaymentController {
 
-@Value("${squareUser}")
-private String SQUARE_USER;
-@Value("${squareKey}")
-private String SQUARE_KEY;
+    private final UserRepository userRepository;
+    private final TripsRepository tripsDao;
+    private final CarRepository carDao;
+
+    @Value("${squareUser}")
+    private String SQUARE_USER;
+    @Value("${squareKey}")
+    private String SQUARE_KEY;
+
+    public PaymentController(UserRepository userRepository, CarRepository carDao, TripsRepository tripsDao) {
+        this.userRepository = userRepository;
+        this.carDao = carDao;
+        this.tripsDao = tripsDao;
+    }
+
+    @ModelAttribute("tripToSave")
+    public Trip tripToSave() {
+        return new Trip();
+    }
 
     @GetMapping("/payment")
-    public String showPaymentForm(Model model) {
+    public String showPaymentForm(Model model,
+                                  @RequestParam(name = "startDate") Date startDate,
+                                  @RequestParam(name = "endDate") Date endDate,
+                                  @RequestParam(name = "car") Car car,
+                                  @ModelAttribute("tripToSave") Trip tripToSave) {
+        System.out.println("here");
         model.addAttribute("squareKey", SQUARE_KEY);
         model.addAttribute("squareUser", SQUARE_USER);
+
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Trip trip = new Trip(startDate, endDate, car);
+        trip.setRenter(user);
+        trip.setTotalCost((trip.getStartDate().getTime() - trip.getEndDate().getTime()) / -86400000 * car.getPricePerDay());
+
+        if(tripToSave != null) {
+            model.addAttribute("tripToSave", tripToSave);
+        } else {
+            model.addAttribute("tripToSave", trip);
+        }
+
         return "Users/payment"; // return the name of the payment form template file
     }
 
-    @PostMapping("/process")
-    public ModelAndView processPayment(@RequestParam("cardNumber") String cardNumber, @RequestParam("expiryDate") String expiryDate, @RequestParam("cvv") String cvv) {
-        // Perform payment processing logic and validation
-        boolean paymentSuccess = validatePayment(cardNumber, expiryDate, cvv);
-        ModelAndView modelAndView;
+    @PostMapping("/payment")
+    public String runPayment(Model model,
+                                  @RequestParam(name = "startDate") Date startDate,
+                                  @RequestParam(name = "endDate") Date endDate,
+                                  @RequestParam(name = "car") long carID,
+                             @ModelAttribute("tripToSave") Trip tripToSave) {
+        System.out.println("here");
+        model.addAttribute("squareKey", SQUARE_KEY);
+        model.addAttribute("squareUser", SQUARE_USER);
 
-        if (paymentSuccess) {
-            modelAndView = new ModelAndView("payment-success"); // return the name of the payment success template file
-        } else {
-            modelAndView = new ModelAndView("payment-error"); // return the name of the payment error template file
-        }
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Car car = carDao.getReferenceById(carID);
 
-        return modelAndView;
+        Trip trip = new Trip(startDate, endDate, car);
+        trip.setRenter(user);
+        trip.setTotalCost((trip.getStartDate().getTime() - trip.getEndDate().getTime()) / -86400000 * car.getPricePerDay());
+
+        model.addAttribute("trip", trip);
+
+        return "Users/payment"; // return the name of the payment form template file
     }
 
-    // Placeholder method for payment validation logic
-    private boolean validatePayment(String cardNumber, String expiryDate, String cvv) {
-        // Perform debit card validation logic
-        // Return true if payment is successful, false otherwise
-        // You can replace this with your own payment processing and validation logic
-        return true;
+//    @GetMapping("/confirmed")
+//    public String confirmPayment() {
+//
+//    }
+
+    @PostMapping("/process")
+    public String processPayment() {
+
+        return "redirect: /listings";
     }
 }

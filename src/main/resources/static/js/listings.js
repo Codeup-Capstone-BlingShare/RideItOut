@@ -12,7 +12,7 @@ $(document).ready(function () {
 		i++
 	})
 
-	$('.carousel-item').first().addClass('active')
+	$('#photoLoop .carousel-item:first-child').addClass('active')
 })
 
 

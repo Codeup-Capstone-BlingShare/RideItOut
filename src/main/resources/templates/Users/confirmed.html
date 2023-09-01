@@ -8,7 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body class="container text-center">
-<div th:replace="/partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 <div>
 <h1 class="mt-4">Reservation Complete</h1>
 <br>
@@ -21,7 +21,7 @@
 	<a th:href="@{/listings}"></a><button type="button" class="bg-dark text-white rounded-0">Book Another Trip!</button></a>
 	<a th:href="@{/logout}"></a><button type="button" class="bg-dark text-white rounded-end">Logout</button></a>
 </div>
-<div th:replace="/partials/footer :: footer"></div>
+<div th:replace="partials/footer :: footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
         integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"

@@ -1,8 +1,10 @@
 /* Set the desired height for the carousel */
 .carousel-item {
-    height: auto;
+    /*height: fit-content;*/
     width: 100vw;
     margin:0;
+    height: fit-content;
+    font-size: small;
 
 }
 
@@ -15,7 +17,7 @@
 }
 
 .steps-container {
-    list-style-type: none;
+    list-style-type: inherit;
     padding: 0;
 }
 
@@ -25,8 +27,11 @@
 
 .header {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     color: ghostwhite;
+    text-align: center;
+    font-size: x-small;
+
 }
 
 html {
@@ -35,42 +40,53 @@ html {
 
 .cover {
     position: relative;
-    top:80px;
+    top:70px;
     z-index: 100;
     display: flex;
     justify-content: center;
     width:100%;
-    padding: .4em;
+    padding: .2em;
     margin:-13px;
-    height: 20px;
+    height: 7px;
     box-shadow: dimgrey;
 }
 
 .container h1 {
     border-top: 1px solid #ccc;
-    padding-top: 20px;
-    }
-    .container img {
-        width: 100%;
-    }
+    padding-top: 8px;
+    text-align: center;
+}
 
-
-
-    .steps-container li.step p {
-        font-optical-sizing: auto;
-        font-family: "Lucida Console", "Courier New", monospace;
-        font-size: 10px;
-        color: ghostwhite;
+.container img {
+        width:45%;
+        float: left;
+        margin-right: 1.5em;
     }
 
+.right-container li.step p {
+    /*font-optical-sizing: auto;*/
+    font-family: "Lucida Console", "Courier New", monospace;
+    /*font-size: 7px;*/
+    color: ghostwhite;
+    font-weight: initial;
 
-    /* Make <h2> elements bold and use a different font */
+    /*float: right;*/
 
-    .steps-container li.step h2 {
-        font-weight: lighter;
-        font-family: "Lucida Console", "Courier New", monospace;
-        font-size: 15px;
-    }
+}
+
+
+/* Make <h2> elements bold and use a different font */
+
+.right-content li.step h2 {
+    font-weight: bolder;
+    font-family: "Lucida Console", "Courier New", monospace;
+    /*font-size: 7px;*/
+    /*text-align: right;*/
+
+    /*float: right;*/
+
+}
+
 .faq {
     width: 500px;
     margin: 20px auto;
@@ -139,6 +155,6 @@ html {
      width: 100vw;
  }
  .img-fluid{
-     max-width: 40%;
+     max-width: 10%;
  }
 

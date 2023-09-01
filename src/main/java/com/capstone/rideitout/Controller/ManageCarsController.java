@@ -37,6 +37,7 @@ public class ManageCarsController {
     public String postsEdit(@PathVariable long id, Model model) {
         model.addAttribute("car",
                 carDoa.getReferenceById(id));
+        model.addAttribute("newPhoto", new Photo());
         return "Users/edityourride";
     }
 
@@ -68,11 +69,18 @@ public class ManageCarsController {
     @PostMapping("/deleteImg/{id}")
     public String deleteImg(@PathVariable long id, @RequestParam long carid) {
         Photo deletePhoto = photoDoa.getReferenceById(id);
-        System.out.println("here");
-//        System.out.println(id);
-//        System.out.println(carid);
-//        System.out.println(deletePhoto.getCarPhotoURL());
         photoDoa.delete(deletePhoto);
         return "redirect:/car/" + carid + "/edit";
+    }
+
+    @PostMapping("/car/{id}/addPhoto")
+    public String addImg(@PathVariable long id, @ModelAttribute Photo photo) {
+        System.out.println("here");
+
+        Car car = carDoa.getReferenceById(id);
+        photo.setCar(car);
+        photoDoa.save(photo);
+
+        return "redirect:/car/" + id + "/edit";
     }
 }

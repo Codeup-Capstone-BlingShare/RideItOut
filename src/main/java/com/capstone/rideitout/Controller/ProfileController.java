@@ -6,6 +6,7 @@ import com.capstone.rideitout.repositories.PhotoRepository;
 import com.capstone.rideitout.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,12 @@ public class ProfileController {
 
     private final PhotoRepository photoDao;
 
-    public ProfileController(UserRepository userRepository, PhotoRepository photoDao) {
+    private PasswordEncoder passwordEncoder;
+
+    public ProfileController(UserRepository userRepository, PhotoRepository photoDao, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.photoDao = photoDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/profile")
@@ -42,21 +46,34 @@ public class ProfileController {
         // I have to instantiate a new obj to access the DB values instead of the session values
         Users user1 = userRepository.getById(user.getId());
         model.addAttribute("photo", user1.getProfilePhoto());
-        System.out.println(user.getProfilePhoto());
         model.addAttribute("user", user1);
 //        model.addAttribute("fileStackKey", fileStackKey);
         return "Users/profile";
     }
 
 
-//    @PostMapping("/profile/edit")
-//    public String updateProfile(@ModelAttribute("updatedUser") Users updatedUser) {
-//        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user.setUsername(updatedUser.getUsername());
-//        user.setEmail(updatedUser.getEmail());
-//        userRepository.save(user);
-//        return "redirect:/profile";
-//    }
+@GetMapping("/profile/update")
+public String showUpdateProfileForm(Model model) {
+    Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    model.addAttribute("user", user);
+    return "Users/profile";
+}
+
+    @PostMapping("/profile/update")
+    public String updateProfile(@ModelAttribute("user") Users updatedUser, Model model) {
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(userRepository.findByUsername(user.getUsername()) == null) {
+        Users user1 = userRepository.getById(user.getId());
+        user1.setUsername(updatedUser.getUsername());
+        user1.setEmail(updatedUser.getEmail());
+        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+        user1.setPassword(hashedPassword);
+        userRepository.save(user1);
+        return "redirect:/profile";} else{
+            model.addAttribute("errorMessage", "Username is already taken, please choose a different username.");
+            return "Users/profile";
+        }
+    }
 //
 //    @PostMapping("/profile/delete")
 //    public String deleteProfile() {

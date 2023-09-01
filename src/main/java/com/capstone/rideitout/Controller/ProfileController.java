@@ -51,34 +51,31 @@ public class ProfileController {
         return "Users/profile";
     }
 
-
 @GetMapping("/profile/update")
 public String showUpdateProfileForm(Model model) {
     Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("user", user);
     return "Users/profile";
 }
-
     @PostMapping("/profile/update")
     public String updateProfile(@ModelAttribute("user") Users updatedUser, Model model) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(userRepository.findByUsername(user.getUsername()) == null) {
         Users user1 = userRepository.getById(user.getId());
         user1.setUsername(updatedUser.getUsername());
         user1.setEmail(updatedUser.getEmail());
         String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
         user1.setPassword(hashedPassword);
         userRepository.save(user1);
-        return "redirect:/profile";} else{
-            model.addAttribute("errorMessage", "Username is already taken, please choose a different username.");
-            return "Users/profile";
+        return "redirect:/profile";}
+    @PostMapping("/profile/delete")
+    public String deleteProfile() {
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users user1 = userRepository.getReferenceById(user.getId());
+        if (user1 != null) {
+            userRepository.delete(user1);
+            userRepository.delete(user1);
+            return "redirect:/";
         }
+        return "redirect:/profile";
     }
-//
-//    @PostMapping("/profile/delete")
-//    public String deleteProfile() {
-//        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        userRepository.delete(user);
-//        return "redirect:/logout";
-//    }
 }

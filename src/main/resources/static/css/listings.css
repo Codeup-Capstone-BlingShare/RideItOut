@@ -1,0 +1,8 @@
+.listings {
+    height: 40vw;
+    overflow-y: scroll
+}
+
+.carousel-inner, .carousel-item {
+    height: 20em;
+}

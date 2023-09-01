@@ -10,7 +10,7 @@
 	<link rel="stylesheet" th:href="@{/css/payment.css}">
 </head>
 <body>
-<div th:replace="/partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 <div>
 	<h1>Your Reservation:</h1>
 	<h3>Year: <span th:text="${tripToSave.car.year}"></span></h3>
@@ -30,7 +30,7 @@
 	<div id="card-container"></div>
 	<button id="card-button" type="button">Pay</button>
 </div>
-<div th:replace="/partials/footer :: footer"></div>
+<div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="module">
 	const squareUser = "[[${squareUser}]]";

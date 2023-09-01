@@ -8,7 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="/partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 <form th:action="@{/create/{id}(id=${car.id})}" th:object="${trip}" th:method="POST">
 	<div class="mb-3">
 		<label for="startDate" class="form-label">Start Date</label>
@@ -20,7 +20,7 @@
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<div th:replace="/partials/footer :: footer"></div>
+<div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>
 </body>

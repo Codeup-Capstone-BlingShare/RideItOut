@@ -8,7 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="/partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 <div>
 	<h1 th:text="${car.make}"></h1>
 	<p th:text="${car.model}"></p>
@@ -18,7 +18,7 @@
 	<p th:text="${car.carLocationZip}" class="location"></p>
 </div>
 <a th:href="@{/create/{id}(id=${car.id})}"><h3>Create trip</h3></a>
-<div th:replace="/partials/footer :: footer"></div>
+<div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>
 </body>

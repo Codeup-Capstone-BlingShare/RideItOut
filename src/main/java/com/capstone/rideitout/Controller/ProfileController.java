@@ -61,10 +61,10 @@ public String showUpdateProfileForm(Model model) {
     public String updateProfile(@ModelAttribute("user") Users updatedUser, Model model) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user1 = userRepository.getById(user.getId());
-        user1.setUsername(updatedUser.getUsername());
         user1.setEmail(updatedUser.getEmail());
         String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
         user1.setPassword(hashedPassword);
+//        user1.setPassword(updatedUser.getPassword());
         userRepository.save(user1);
         return "redirect:/profile";}
     @PostMapping("/profile/delete")

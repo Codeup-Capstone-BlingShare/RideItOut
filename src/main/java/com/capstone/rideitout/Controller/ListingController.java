@@ -31,7 +31,6 @@ public class ListingController {
 
 
         List<Car> cars = carDoa.findAll();
-        System.out.println(cars.get(5).getPhotos().get(3));
         model.addAttribute("listings", cars);
 
         return "Users/listing"; // return the name of the listings page template file

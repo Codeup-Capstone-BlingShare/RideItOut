@@ -17,9 +17,9 @@
 <h3 th:text="${tripToSave.confirmationNumber}"></h3>
 </div>
 <div class="d-flex p-2 justify-content-center">
-	<a th:href="@{/profile}"></a><button type="button" class="bg-dark text-white rounded-start">Profile</button></a>
-	<a th:href="@{/listings}"></a><button type="button" class="bg-dark text-white rounded-0">Book Another Trip!</button></a>
-	<a th:href="@{/logout}"></a><button type="button" class="bg-dark text-white rounded-end">Logout</button></a>
+	<a th:href="@{/profile}"><button type="button" class="bg-dark text-white rounded-start">Profile</button></a>
+	<a th:href="@{/listings}"><button type="button" class="bg-dark text-white rounded-0">Book Another Trip!</button></a>
+	<a th:href="@{/logout}"><button type="button" class="bg-dark text-white rounded-end">Logout</button></a>
 </div>
 <div th:replace="partials/footer :: footer"></div>
 

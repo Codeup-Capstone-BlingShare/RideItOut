@@ -10,7 +10,22 @@
     <script src="//static.filestackapi.com/filestack-drag-and-drop-js/3.x.x/filestack-drag-and-drop.min.js"></script>
 </head>
 <body>
-<div th:replace="~{partials/navbar :: navbar}"></div>
+<div class="container">
+    <div th:replace="~{partials/navbar :: navbar}"></div>
+
+    <img class="img-fluid" th:src="${user.profilePhoto}" alt="img example">
+
+    <form class="formContainer" th:action="@{/profile}" method="post" th:object="${user}"
+          th:value="${user.profilePhoto}">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="container">
+            <div class="drop-container"></div>
+        </div>
+        <input type="hidden" id="hidden" th:field="*{profilePhoto}"/>
+        <button id="filepicker">Upload Image</button>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
 
 <img class="img-fluid" th:src="${user.profilePhoto == null || user.profilePhoto == '' ? '../img/Blank-Avatar.png' : user.profilePhoto}" alt="Profile Photo">
 
@@ -31,15 +46,12 @@
 </form>
 
 
-
-<script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
-<script th:inline="javascript">
-    var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
-    document.getElementById('filepicker').addEventListener('click', function(e) {
-        e.preventDefault();
-        var options = {
-
-            maxFiles: 1,
+    <script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
+    <script th:inline="javascript">
+        var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
+        document.getElementById('filepicker').addEventListener('click', function (e) {
+            e.preventDefault();
+            var options = {
             onUploadDone: function(response) {
                 let formContainer = document.querySelector(".formContainer")
                 let hiddenInputs = document.getElementById('hidden');
@@ -52,7 +64,6 @@
                     thumbnail.src = response.filesUploaded[0].url;
                     thumbnail.style.maxWidth = '100px';
                     thumbnailContainer.appendChild(thumbnail);
-
                     } else {
                         element.value = "";
                     }
@@ -69,9 +80,18 @@
         if (confirmed) {
             document.forms["deleteForm"].submit();        }
     });
-
-
-
+</script>
+<br>
+<h2>First & Last Name</h2>
+<p><span th:text="${user.firstName}"></span></p>
+                    document.getElementById('submit-button');
+                    console.log(response.filesUploaded[0]);
+                }
+            };
+            var picker = client.picker(options);
+            picker.open();
+        });
+    </script>
 </script>
 <br>
 <h2>First & Last Name</h2>
@@ -81,12 +101,11 @@
 <h2>Username</h2>
 <br>
 <h2>E-Mail</h2>
-<!-- Button trigger modal -->
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal">
     Update Profile
 </button>
 
-<!-- Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

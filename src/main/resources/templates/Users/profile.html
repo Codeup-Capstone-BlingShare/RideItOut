@@ -34,11 +34,17 @@
     <div class="container">
         <div class="drop-container"></div>
     </div>
+    <div id="thumbnailContainer"></div>
     <input type="hidden" id="hidden" th:field="*{profilePhoto}"/>
     <button id="filepicker">Upload Image</button><br><br>
-    <button type="submit">Submit</button>
+    <button type="submit">Submit Uploaded Image</button>
 </form>
-<div id="thumbnailContainer"></div>
+
+<form th:action="@{/profile/delete}" th:object="${user}" method="post" name="deleteForm">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" class="btn btn-danger" id="delete_button">Delete Account</button>
+</form>
+
 
     <script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
     <script th:inline="javascript">
@@ -61,6 +67,23 @@
                     } else {
                         element.value = "";
                     }
+                document.getElementById('submit-button');
+                console.log(response.filesUploaded[0]);
+            }
+        };
+        var picker = client.picker(options);
+        picker.open();
+    });
+    document.getElementById("delete_button").addEventListener("click", function(event){
+        event.preventDefault();
+        const confirmed = confirm("Are you sure you want to delete your profile?");
+        if (confirmed) {
+            document.forms["deleteForm"].submit();        }
+    });
+</script>
+<br>
+<h2>First & Last Name</h2>
+<p><span th:text="${user.firstName}"></span></p>
                     document.getElementById('submit-button');
                     console.log(response.filesUploaded[0]);
                 }
@@ -69,32 +92,20 @@
             picker.open();
         });
     </script>
-    <br>
-    <h2>First & Last Name</h2>
-    <p><span th:text="${user.firstName}"></span></p>
+</script>
+<br>
+<h2>First & Last Name</h2>
+<p><span th:text="${user.firstName}"></span></p>
 
-
-    <br>
-    <h2>Username</h2>
-    <br>
-    <h2>E-Mail</h2>
-    <button>Edit Information</button>
-    <a th:href="@{/manage}"><h2>Manage Cars</h2></a>
-    <a th:href="@{/listings}"><h2>View Listings</h2></a>
-
-    <h1>MAKE SURE TO ADD A MODAL</h1>
-</div>
-=======
 <br>
 <h2>Username</h2>
 <br>
 <h2>E-Mail</h2>
-<!-- Button trigger modal -->
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal">
     Update Profile
 </button>
 
-<!-- Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -105,19 +116,12 @@
             <div class="modal-body">
                 <form th:action="@{/profile/update}" method="post" th:object="${user}" onsubmit="return validatePassword()">
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" th:value="${user.username}">
-                        <div th:if="${errorMessage}" class="errorMessage">
-                            <p th:text="${errorMessage}"></p>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" name="email" th:value="${user.email}">
                     </div>
                       <div class="form-group">
                         <label for="password1">password</label>
-                        <input type="password" class="form-control" id="password1" name="password" th:value="${user.password}">
+                        <input type="password" class="form-control" id="password1" name="password1" th:value="${user.password}">
                     </div><div class="form-group">
                         <label for="password2">password</label>
                         <input type="password" class="form-control" id="password2" name="password" th:value="${user.password}">

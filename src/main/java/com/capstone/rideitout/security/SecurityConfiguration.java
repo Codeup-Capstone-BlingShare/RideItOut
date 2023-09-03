@@ -40,7 +40,7 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit cars */
-                        .requestMatchers("/profile", "/profile/update", "/payment", "/manage",  "/listyourride", "/car/*/edit", "/car/*/delete", "/create/**").authenticated()
+                        .requestMatchers("/profile", "/payment", "/manage",  "/listyourride", "/car/*/edit", "/car/*/delete", "/create/**", "/deleteImg/**, /car/*/addPhoto").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view cars */
                         .requestMatchers("/", "/listings", "/listings/**", "","/register", "/login", "/search", "/index", "/aboutus", "/faq", "/confirmed").permitAll()
@@ -54,5 +54,4 @@ public class SecurityConfiguration {
                 .httpBasic(withDefaults());
         return http.build();
     }
-
 }

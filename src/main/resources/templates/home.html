@@ -1,77 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	      crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<title>Landing Page</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+          crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <title>Landing Page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body class="bg-secondary bg-gradient">
-<div th:replace="partials/navbar :: navbar"></div>
-<br>
-<div class="header d-flex justify-content-center">
-	<h1>"Indulge in Effortless Elegance: Where Luxury Meets Smooth Rides - Experience the Ride It Out Difference!"</h1>
+<body>
+<div class="container">
+    <div class="row">
+        <div th:replace="partials/navbar :: navbar"></div>
+        <br>
+        <div class="header d-flex justify-content-center">
+            <h1><span class="important"> <strong>"Indulge in Effortless Elegance:</strong> </span>Where Luxury Meets Smooth Rides -
+                Experience the Ride It Out
+                Difference!"</h1>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-4 ms-5">
+                <form th:action="@{/search}" th:mehod="get" th:object="${search}" class="flex-form form-group search-boxes">
+                    <input id="startDate" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy"
+                           class="form-control">
+                    <input id="endDate" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy" class="form-control">
+                    <input id="searchLocation" th:field="*{searchLocation}" type="text" placeholder="Enter a city"
+                           class="form-control">
+                    <button type="submit" class="btn" value="search for cars">Search</button>
+                </form>
+            </div>
+            <div class="col-7">
+                <img class="img-responsive hide-small" src="/img/ocean%20view.jpeg" alt="First slide">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <h1 class="important"><strong>How It Works</strong></h1>
+        <div class="left-container">
+            <div class="left-content">
+                <img id="img2" class="home-img-1" src="/img/keys.jpeg" alt="Keys hand off">
+            </div>
+            <div class="right-container">
+                <div class="right-content">
+                    <ol class="steps-container">
+                        <li class="step">
+                            <h2 class="important">Step 1: Find the perfect car</h2>
+                            <p>Enter a location and date and browse thousands of cars shared by local hosts.</p>
+                        </li>
+                        <li class="step">
+                            <h2 class="important">Step 2: Book your trip</h2>
+                            <p>Book on the RideItOut app or online, choose a protection plan, and say hi to your
+                                host!
+                                Cancel for free up to 24 hours before your trip.</p>
+                        </li>
+                        <li class="step">
+                            <h2 class="important">Step 3: Hit the road</h2>
+                            <p>Have the car delivered or pick it up from your host. Check in with the app, grab the
+                                keys, and hit the road!</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<br>
-<div class="cover">
-	<form th:action="@{/search}" th:mehod="get" th:object="${search}" class="flex-form">
-		<label for="startDate"></label>
-		<input id="startDate" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy">
-		
-		<label for="endDate"></label>
-		<input id="endDate" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy">
-		
-		<label for="searchLocation"></label>
-		<input id="searchLocation" th:field="*{searchLocation}" type="text" placeholder="Enter a city">
-		<button type="submit" class="btn-primary" value="search for cars">Search</button>
-	</form>
-</div>
-<div>
-	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img class="img-responsive" src="/img/ocean%20view.jpeg" alt="First slide">
-			</div>
-			<div class="carousel-item">
-				<img class="img-responsive" src="/img/Traveltrip.jpeg" alt="Second slide">
-			</div>
-	</div>
-</div>
-<br>
-	<div class="container">
-	<h1>How It Works</h1>
-	<div class="left-container">
-		<div class="left-content">
-			<img id="img2" class="img-responsive" src="/img/keys.jpeg" alt="Keys hand off">
-		</div>
-	</div>
-	<div class="right-container">
-		<div class="right-content">
-			<ol class="steps-container">
-				<li class="step">
-					<h2>Step 1: Find the perfect car</h2>
-					<p>Enter a location and date and browse thousands of cars shared by local hosts.</p>
-				</li>
-				<li class="step">
-					<h2>Step 2: Book your trip</h2>
-					<p>Book on the RideItOut app or online, choose a protection plan, and say hi to your host! Cancel for free up to 24 hours before your trip.</p>
-				</li>
-				<li class="step">
-					<h2>Step 3: Hit the road</h2>
-					<p>Have the car delivered or pick it up from your host. Check in with the app, grab the keys, and hit the road!</p>
-				</li>
-			</ol>
-		</div>
-	</div>
-</div>
-</div>
-
+<script src="/js/scripts.js"></script>
 </body>
 </html>
-
-

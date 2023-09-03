@@ -7,87 +7,95 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body class="bg-secondary bg-gradient">
-<div th:replace="~{partials/navbar :: navbar}"></div>
-<br>
-<div class="header d-flex justify-content-center">
-    <h1>About Us</h1>
-</div>
-<br>
-<div class="d-flex flex-column align-items-center">
-    <div class="nav-item">
-        <h3>What we are:</h3>
-    </div>
-    <div class="container">
-        <h5>Ride It Out is a ride-share service devoted to connecting the High Status individuals
-            of the world by providing a seamless
-            rental experience for spectacular vehicles. Whether you are traveling
-            and still want to drive in style without
-            exorbitant shipping costs,
-            or would like to add another stream of income, Ride It Out
-            is here to fit your needs.</h5>
+<body>
+<div class="container">
+    <div th:replace="~{partials/navbar :: navbar}"></div>
+    <br>
+    <div class="row">
+        <div class="header d-flex justify-content-center">
+            <h1>About Us</h1>
+        </div>
     </div>
     <br>
-    <h3 class="nav-item">Our Team:</h3>
-    <div class="d-flex">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Elliot Anderton</h5>
+    <div class="row">
+        <div class="d-flex flex-column align-items-center">
+            <div class="nav-item">
+                <h3 class="important">What we are:</h3>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Backend</li>
-                <li class="list-group-item">MapBox</li>
-                <li class="list-group-item">Square Payments</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">LinkedIn</a>
-                <a href="#" class="card-link">GitHub</a>
+            <div class="container">
+                <h5>Ride It Out is a ride-share service devoted to connecting the High Status individuals
+                    of the world by providing a seamless
+                    rental experience for spectacular vehicles. Whether you are traveling
+                    and still want to drive in style without
+                    exorbitant shipping costs,
+                    or would like to add another stream of income, Ride It Out
+                    is here to fit your needs.</h5>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="/img/Brenden_headshot.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Brenden Ferguson</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Front End</li>
-                <li class="list-group-item">Styling and Design</li>
-                <li class="list-group-item">CSS</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">LinkedIn</a>
-                <a href="#" class="card-link">GitHub</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Emilia Mata</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Front End</li>
-                <li class="list-group-item">Animations and Images</li>
-                <li class="list-group-item">JavaScript</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">LinkedIn</a>
-                <a href="#" class="card-link">GitHub</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="/img/james_headshot.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">James O'Sullivan</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Back End</li>
-                <li class="list-group-item">Database Design</li>
-                <li class="list-group-item">CRUD Functionality</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">LinkedIn</a>
-                <a href="#" class="card-link">GitHub</a>
+        <br>
+        <div class="row">
+            <h3 class="nav-item">Our Team:</h3>
+            <div class="d-flex">
+                <div class="card col-3" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/Elliot-Anderton-headshot%20copy.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Elliot Anderton</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Backend</li>
+                        <li class="list-group-item">MapBox</li>
+                        <li class="list-group-item">Square Payments</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">LinkedIn</a>
+                        <a href="#" class="card-link">GitHub</a>
+                    </div>
+                </div>
+                <div class="card col-3">
+                    <img class="card-img-top" src="/img/Brenden_headshot.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Brenden Ferguson</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Front End</li>
+                        <li class="list-group-item">Styling and Design</li>
+                        <li class="list-group-item">CSS</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">LinkedIn</a>
+                        <a href="#" class="card-link">GitHub</a>
+                    </div>
+                </div>
+                <div class="card col-3">
+                    <img class="card-img-top" src="/img/Emily.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Emilia Mata</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Front End</li>
+                        <li class="list-group-item">Animations and Images</li>
+                        <li class="list-group-item">JavaScript</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">LinkedIn</a>
+                        <a href="#" class="card-link">GitHub</a>
+                    </div>
+                </div>
+                <div class="card col-3">
+                    <img class="card-img-top" src="/img/james_headshot.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">James O'Sullivan</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Back End</li>
+                        <li class="list-group-item">Database Design</li>
+                        <li class="list-group-item">CRUD Functionality</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">LinkedIn</a>
+                        <a href="#" class="card-link">GitHub</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -7,42 +7,44 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body class="bg-secondary bg-gradient">
-<div th:replace="/partials/navbar :: navbar"></div>
-<br>
-<div class="header d-flex justify-content-center">
-    <h1>Create an Account</h1>
-</div>
+<body>
 <div class="container">
-    <form th:action="@{/register}" method="post">
-        <div class="form-group d-flex flex-column col-5">
-            <label for="firstName" class="title">First Name</label>
-            <input type="text" id="firstName" name="firstName" class="form-control">
-            <br>
-            <label for="lastName" class="title">Last Name</label>
-            <input type="text" id="lastName" name="lastName" class="form-control">
-            <br>
-            <label for="username" class="title">Username</label>
-            <input type="text" id="username" name="username" class="form-control">
-            <div th:if="${errorMessage}" class="errorMessage">
-                <p th:text="${errorMessage}"></p>
+    <div th:replace="partials/navbar :: navbar"></div>
+    <br>
+    <div class="header d-flex justify-content-center">
+        <h1>Create an Account</h1>
+    </div>
+    <div class="container">
+        <form th:action="@{/register}" method="post">
+            <div class="form-group d-flex flex-column col-5">
+                <label for="firstName" class="title">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="form-control">
+                <br>
+                <label for="lastName" class="title">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="form-control">
+                <br>
+                <label for="username" class="title">Username</label>
+                <input type="text" id="username" name="username" class="form-control">
+                <div th:if="${errorMessage}" class="errorMessage">
+                    <p th:text="${errorMessage}"></p>
+                </div>
+                <br>
+                <label for="email" class="title">E-Mail</label>
+                <input type="text" id="email" name="email" class="form-control">
+                <br>
+                <label for="password" class="title">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+                <br>
+                <label for="password2" class="title">Re-Enter Password</label>
+                <input type="password" id="password2" class="form-control">
+                <br>
+                <button type="submit" class="btn btn-dark">Submit</button>
             </div>
-            <br>
-            <label for="email" class="title">E-Mail</label>
-            <input type="text" id="email" name="email" class="form-control">
-            <br>
-            <label for="password" class="title">Password</label>
-            <input type="password" id="password" name="password" class="form-control">
-            <br>
-            <label for="password2" class="title">Re-Enter Password</label>
-            <input type="password" id="password2" class="form-control">
-            <br>
-            <button type="submit" class="btn btn-dark">Submit</button>
-        </div>
-    </form>
+        </form>
+    </div>
+    <br>
+    <div th:replace="partials/footer :: footer"></div>
 </div>
-<br>
-<div th:replace="/partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>
 </body>

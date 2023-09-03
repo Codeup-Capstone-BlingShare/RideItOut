@@ -8,7 +8,7 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="/partials/navbar :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 <h1>Manage Cars</h1>
 <a th:href="@{/listyourride}"><h2>Add</h2></a>
 <h3>Cars for rent</h3>
@@ -47,7 +47,7 @@
 	</div>
 </div>
 <hr>
-<div th:replace="/partials/footer :: footer"></div>
+<div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>
 </body>

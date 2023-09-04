@@ -14,12 +14,22 @@
 <h3>Cars for rent</h3>
 <div th:each="car : ${cars}">
 	<div th:if="${car.isAvailable() == true and car.isRented() == false}">
-		<a th:href="@{/car/{id}/edit (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
+		<h3 class="m-2">Car:</h3>
+		<a th:href="@{/car/{id}/edit (id = ${car.id})}">
+			<h1 th:text="${car.make}"></h1></a>
+		<h3 class="m-2">Car Model:</h3>
 		<p th:text="${car.model}"></p>
+		<h3 class="m-2">Car Year:</h3>
 		<p th:text="${car.year}"></p>
+		<h3 class="m-2">Car Mileage:</h3>
 		<p th:text="${car.mileage}"></p>
+		<h3 class="m-2">Car Price/Day:</h3>
 		<p th:text="${car.pricePerDay}"></p>
+		<h3 class="m-2">Car Zip:</h3>
 		<p th:text="${car.carLocationZip}"></p>
+		<h3 class="m-2">Main Photo:</h3>
+		<img class="img-fluid" th:if="${not #lists.isEmpty(car.photos)}" th:src="${car.photos[0].carPhotoURL}" alt="Car Thumbnail" />
+		<div id="thumbnailContainer"></div>
 	</div>
 </div>
 <hr>

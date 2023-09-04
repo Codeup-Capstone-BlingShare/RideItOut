@@ -70,11 +70,18 @@
             if (confirmed) {
                 document.forms["deleteForm"].submit();
             }
-        });
-    </script>
-    <br>
-    <br>
-    <h2>Name:</h2>
+        };
+        var picker = client.picker(options);
+        picker.open();
+    });
+    document.getElementById("delete_button").addEventListener("click", function(event){
+        event.preventDefault();
+        const confirmed = confirm("Are you sure you want to delete your profile?");
+        if (confirmed) {
+            document.forms["deleteForm"].submit();        }
+    });
+</script>
+<h2>Name:</h2>
     <h4><span th:text="${user.firstName + ' ' + user.lastName}"></span></h4>
     <br>
     <h2>Username:</h2>

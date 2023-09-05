@@ -65,39 +65,38 @@
     </form>
 
     <script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
-    <script th:inline="javascript">
-        var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
-        document.getElementById('filepicker').addEventListener('click', function(e) {
-            e.preventDefault();
-            var options = {
-                maxFiles: 6,
-                onUploadDone: function(response) {
-                    const formContainer = document.querySelector(".formContainer")
-                    const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
-                    console.log(formContainer);
-                    console.log(hiddenInputs);
-                  for(let i = 0; i < hiddenInputs.length; i++){
-                      if(response.filesUploaded[i] != null) {
-                          hiddenInputs[i].value = response.filesUploaded[i].url;
-                          const thumbnail = document.createElement('img');
-                          thumbnail.src = response.filesUploaded[i].url;
-                          thumbnail.style.maxWidth = '100px';
-                          thumbnailContainer.appendChild(thumbnail);
-                      }
-                          else {
-                              element.value = "";
-                          }
-                      }
+	<script th:inline="javascript">
+		var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
+		document.getElementById('filepicker').addEventListener('click', function (e) {
+			e.preventDefault();
+			var options = {
+				maxFiles: 6,
+				onUploadDone: function (response) {
+					const formContainer = document.querySelector(".formContainer")
+					const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
+					console.log(formContainer);
+					console.log(hiddenInputs);
+					for (let i = 0; i < hiddenInputs.length; i++) {
+						if (response.filesUploaded[i] != null) {
+							hiddenInputs[i].value = response.filesUploaded[i].url;
+							const thumbnail = document.createElement('img');
+							thumbnail.src = response.filesUploaded[i].url;
+							thumbnail.style.maxWidth = '100px';
+							thumbnailContainer.appendChild(thumbnail);
+						} else {
+							element.value = "";
+						}
+					}
 
-                    document.getElementById('submit-button');
-                    console.log(response.filesUploaded);
-                }
-            };
-            var picker = client.picker(options);
-            picker.open();
-        });
+					document.getElementById('submit-button');
+					console.log(response.filesUploaded);
+				}
+			};
+			var picker = client.picker(options);
+			picker.open();
+		});
 
-    </script>
+	</script>
 </div>
 <div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

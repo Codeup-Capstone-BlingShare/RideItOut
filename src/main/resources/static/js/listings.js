@@ -8,11 +8,10 @@ $(document).ready(function () {
 	i = 0;
 	$('.modal').each(function () {
 		this.setAttribute('id', "car" + i)
-		console.log(i)
 		i++
 	})
 
-	$('#photoLoop .carousel-item:first-child').addClass('active')
+	$('#photoLoop .photo-item:first-child').addClass('active')
 })
 
 

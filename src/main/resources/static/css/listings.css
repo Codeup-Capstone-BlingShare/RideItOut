@@ -3,18 +3,8 @@
     overflow-y: scroll
 }
 
-.carousel-inner, .carousel-item {
+.car-photos {
     height: 20em;
-}
-
-.carousel-item img {
-    width: 38%;
-    object-fit: cover;
-}
-
-.car-photo {
-    width: 10%;
-    object-fit: contain;
 }
 
 .owners-card {

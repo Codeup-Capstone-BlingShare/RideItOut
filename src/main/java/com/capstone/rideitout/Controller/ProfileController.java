@@ -4,9 +4,11 @@ import com.capstone.rideitout.Model.Photo;
 import com.capstone.rideitout.Model.Users;
 import com.capstone.rideitout.repositories.PhotoRepository;
 import com.capstone.rideitout.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileController {
-//    @Value("fileStackKey")
-//    private String fileStackKey;
     private final UserRepository userRepository;
 
     private final PhotoRepository photoDao;
@@ -55,25 +55,35 @@ public class ProfileController {
 public String showUpdateProfileForm(Model model) {
     Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("user", user);
+
     return "Users/profile";
 }
     @PostMapping("/profile/update")
     public String updateProfile(@ModelAttribute("user") Users updatedUser, Model model) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user1 = userRepository.getById(user.getId());
-        user1.setEmail(updatedUser.getEmail());
-        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
-        user1.setPassword(hashedPassword);
-//        user1.setPassword(updatedUser.getPassword());
+        // Update the email if provided in the form
+        if (!updatedUser.getEmail().isEmpty()) {
+            user1.setEmail(updatedUser.getEmail());
+        }
+
+        // Update the password if provided in the form
+        if (!updatedUser.getPassword().isEmpty()) {
+            String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+            user1.setPassword(hashedPassword);
+        }
+//        user1.setEmail(updatedUser.getEmail());
+//        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+//        user1.setPassword(hashedPassword);
         userRepository.save(user1);
         return "redirect:/profile";}
     @PostMapping("/profile/delete")
-    public String deleteProfile() {
+    public String deleteProfile(HttpServletRequest request) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user1 = userRepository.getReferenceById(user.getId());
         if (user1 != null) {
             userRepository.delete(user1);
-            userRepository.delete(user1);
+            new SecurityContextLogoutHandler().logout(request, null, null);
             return "redirect:/";
         }
         return "redirect:/profile";

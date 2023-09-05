@@ -134,6 +134,10 @@ img{
     height: 25%;
 }
 
+#profile-pic{
+    border-radius: 50%;
+}
+
 #logout{
     background-color: transparent;
     color: #ED1D37;

@@ -13,7 +13,8 @@
 <div class="container">
     <div th:replace="~{partials/navbar :: navbar}"></div>
     <h1>Profile</h1>
-    <img class="img-fluid"
+    <div class="container">
+    <img class="img-fluid" id="profile-pic"
          th:src="${user.profilePhoto == null || user.profilePhoto == '' ? '../img/Blank-Avatar.png' : user.profilePhoto}"
          alt="Profile Photo">
     <form class="formContainer m-2" th:action="@{/profile}" method="post" th:object="${user}"
@@ -28,6 +29,7 @@
         <br><br>
         <button type="submit" class="btn">Submit Uploaded Image</button>
     </form>
+    </div>
     <br>
 
     <form class="mt-4" th:action="@{/profile/delete}" th:object="${user}" method="post" name="deleteForm">
@@ -70,18 +72,9 @@
             if (confirmed) {
                 document.forms["deleteForm"].submit();
             }
-        };
-        var picker = client.picker(options);
-        picker.open();
-    });
-    document.getElementById("delete_button").addEventListener("click", function(event){
-        event.preventDefault();
-        const confirmed = confirm("Are you sure you want to delete your profile?");
-        if (confirmed) {
-            document.forms["deleteForm"].submit();        }
     });
 </script>
-<h2>Name:</h2>
+    <h2>Name:</h2>
     <h4><span th:text="${user.firstName + ' ' + user.lastName}"></span></h4>
     <br>
     <h2>Username:</h2>
@@ -110,14 +103,14 @@
                             <input type="email" class="form-control" id="email" name="email" th:value="${user.email}">
                         </div>
                         <div class="form-group">
-                            <label for="password1">password</label>
+                            <label for="password1">New Password</label>
                             <input type="password" class="form-control" id="password1" name="password1"
-                                   th:value="${user.password}">
+                                   placeholder="Enter a new password if you want to change it">
                         </div>
                         <div class="form-group">
-                            <label for="password2">password</label>
+                            <label for="password2">Re-enter Password</label>
                             <input type="password" class="form-control" id="password2" name="password"
-                                   th:value="${user.password}">
+                                   placeholder="Re-enter the new password">
                         </div>
                         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn">Save changes</button>

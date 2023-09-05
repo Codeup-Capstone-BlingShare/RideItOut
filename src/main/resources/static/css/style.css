@@ -150,7 +150,7 @@ img{
     transition:  color .15s;
 }
 
-.col-1{
+.col-lg-1{
     width: 2px;
     border-color: #000000;
     opacity: .25;
@@ -167,5 +167,15 @@ img{
     }
     .hide-small{
         display: none;
+    }
+    .col-lg-1{
+        display: none;
+    }
+    .col-7{
+        display: none;
+    }
+    .home-form{
+        margin: 0;
+        padding: 0;
     }
 }

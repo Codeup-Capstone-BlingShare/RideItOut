@@ -22,8 +22,8 @@
     </div>
     <br>
     <div class="container home-container">
-        <div class="row justify-content-between">
-            <div class="d-flex col-3 ms-5 pe-0 align-items-center">
+        <div class="row d-flex justify-content-evenly">
+            <div class="d-flex col-lg-3 col-12 ms-lg-5 ms-0 pe-0 align-items-center home-form">
                 <form th:action="@{/search}" th:mehod="get" th:object="${search}" class="flex-form form-group search-boxes w-100">
                     <input id="startDate" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy"
                            class="form-control mb-2">
@@ -33,9 +33,9 @@
                     <button type="submit" class="btn w-100" value="search for cars">Search</button>
                 </form>
             </div>
-            <div class="border-end col-1"></div>
+            <div class="border-end col-lg-1"></div>
             <div class="col-7">
-                <img class="img-responsive hide-small" src="/img/ocean%20view.jpeg" alt="First slide">
+                <img class="img-responsive" src="/img/ocean%20view.jpeg" alt="First slide">
             </div>
         </div>
     </div>

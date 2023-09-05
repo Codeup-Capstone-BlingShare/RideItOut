@@ -50,19 +50,18 @@ html {
 }
 
 .container h1 {
-    border-top: 1px solid #ccc;
     padding-top: 8px;
     text-align: center;
 }
 
 .container img {
-    width: 80%;
-    float: left;
-    margin-right: 1.5em;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 .right-container li.step p {
-    font-family: "Futura";
+    font-family: "Futura", serif;
     font-size: smaller;
 }
 
@@ -71,7 +70,7 @@ html {
 
 .right-content li.step h2 {
     font-weight: bolder;
-    font-family: "Futura";
+    font-family: "Futura", serif;
 }
 
 .faq {
@@ -95,10 +94,11 @@ html {
 }
 
 :is(body) {
-    font-family: "Futura";
+    font-family: "Futura", serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #f6f6f6;
 }
 
 .footer {
@@ -120,7 +120,7 @@ html {
 }
 
 .important{
-    color: #ED1D37;
+    color: #354F7A;
 }
 .left-content.img-fluid{
     float: left;
@@ -143,6 +143,28 @@ img{
     width:100%;
 }
 
+.navbar{
+    background-color: transparent;
+}
+.card-img-top{
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.btn.nav-link{
+    height: 24px;
+    color: #354F7A;
+    transition:  color .15s;
+}
+
+.col-1{
+    width: 2px;
+    border-color: #000000;
+    opacity: .25;
+    padding: 0;
+    background-color: black;
+}
+
 @media (max-width: 992px) {
     .search-boxes{
         width: auto;
@@ -152,10 +174,5 @@ img{
     }
     .hide-small{
         display: none;
-    }
-    .card-img-top{
-        width: 10rem;
-        height: 15rem;
-        margin: 0;
     }
 }

@@ -14,25 +14,25 @@
     <div class="container d-flex justify-content-center">
         <form th:action="@{/register}" method="post">
             <div class="form-group">
-                <label for="firstName" class="title">First Name</label>
+                <label for="firstName" class="title important">First Name</label>
                 <input type="text" id="firstName" name="firstName" class="form-control">
                 <br>
-                <label for="lastName" class="title">Last Name</label>
+                <label for="lastName" class="title important">Last Name</label>
                 <input type="text" id="lastName" name="lastName" class="form-control">
                 <br>
-                <label for="username" class="title">Username</label>
+                <label for="username" class="title important">Username</label>
                 <input type="text" id="username" name="username" class="form-control">
                 <div th:if="${errorMessage}" class="errorMessage">
                     <p th:text="${errorMessage}"></p>
                 </div>
                 <br>
-                <label for="email" class="title">E-Mail</label>
+                <label for="email" class="title important">E-Mail</label>
                 <input type="text" id="email" name="email" class="form-control">
                 <br>
-                <label for="password" class="title">Password</label>
+                <label for="password" class="title important">Password</label>
                 <input type="password" id="password" name="password" class="form-control">
                 <br>
-                <label for="password2" class="title">Re-Enter Password</label>
+                <label for="password2" class="title important">Re-Enter Password</label>
                 <input type="password" id="password2" class="form-control">
                 <br>
                 <button type="submit" class="btn btn-dark">Submit</button>

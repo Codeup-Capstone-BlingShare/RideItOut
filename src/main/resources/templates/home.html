@@ -16,25 +16,23 @@
     <div class="row">
         <div th:replace="partials/navbar :: navbar"></div>
         <br>
-        <div class="header d-flex justify-content-center">
-            <h1><span class="important"> <strong>"Indulge in Effortless Elegance:</strong> </span>Where Luxury Meets Smooth Rides -
-                Experience the Ride It Out
-                Difference!"</h1>
-        </div>
+        <h1 class="important mt-4"><strong>Indulge in Effortless Elegance:</strong></h1>
+        <h5 class="text-center mb-4">"Where Luxury Meets Smooth Rides - Experience the Ride It Out Difference!"</h5>
     </div>
     <br>
-    <div class="container">
+    <div class="container home-container">
         <div class="row justify-content-between">
-            <div class="col-4 ms-5">
-                <form th:action="@{/search}" th:mehod="get" th:object="${search}" class="flex-form form-group search-boxes">
+            <div class="d-flex col-3 ms-5 pe-0 align-items-center">
+                <form th:action="@{/search}" th:mehod="get" th:object="${search}" class="flex-form form-group search-boxes w-100">
                     <input id="startDate" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy"
-                           class="form-control">
-                    <input id="endDate" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy" class="form-control">
+                           class="form-control mb-2">
+                    <input id="endDate" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy" class="form-control mb-2">
                     <input id="searchLocation" th:field="*{searchLocation}" type="text" placeholder="Enter a city"
-                           class="form-control">
-                    <button type="submit" class="btn" value="search for cars">Search</button>
+                           class="form-control mb-2">
+                    <button type="submit" class="btn w-100" value="search for cars">Search</button>
                 </form>
             </div>
+            <div class="border-end col-1"></div>
             <div class="col-7">
                 <img class="img-responsive hide-small" src="/img/ocean%20view.jpeg" alt="First slide">
             </div>
@@ -44,28 +42,33 @@
     <div class="row">
         <h1 class="important"><strong>How It Works</strong></h1>
         <div class="left-container">
-            <div class="left-content">
+            <div class="left-content home-container">
                 <img id="img2" class="home-img-1" src="/img/keys.jpeg" alt="Keys hand off">
             </div>
             <div class="right-container">
                 <div class="right-content">
-                    <ol class="steps-container">
-                        <li class="step">
-                            <h2 class="important">Step 1: Find the perfect car</h2>
-                            <p>Enter a location and date and browse thousands of cars shared by local hosts.</p>
-                        </li>
-                        <li class="step">
-                            <h2 class="important">Step 2: Book your trip</h2>
-                            <p>Book on the RideItOut app or online, choose a protection plan, and say hi to your
+                    <hr>
+                    <div class="row my-4">
+                        <div class="col-lg-4 col-12">
+                            <h3 class="important text-center">Step 1: Find the perfect car</h3>
+                            <p class="text-center">Enter a location and date and browse thousands of cars shared by
+                                local hosts.</p>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <h3 class="important text-center">Step 2: Book your trip</h3>
+                            <p class="text-center">Book on the RideItOut app or online, choose a protection plan, and
+                                say hi to your
                                 host!
                                 Cancel for free up to 24 hours before your trip.</p>
-                        </li>
-                        <li class="step">
-                            <h2 class="important">Step 3: Hit the road</h2>
-                            <p>Have the car delivered or pick it up from your host. Check in with the app, grab the
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <h3 class="important text-center">Step 3: Hit the road</h3>
+                            <p class="text-center">Have the car delivered or pick it up from your host. Check in with
+                                the app, grab the
                                 keys, and hit the road!</p>
-                        </li>
-                    </ol>
+                        </div>
+                    </div>
+                    <hr>
                 </div>
             </div>
         </div>

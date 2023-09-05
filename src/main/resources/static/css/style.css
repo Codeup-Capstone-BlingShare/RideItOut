@@ -1,21 +1,3 @@
-/* Set the desired height for the carousel */
-.carousel-item {
-    /*height: fit-content;*/
-    width: 100vw;
-    margin: 0;
-    height: fit-content;
-    font-size: small;
-
-}
-
-/* Center the content vertically and horizontally */
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    margin: 0;
-}
-
 .steps-container {
     list-style-type: inherit;
     padding: 0;
@@ -50,19 +32,24 @@ html {
 }
 
 .container h1 {
-    border-top: 1px solid #ccc;
     padding-top: 8px;
     text-align: center;
 }
 
-.container img {
-    width: 80%;
-    float: left;
-    margin-right: 1.5em;
+.home-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-img-top{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 .right-container li.step p {
-    font-family: "Futura";
+    font-family: "Futura", serif;
     font-size: smaller;
 }
 
@@ -71,7 +58,7 @@ html {
 
 .right-content li.step h2 {
     font-weight: bolder;
-    font-family: "Futura";
+    font-family: "Futura", serif;
 }
 
 .faq {
@@ -95,10 +82,11 @@ html {
 }
 
 :is(body) {
-    font-family: "Futura";
+    font-family: "Futura", serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #f6f6f6;
 }
 
 .footer {
@@ -120,7 +108,7 @@ html {
 }
 
 .important{
-    color: #ED1D37;
+    color: #354F7A;
 }
 .left-content.img-fluid{
     float: left;
@@ -136,6 +124,7 @@ img{
 
 #profile-pic{
     border-radius: 50%;
+    max-width: 50%;
 }
 
 #logout{
@@ -147,6 +136,28 @@ img{
     width:100%;
 }
 
+.navbar{
+    background-color: transparent;
+}
+.card-img-top{
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.btn.nav-link{
+    height: 24px;
+    color: #354F7A;
+    transition:  color .15s;
+}
+
+.col-1{
+    width: 2px;
+    border-color: #000000;
+    opacity: .25;
+    padding: 0;
+    background-color: black;
+}
+
 @media (max-width: 992px) {
     .search-boxes{
         width: auto;
@@ -156,10 +167,5 @@ img{
     }
     .hide-small{
         display: none;
-    }
-    .card-img-top{
-        width: 10rem;
-        height: 15rem;
-        margin: 0;
     }
 }

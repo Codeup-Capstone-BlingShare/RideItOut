@@ -57,8 +57,10 @@ public class ListYourRideController {
         carDao.save(car);
         List<String> carURLs = carForm.getCarPhotoURL();
         for(String carURL : carURLs) {
-            Photo photo = new Photo(car, carURL);
-            photoDao.save(photo);
+            if (!carURL.isEmpty()) {
+                Photo photo = new Photo(car, carURL);
+                photoDao.save(photo);
+            }
         }
 
         return "redirect:/manage";

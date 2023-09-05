@@ -53,52 +53,56 @@
 			</div>
 		</div>
 	</div>
-	<form th:action="@{/car/{id}/addPhoto(id=${car.id})}" th:method="post">
+	<form th:action="@{/car/{id}/addPhoto(id=${car.id})}" th:method="post" th:object="${newPhoto}"
+	      class="formContainer">
 		<input type="hidden" class="hiddenInput"
-		       th:field="${newPhoto}" value=""/>
+		       th:field="*{carPhotoURL}" value=""/>
 		<div id="thumbnailContainer"></div>
 		<button id="filepicker">Upload Image</button>
-		<button type="submit">Save Image</button>
+		<button type="submit" class="hidden" id="save-image">Save Image</button>
 	</form>
+	<script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
+	<script th:inline="javascript">
+		var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
+		document.getElementById('filepicker').addEventListener('click', function(e) {
+			e.preventDefault();
+			var options = {
+				maxFiles: 6,
+				onUploadDone: function(response) {
+					const formContainer = document.querySelector(".formContainer")
+					const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
+					console.log(formContainer);
+					console.log(hiddenInputs);
+					for(let i = 0; i < hiddenInputs.length; i++){
+						if(response.filesUploaded[i] != null) {
+							hiddenInputs[i].value = response.filesUploaded[i].url;
+							const thumbnail = document.createElement('img');
+							thumbnail.src = response.filesUploaded[i].url;
+							thumbnail.style.maxWidth = '100px';
+							thumbnailContainer.appendChild(thumbnail);
+						}
+						else {
+							element.value = "";
+						}
+					}
+
+					document.getElementById('submit-button');
+					console.log(response.filesUploaded);
+					$('#save-image').click()
+				}
+			};
+			var picker = client.picker(options);
+			picker.open();
+		});
+
+	</script>
 </div>
 
 
 <form th:action="@{/car/{id}/delete(id=${car.id})}" method="post">
 	<button type="submit">Delete</button>
 </form>
-<div th:replace="/partials/footer :: footer"></div>
 
-<script th:src="'//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js'"></script>
-<script th:inline="javascript">
-	var client = filestack.init([[${@environment.getProperty('fileStackKey')}]]);
-	document.getElementById('filepicker').addEventListener('click', function (e) {
-		e.preventDefault();
-		var options = {
-			maxFiles: 1,
-			onUploadDone: function (response) {
-				const formContainer = document.querySelector(".formContainer")
-				const hiddenInputs = formContainer.querySelectorAll('.hiddenInput')
-				console.log(formContainer);
-				console.log(hiddenInputs);
-				if (response.filesUploaded[i] != null) {
-					hiddenInputs[i].value = response.filesUploaded[i].url;
-					const thumbnail = document.createElement('img');
-					thumbnail.src = response.filesUploaded[i].url;
-					thumbnail.style.maxWidth = '100px';
-					thumbnailContainer.appendChild(thumbnail);
-				} else {
-					element.value = "";
-				}
-
-				document.getElementById('submit-button');
-				console.log(response.filesUploaded);
-			}
-		};
-		var picker = client.picker(options);
-		picker.open();
-	});
-
-</script>
 <div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

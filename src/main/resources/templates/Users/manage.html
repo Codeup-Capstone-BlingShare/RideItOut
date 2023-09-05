@@ -5,59 +5,93 @@
     <title>Manage Cars</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-	<link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/manage.css}">
 </head>
-<body>
+<body class="container">
 <div th:replace="partials/navbar :: navbar"></div>
-<h1>Manage Cars</h1>
-<div class="nav-item">
-    <a th:href="@{/listyourride}" class="nav-link"><h2>Add</h2></a>
+<div class=" d-flex row w-100">
+	<h1 class="col-12">Manage Cars</h1>
+	<div class="d-flex justify-self-center nav-item col-12">
+		<a th:href="@{/listyourride}" class="nav-link m-auto">
+			<button type="button" class="btn-lg btn">List Another Ride</button>
+		</a>
+	</div>
 </div>
-<h3>Cars for rent</h3>
-<div th:each="car : ${cars}">
-	<div th:if="${car.isAvailable() == true and car.isRented() == false}">
-		<h3 class="m-2">Car:</h3>
-		<a th:href="@{/car/{id}/edit (id = ${car.id})}">
-			<h1 th:text="${car.make}"></h1></a>
-		<h3 class="m-2">Car Model:</h3>
-		<p th:text="${car.model}"></p>
-		<h3 class="m-2">Car Year:</h3>
-		<p th:text="${car.year}"></p>
-		<h3 class="m-2">Car Mileage:</h3>
-		<p th:text="${car.mileage}"></p>
-		<h3 class="m-2">Car Price/Day:</h3>
-		<p th:text="${car.pricePerDay}"></p>
-		<h3 class="m-2">Car Zip:</h3>
-		<p th:text="${car.carLocationZip}"></p>
-		<h3 class="m-2">Main Photo:</h3>
-		<img class="img-fluid" th:if="${not #lists.isEmpty(car.photos)}" th:src="${car.photos[0].carPhotoURL}" alt="Car Thumbnail" />
-		<div id="thumbnailContainer"></div>
+<h3 class="mt-3">Cars for rent</h3>
+<div class="car-row d-flex me-3">
+	<div th:each="car : ${cars}">
+		<div th:if="${car.isAvailable() == true and car.isRented() == false}">
+			<div class="card ms-3 mb-3" style="width: 540px;">
+				<div class="row g-0">
+					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+						<img th:src="${car.photos[0].getCarPhotoURL()}"
+						     class="d-block w-100 rounded-start" alt="car photo">
+					</div>
+					<div class="col-md-6">
+						<div class="ms-3 pb-0 pb-0">
+							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
+								<h1 class="w-100" th:text="${car.make}"></h1>
+								<p th:text="${car.model}"></p>
+								<p th:text="${car.year}"></p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <hr>
 <h3>Cars rented</h3>
-<div th:each="car : ${cars}">
-    <div th:if="${car.isAvailable() == true and car.isRented() == true}">
-        <a th:href="@{/car/{id}/edit (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
-        <p th:text="${car.model}"></p>
-        <p th:text="${car.year}"></p>
-        <p th:text="${car.mileage}"></p>
-        <p th:text="${car.pricePerDay}"></p>
-        <p th:text="${car.carLocationZip}"></p>
-    </div>
+<div class="car-row">
+	<div th:each="car : ${cars}">
+		<div th:if="${car.isAvailable() == true and car.isRented() == true}">
+			<div class="card ms-3 mb-3" style="max-width: 540px;">
+				<div class="row g-0">
+					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+						<img th:src="${car.photos[0].getCarPhotoURL()}"
+						     class="d-block w-100 rounded-start" alt="car photo">
+					</div>
+					<div class="col-md-6">
+						<div class="ms-3 pb-0 pb-0">
+							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
+								<h1 class="w-100" th:text="${car.make}"></h1>
+								<p th:text="${car.model}"></p>
+								<p th:text="${car.year}"></p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <hr>
 <h3>Cars not Listed</h3>
-<div th:each="car : ${cars}">
-    <div th:if="${car.isAvailable() == false}">
-        <a th:href="@{/car/{id}/edit (id = ${car.id})}"><h1 th:text="${car.make}"></h1></a>
-        <p th:text="${car.model}"></p>
-        <p th:text="${car.year}"></p>
-        <p th:text="${car.mileage}"></p>
-        <p th:text="${car.pricePerDay}"></p>
-        <p th:text="${car.carLocationZip}"></p>
-    </div>
+<div class="car-row">
+	<div th:each="car : ${cars}">
+		<div th:if="${car.isAvailable() == false}">
+			<div class="card ms-3 mb-3" style="max-width: 540px;">
+				<div class="row g-0">
+					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+						<img th:src="${car.photos[0].getCarPhotoURL()}"
+						     class="d-block w-100 rounded-start" alt="car photo">
+					</div>
+					<div class="col-md-6">
+						<div class="ms-3 pb-0 pb-0">
+							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
+								<h1 class="w-100" th:text="${car.make}"></h1>
+								<p th:text="${car.model}"></p>
+								<p th:text="${car.year}"></p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <hr>
 <div th:replace="partials/footer :: footer"></div>

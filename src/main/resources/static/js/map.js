@@ -15,9 +15,6 @@
 			style: 'mapbox://styles/mapbox/streets-v9',
 			zoom: z,
 			center: coordinates,
-			// LtileLayer: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			// 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			// }).addTo(map);
 		})
 		$(document).ready(function () {
 			$('.location').each(function (){

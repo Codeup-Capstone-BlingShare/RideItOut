@@ -4,8 +4,11 @@ import com.capstone.rideitout.Model.Photo;
 import com.capstone.rideitout.Model.Users;
 import com.capstone.rideitout.repositories.PhotoRepository;
 import com.capstone.rideitout.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +19,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileController {
-//    @Value("fileStackKey")
-//    private String fileStackKey;
     private final UserRepository userRepository;
 
     private final PhotoRepository photoDao;
 
-    public ProfileController(UserRepository userRepository, PhotoRepository photoDao) {
+    private PasswordEncoder passwordEncoder;
+
+    public ProfileController(UserRepository userRepository, PhotoRepository photoDao, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.photoDao = photoDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/profile")
@@ -42,26 +46,36 @@ public class ProfileController {
         // I have to instantiate a new obj to access the DB values instead of the session values
         Users user1 = userRepository.getById(user.getId());
         model.addAttribute("photo", user1.getProfilePhoto());
-        System.out.println(user.getProfilePhoto());
         model.addAttribute("user", user1);
 //        model.addAttribute("fileStackKey", fileStackKey);
         return "Users/profile";
     }
 
-
-//    @PostMapping("/profile/edit")
-//    public String updateProfile(@ModelAttribute("updatedUser") Users updatedUser) {
-//        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user.setUsername(updatedUser.getUsername());
-//        user.setEmail(updatedUser.getEmail());
-//        userRepository.save(user);
-//        return "redirect:/profile";
-//    }
-//
-//    @PostMapping("/profile/delete")
-//    public String deleteProfile() {
-//        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        userRepository.delete(user);
-//        return "redirect:/logout";
-//    }
+@GetMapping("/profile/update")
+public String showUpdateProfileForm(Model model) {
+    Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    model.addAttribute("user", user);
+    return "Users/profile";
+}
+    @PostMapping("/profile/update")
+    public String updateProfile(@ModelAttribute("user") Users updatedUser, Model model) {
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users user1 = userRepository.getById(user.getId());
+        user1.setEmail(updatedUser.getEmail());
+        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+        user1.setPassword(hashedPassword);
+//        user1.setPassword(updatedUser.getPassword());
+        userRepository.save(user1);
+        return "redirect:/profile";}
+    @PostMapping("/profile/delete")
+    public String deleteProfile(HttpServletRequest request) {
+        Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users user1 = userRepository.getReferenceById(user.getId());
+        if (user1 != null) {
+            userRepository.delete(user1);
+            new SecurityContextLogoutHandler().logout(request, null, null);
+            return "redirect:/";
+        }
+        return "redirect:/profile";
+    }
 }

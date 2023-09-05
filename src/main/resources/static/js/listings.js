@@ -11,6 +11,8 @@ $(document).ready(function () {
 		console.log(i)
 		i++
 	})
+
+	$('#photoLoop .carousel-item:first-child').addClass('active')
 })
 
 

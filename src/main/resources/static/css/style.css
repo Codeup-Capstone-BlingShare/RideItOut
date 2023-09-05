@@ -58,7 +58,7 @@ html {
 }
 
 .container img {
-        width:70%;
+        width:45%;
         float: left;
         margin-right: 1.5em;
     }
@@ -66,7 +66,7 @@ html {
 .right-container li.step p {
     /*font-optical-sizing: auto;*/
     font-family: "Lucida Console", "Courier New", monospace;
-    font-size: 7px;
+    /*font-size: 7px;*/
     color: ghostwhite;
     font-weight: initial;
 
@@ -78,7 +78,7 @@ html {
 /* Make <h2> elements bold and use a different font */
 
 .right-content li.step h2 {
-    /*font-weight: bolder;*/
+    font-weight: bolder;
     font-family: "Lucida Console", "Courier New", monospace;
     /*font-size: 7px;*/
     /*text-align: right;*/
@@ -93,21 +93,21 @@ html {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 .question {
-    background-color: whitesmoke;
+    background-color:whitesmoke;
     padding: 10px;
     cursor: pointer;
     font-family: "Lucida Console", "Courier New", monospace;
-
-    .answer {
-        display: none;
-        background-color: whitesmoke;
-        padding: 10px;
-        font-family: "Lucida Console", "Courier New", monospace;
-    }
+}
+.answer {
+    display: none;
+    background-color: whitesmoke;
+    padding: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
 
 
     .title {
-        color: ghostwhite;
+        color:ghostwhite;
         font-weight: lighter;
         font-size: large;
     }
@@ -124,7 +124,7 @@ html {
     }
 
     .nav-item {
-        color: black;
+        color:black;
     }
 
     .header {
@@ -144,20 +144,17 @@ html {
     /*    height: 100px;*/
     /*}*/
 
-    .nav-item {
-        color: ghostwhite;
-    }
-
-    .footer {
-        margin-top: auto;
-    }
-
-    .big-img {
-        width: 100vw;
-    }
-
-    .img-fluid {
-        max-width: 10%;
-    }
+.nav-item{
+    color: ghostwhite;
 }
+
+.footer {
+    margin-top: auto;
+}
+ .big-img {
+     width: 100vw;
+ }
+ .img-fluid{
+     max-width: 10%;
+ }
 

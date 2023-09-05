@@ -72,20 +72,15 @@ public class ManageCarsController {
         car.setUser(user);
         car.setRented(oldCar.isRented());
 
-//        List<Photo> carPhotos = car.getPhotos();
-//        for (Photo carPhoto : carPhotos) {
-//            String url = carPhoto.getCarPhotoURL();
-//            Photo photo = new Photo(car, url);
-//            photoDoa.save(photo);
-//        }
-
         carDoa.save(car);
         return "redirect:/manage";
     }
 
     @PostMapping("/car/{id}/delete")
     public String deleteCar(@PathVariable long id) {
-        carDoa.deleteById(id);
+        Car car = carDoa.getReferenceById(id);
+
+        carDoa.delete(car);
         return "redirect:/manage";
     }
 

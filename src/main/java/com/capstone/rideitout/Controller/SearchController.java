@@ -33,7 +33,7 @@ public class SearchController {
         List<Car> available = new ArrayList<>();
 
         if (!search.getSearchLocation().equals("")) {
-            cars = carDoa.findByCarLocationCity(search.getSearchLocation());
+            cars = carDoa.findByCarLocationCityContains(search.getSearchLocation());
         }
 
         if (search.getStartDate() == null || search.getEndDate() == null){

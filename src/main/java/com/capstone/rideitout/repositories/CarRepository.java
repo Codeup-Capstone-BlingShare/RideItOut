@@ -11,5 +11,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<Car> findByUser(Users user);
 
-    List<Car> findByCarLocationCity(String city);
+    List<Car> findByCarLocationCityContains(String city);
 }

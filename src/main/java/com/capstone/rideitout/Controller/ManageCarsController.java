@@ -74,8 +74,7 @@ public class ManageCarsController {
     }
 
     @PostMapping("/car/{id}/addPhoto")
-    public String addImg(@PathVariable long id, @ModelAttribute Photo photo) {
-        System.out.println("here");
+    public String addImg(@PathVariable long id, @ModelAttribute("newPhoto") Photo photo) {
 
         Car car = carDoa.getReferenceById(id);
         photo.setCar(car);

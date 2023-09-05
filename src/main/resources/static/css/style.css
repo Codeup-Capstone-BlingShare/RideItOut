@@ -1,21 +1,3 @@
-/* Set the desired height for the carousel */
-.carousel-item {
-    /*height: fit-content;*/
-    width: 100vw;
-    margin: 0;
-    height: fit-content;
-    font-size: small;
-
-}
-
-/* Center the content vertically and horizontally */
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    margin: 0;
-}
-
 .steps-container {
     list-style-type: inherit;
     padding: 0;
@@ -65,7 +47,6 @@ html {
     height: 250px;
     object-fit: cover;
 }
-
 
 .right-container li.step p {
     font-family: "Futura", serif;
@@ -139,6 +120,11 @@ img{
 
 .home-img-1{
     height: 25%;
+}
+
+#profile-pic{
+    border-radius: 50%;
+    max-width: 50%;
 }
 
 #logout{

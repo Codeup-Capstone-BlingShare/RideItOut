@@ -2,7 +2,7 @@
 .carousel-item {
     /*height: fit-content;*/
     width: 100vw;
-    margin:0;
+    margin: 0;
     height: fit-content;
     font-size: small;
 
@@ -12,7 +12,7 @@
 .carousel-item img {
     width: 100%;
     height: 100%;
-    /*display: block;*/
+    display: block;
     margin: 0;
 }
 
@@ -26,9 +26,7 @@
 }
 
 .header {
-    border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
-    color: ghostwhite;
     text-align: center;
     font-size: x-small;
 
@@ -40,13 +38,13 @@ html {
 
 .cover {
     position: relative;
-    top:70px;
+    top: 70px;
     z-index: 100;
     display: flex;
     justify-content: center;
-    width:100%;
+    width: 100%;
     padding: .2em;
-    margin:-13px;
+    margin: -13px;
     height: 7px;
     box-shadow: dimgrey;
 }
@@ -58,20 +56,14 @@ html {
 }
 
 .container img {
-        width:45%;
-        float: left;
-        margin-right: 1.5em;
-    }
+    width: 80%;
+    float: left;
+    margin-right: 1.5em;
+}
 
 .right-container li.step p {
-    /*font-optical-sizing: auto;*/
-    font-family: "Lucida Console", "Courier New", monospace;
-    /*font-size: 7px;*/
-    color: ghostwhite;
-    font-weight: initial;
-
-    /*float: right;*/
-
+    font-family: "Futura";
+    font-size: smaller;
 }
 
 
@@ -79,12 +71,7 @@ html {
 
 .right-content li.step h2 {
     font-weight: bolder;
-    font-family: "Lucida Console", "Courier New", monospace;
-    /*font-size: 7px;*/
-    /*text-align: right;*/
-
-    /*float: right;*/
-
+    font-family: "Futura";
 }
 
 .faq {
@@ -92,12 +79,14 @@ html {
     margin: 20px auto;
     font-family: "Lucida Console", "Courier New", monospace;
 }
+
 .question {
-    background-color:whitesmoke;
+    background-color: whitesmoke;
     padding: 10px;
     cursor: pointer;
     font-family: "Lucida Console", "Courier New", monospace;
 }
+
 .answer {
     display: none;
     background-color: whitesmoke;
@@ -105,56 +94,72 @@ html {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-
-    .title {
-        color:ghostwhite;
-        font-weight: lighter;
-        font-size: large;
-    }
-
-    :is(body) {
-        font-family: "Lucida Console", "Courier New", monospace;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .navbar {
-        background-color: black;
-    }
-
-    .nav-item {
-        color:black;
-    }
-
-    .header {
-        color: whitesmoke;
-    }
-
-    .footer {
-        margin-top: auto;
-    }
-
-    .big-img {
-        width: 100vw;
-    }
-
-    /*.img-responsive {*/
-    /*    width: 100px;*/
-    /*    height: 100px;*/
-    /*}*/
-
-.nav-item{
-    color: ghostwhite;
+:is(body) {
+    font-family: "Futura";
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer {
     margin-top: auto;
 }
- .big-img {
-     width: 100vw;
- }
- .img-fluid{
-     max-width: 10%;
- }
 
+.big-img {
+    width: 100vw;
+}
+
+
+.img-fluid {
+    max-width: 10%;
+}
+
+.btn {
+    background-color: #ED1D37;
+    color: white;
+}
+
+.important{
+    color: #ED1D37;
+}
+.left-content.img-fluid{
+    float: left;
+}
+img{
+    border-radius: 2.25em;
+    box-shadow: 10px 10px 5px #cccccc;
+}
+
+.home-img-1{
+    height: 25%;
+}
+
+#profile-pic{
+    border-radius: 50%;
+}
+
+#logout{
+    background-color: transparent;
+    color: #ED1D37;
+}
+
+.form-control{
+    width:100%;
+}
+
+@media (max-width: 992px) {
+    .search-boxes{
+        width: auto;
+    }
+    .col-4{
+        width: 80%;
+    }
+    .hide-small{
+        display: none;
+    }
+    .card-img-top{
+        width: 10rem;
+        height: 15rem;
+        margin: 0;
+    }
+}

@@ -55,16 +55,26 @@ public class ProfileController {
 public String showUpdateProfileForm(Model model) {
     Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     model.addAttribute("user", user);
+
     return "Users/profile";
 }
     @PostMapping("/profile/update")
     public String updateProfile(@ModelAttribute("user") Users updatedUser, Model model) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user1 = userRepository.getById(user.getId());
-        user1.setEmail(updatedUser.getEmail());
-        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
-        user1.setPassword(hashedPassword);
-//        user1.setPassword(updatedUser.getPassword());
+        // Update the email if provided in the form
+        if (!updatedUser.getEmail().isEmpty()) {
+            user1.setEmail(updatedUser.getEmail());
+        }
+
+        // Update the password if provided in the form
+        if (!updatedUser.getPassword().isEmpty()) {
+            String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+            user1.setPassword(hashedPassword);
+        }
+//        user1.setEmail(updatedUser.getEmail());
+//        String hashedPassword = passwordEncoder.encode(updatedUser.getPassword());
+//        user1.setPassword(hashedPassword);
         userRepository.save(user1);
         return "redirect:/profile";}
     @PostMapping("/profile/delete")

@@ -52,7 +52,7 @@ public class Car {
     @JoinColumn(name = "user_id")
     private Users user;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Trip> trips;
 
     public Car(String make, String model, int year, int mileage, boolean isAvailable, int pricePerDay, int carLocationZip, String carLocationCity) {

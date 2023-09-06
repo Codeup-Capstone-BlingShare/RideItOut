@@ -3,37 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<title>List Your Ride</title>
-    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-    <script src="//static.filestackapi.com/filestack-drag-and-drop-js/3.x.x/filestack-drag-and-drop.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-	<link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+	<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+	<script src="//static.filestackapi.com/filestack-drag-and-drop-js/3.x.x/filestack-drag-and-drop.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	      crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
 </head>
-<body>
+<body class="important container">
 <div th:replace="~{partials/navbar :: navbar}"></div>
-<div class="d-flex justify-content-center container">
+<div class="d-flex justify-content-center container text-center">
 	<form class="w-50 formContainer" th:action="@{/listyourride}" method="post" th:object="${carForm}">
 		<h3 class="mt-2"><label for="make">Car Make</label><br></h3>
-		<input type="text" id="make" class=" w-100" th:field="*{make}"/><br>
+		<input type="text" id="make" class=" w-100" placeholder="chevy" th:field="*{make}"/><br>
 
 		<h3 class="mt-2"><label for="model">Car Model</label><br></h3>
-		<input type="text" id="model" class=" w-100" th:field="*{model}"/><br>
+		<input type="text" id="model" class=" w-100" placeholder="corvette" th:field="*{model}"/><br>
 
 		<h3 class="mt-2"><label for="year">Year</label><br></h3>
-		<input type="number" id="year" class=" w-100" th:field="*{year}"/><br>
+		<input type="text" id="year" class=" w-100" placeholder="1969" th:field="*{year}"/><br>
 
 		<h3 class="mt-2"><label for="mileage">MPG</label><br></h3>
-		<input type="number" id="mileage" class=" w-100" th:field="*{mileage}"/><br>
+		<input type="text" id="mileage" class=" w-100" placeholder="7" th:field="*{mileage}"/><br>
 
 		<h3 class="mt-2"><label for="price">Daily Price</label><br></h3>
-		<input type="number" id="price" class=" w-100" th:field="*{pricePerDay}"/><br>
+		<input type="text" id="price" class=" w-100" placeholder="250" th:field="*{pricePerDay}"/><br>
 
 		<h3 class="mt-2"><label for="locationCity">City</label><br></h3>
-		<input type="text" id="locationCity" class=" w-100" th:field="*{carLocationCity}"/><br>
+		<input type="text" id="locationCity" class=" w-100" placeholder="San Antonio" th:field="*{carLocationCity}"/><br>
 
 		<h3 class="mt-2"><label for="location">Zip Code</label><br></h3>
-		<input type="number" id="location" class=" w-100" th:field="*{carLocationZip}"/><br>
+		<input type="text" id="location" class=" w-100" placeholder="78015" th:field="*{carLocationZip}"/><br>
 
 		<div class="row mt-3">
 			<h4 class="col-auto"><label for="is_available">Is your ride available</label></h4>
@@ -44,25 +45,26 @@
 			</select><br>
 		</div>
 
+		<div class="d-flex justify-content-start w-100">
+			<input type="hidden" class="hiddenInput"
+			       th:field="*{carPhotoURL[0]}" value=""/>
+			<input type="hidden" class="hiddenInput"
+			       th:field="*{carPhotoURL[1]}" value=""/>
+			<input type="hidden" class="hiddenInput"
+			       th:field="*{carPhotoURL[2]}" value=""/>
+			<input type="hidden" class="hiddenInput"
+			       th:field="*{carPhotoURL[3]}" value=""/>
+			<input type="hidden" class="hiddenInput"
+			       th:field="*{carPhotoURL[4]}" value=""/>
+			<input type="hidden" class="hiddenInput"
+			       th:field="*{carPhotoURL[5]}" value=""/>
 
-		<input type="hidden" class="hiddenInput"
-		       th:field="*{carPhotoURL[0]}" value=""/>
-		<input type="hidden" class="hiddenInput"
-		       th:field="*{carPhotoURL[1]}" value=""/>
-		<input type="hidden" class="hiddenInput"
-		       th:field="*{carPhotoURL[2]}" value=""/>
-		<input type="hidden" class="hiddenInput"
-		       th:field="*{carPhotoURL[3]}" value=""/>
-		<input type="hidden" class="hiddenInput"
-		       th:field="*{carPhotoURL[4]}" value=""/>
-		<input type="hidden" class="hiddenInput"
-		       th:field="*{carPhotoURL[5]}" value=""/>
 
+			<button class="btn mt-3" id="filepicker">Upload Image</button>
+			<br><br>
 
-		<button class="btn mt-3" id="filepicker">Upload Image</button>
-		<br><br>
-
-		<div id="thumbnailContainer"></div>
+			<div id="thumbnailContainer"></div>
+		</div>
 
 		<div class="d-flex justify-content-end w-100">
 			<button class="btn btn-lg d-flex" type="submit">List This Ride</button>
@@ -105,6 +107,5 @@
 </div>
 <div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script th:src="@{/js/scripts.js}"></script>
 </body>
 </html>

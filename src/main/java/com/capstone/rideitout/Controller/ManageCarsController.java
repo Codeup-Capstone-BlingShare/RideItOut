@@ -93,8 +93,9 @@ public class ManageCarsController {
 
     @PostMapping("/car/{id}/addPhoto")
     public String addImg(@PathVariable long id, @ModelAttribute("newPhoto") Photo photo) {
-
+        System.out.println("here");
         Car car = carDoa.getReferenceById(id);
+        System.out.println(photo.getCarPhotoURL());
         if (!photo.getCarPhotoURL().isEmpty()) {
             photo.setCar(car);
             photoDoa.save(photo);

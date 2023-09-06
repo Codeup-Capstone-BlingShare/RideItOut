@@ -1,6 +1,6 @@
 .car-row {
     height: 12em;
+    width: 75vw;
     overflow-x: scroll;
-    width: 100vw;
 }
 

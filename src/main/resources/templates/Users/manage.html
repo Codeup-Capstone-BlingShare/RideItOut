@@ -19,7 +19,7 @@
 		</a>
 	</div>
 </div>
-<h3 class="mt-3">Cars for rent</h3>
+<h3 class="mt-3">Cars For Rent</h3>
 <div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == false}">
@@ -31,10 +31,10 @@
 					</div>
 					<div class="col-md-6">
 						<div class="ms-3 pb-0 pb-0">
-							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100 important">
-								<h1 class="w-100" th:text="${car.make}"></h1>
-								<p th:text="${car.model}"></p>
-								<p th:text="${car.year}"></p>
+							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
+								<h1 class="w-100 important" th:text="${car.make}"></h1>
+								<p class="important" th:text="${car.model}"></p>
+								<p class="important" th:text="${car.year}"></p>
 							</a>
 						</div>
 					</div>
@@ -44,7 +44,7 @@
 	</div>
 </div>
 <hr>
-<h3>Cars rented</h3>
+<h3>Cars Rented</h3>
 <div class="car-row">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == true}">
@@ -52,14 +52,14 @@
 				<div class="row g-0">
 					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
-						     class="d-block w-100 rounded-start " alt="car photo">
+						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>
 					<div class="col-md-6">
 						<div class="ms-3 pb-0 pb-0">
 							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
-								<h1 class="w-100" th:text="${car.make}"></h1>
-								<p th:text="${car.model}"></p>
-								<p th:text="${car.year}"></p>
+								<h1 class="w-100 important" th:text="${car.make}"></h1>
+								<p class="important" th:text="${car.model}"></p>
+								<p class="important" th:text="${car.year}"></p>
 							</a>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 	</div>
 </div>
 <hr>
-<h3>Cars not Listed</h3>
+<h3>Cars Not Listed</h3>
 <div class="car-row">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == false}">
@@ -77,14 +77,14 @@
 				<div class="row g-0">
 					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
-						     class="d-block w-100 rounded-start" alt="car photo">
+						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>
 					<div class="col-md-6">
 						<div class="ms-3 pb-0 pb-0">
 							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
-								<h1 class="w-100" th:text="${car.make}"></h1>
-								<p th:text="${car.model}"></p>
-								<p th:text="${car.year}"></p>
+								<h1 class="w-100 important" th:text="${car.make}"></h1>
+								<p class="important" th:text="${car.model}"></p>
+								<p class="important" th:text="${car.year}"></p>
 							</a>
 						</div>
 					</div>

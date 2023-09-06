@@ -6,5 +6,6 @@
 
 .card-photos {
     box-shadow: none;
+    border-radius: 0;
 }
 

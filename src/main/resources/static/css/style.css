@@ -110,6 +110,15 @@ html {
 .important{
     color: #354F7A;
 }
+
+.important-car{
+    color: black;
+}
+
+.mapbox{
+    border-radius: 1em;
+}
+
 .left-content.img-fluid{
     float: left;
 }
@@ -156,6 +165,14 @@ img{
     opacity: .25;
     padding: 0;
     background-color: black;
+}
+
+.car-photos{
+    border-radius: 0;
+}
+
+a.listing{
+    text-decoration: none;
 }
 
 @media (max-width: 992px) {

@@ -7,6 +7,10 @@
     height: 20em;
 }
 
+.car-photos-small{
+    box-shadow: none;
+}
+
 .owners-card {
     height: 4em;
 }

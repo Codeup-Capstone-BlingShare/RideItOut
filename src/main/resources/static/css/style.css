@@ -173,6 +173,10 @@ img{
     box-shadow: none !important;
 }
 
+.boat-img{
+    height: 20em;
+}
+
 a.listing{
     text-decoration: none;
 }

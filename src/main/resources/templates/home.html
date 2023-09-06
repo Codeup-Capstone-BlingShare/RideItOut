@@ -24,13 +24,11 @@
     <div class="container home-container">
         <div class="row d-flex justify-content-evenly">
             <div class="d-flex col-lg-3 col-12 ms-lg-5 ms-0 pe-0 align-items-center home-form">
-                <form th:action="@{/search}" th:mehod="get" th:object="${search}"
-                      class="flex-form form-group search-boxes w-100">
-                    <input id="startDate" th:field="*{startDate}" type="text" placeholder="mm/dd/yyyy"
+                <form th:action="@{/search}" th:method="get" class="flex-form form-group search-boxes w-100">
+                    <input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy"
                            class="form-control mb-2">
-                    <input id="endDate" th:field="*{endDate}" type="text" placeholder="mm/dd/yyyy"
-                           class="form-control mb-2">
-                    <input id="searchLocation" th:field="*{searchLocation}" type="text" placeholder="Enter A City"
+                    <input id="endDate" name="endDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
+                    <input id="searchLocation" name="searchLocation" type="text" placeholder="Enter A City"
                            class="form-control mb-2">
                     <button type="submit" class="btn w-100" value="search for cars">Search</button>
                 </form>
@@ -77,6 +75,6 @@
     </div>
     <div th:replace="partials/footer :: footer"></div>
 </div>
-<script src="/js/scripts.js"></script>
+<script src="/js/listings.js"></script>
 </body>
 </html>

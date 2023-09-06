@@ -173,8 +173,11 @@ img{
     box-shadow: none !important;
 }
 
-.boat-img{
-    height: 20em;
+
+.carousel-photos{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: fit-content;
 }
 
 a.listing{
@@ -184,6 +187,14 @@ a.listing{
     color: #ED1D37;
 }
 
+.card-payment {
+    width: 25%;
+}
+
+.payment-photo{
+    max-width: 100%;
+    max-height: 100%;
+}
 @media (max-width: 992px) {
     .search-boxes{
         width: auto;
@@ -204,4 +215,9 @@ a.listing{
         margin: 0;
         padding: 0;
     }
+}
+
+.search-text {
+    color: black;
+    font-size: .8em;
 }

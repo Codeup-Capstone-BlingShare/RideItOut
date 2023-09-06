@@ -3,69 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-	<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-		  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<link rel="stylesheet" th:href="@{/css/payment.css}">
-	<link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon" />
+    <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/payment.css}">
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
 </head>
 <body>
 <div th:replace="partials/navbar :: navbar"></div>
-<div>
-	<h1>Your Reservation:</h1>
-	<h3>Year: <span th:text="${tripToSave.car.year}"></span></h3>
-	<h3>Make: <span th:text="${tripToSave.car.make}"></span></h3>
-	<h3>Model: <span th:text="${tripToSave.car.model}"></span></h3>
-	<h3>From: <span th:text="${#dates.format(tripToSave.startDate, 'MM-dd-yyyy')}"></span>  To: <span th:text="${#dates.format(tripToSave.endDate, 'MM-dd-yyyy')}"></span></h3>
-	<h3>Total cost: <span th:text="${tripToSave.totalCost}"></span></h3>
+<div class="container">
+    <h1>Your Reservation:</h1>
+    <div class="row justify-content-center">
+        <div class="card card-payment mx-5 my-5">
+            <div class="card-body">
+                <div>
+                    <h3>Year: <span class="important" th:text="${tripToSave.car.year}"></span></h3>
+                    <h3>Make: <span class="important" th:text="${tripToSave.car.make}"></span></h3>
+                    <h3>Model: <span class="important" th:text="${tripToSave.car.model}"></span></h3>
+                    <h3>From: <span class="important"
+                            th:text="${#dates.format(tripToSave.startDate, 'MM-dd-yyyy')}"></span></h3>
+                    <h3>To: <span class="important" th:text="${#dates.format(tripToSave.endDate, 'MM-dd-yyyy')}"></span>
+                    </h3>
+                    <h3>Total Cost: <span class="important" th:text="'$' + ${tripToSave.totalCost}"></span></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-payment mx-5 my-5">
+            <div class="card-body d-flex justify-content-center align-items-center">
+                <p th:if="${tripToSave.car.photos.isEmpty()}">Car does not have a photo associated with it</p>
+                <img class="payment-photo" th:src="${tripToSave.car.photos.get(0).carPhotoURL}"/>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center">Please enter your payment information</h2>
+
+    <form th:action="@{/confirmed}" class="hidden">
+        <button id="confirm" type="submit">Confirm Trip</button>
+    </form>
+
+    <div id="payment-form" class="text-center">
+        <div id="payment-status-container"></div>
+        <div id="card-container"></div>
+        <button class="btn" id="card-button" type="button">Pay</button>
+    </div>
 </div>
-<h2>Please enter your payment information</h2>
 
-<form th:action="@{/confirmed}" class="hidden" th:id="confirm">
-	<button type="submit">Confirm Trip</button>
-</form>
+    <div th:replace="partials/footer :: footer"></div>
 
-<div id="payment-form">
-	<div id="payment-status-container"></div>
-	<div id="card-container"></div>
-	<button id="card-button" type="button">Pay</button>
-</div>
-<div th:replace="partials/footer :: footer"></div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="module">
-	const squareUser = "[[${squareUser}]]";
-	const squareKey = "[[${squareKey}]]";
-	const payments = Square.payments(squareUser, 'main');
-	const card = await payments.card();
-	await card.attach('#card-container');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module">
+        const squareUser = "[[${squareUser}]]";
+        const squareKey = "[[${squareKey}]]";
+        const payments = Square.payments(squareUser, 'main');
+        const card = await payments.card();
+        await card.attach('#card-container');
 
-	const cardButton = document.getElementById('card-button');
-	cardButton.addEventListener('click', async () => {
-		const statusContainer = document.getElementById('payment-status-container');
+        const cardButton = document.getElementById('card-button');
+        cardButton.addEventListener('click', async () => {
+            const statusContainer = document.getElementById('payment-status-container');
 
-		try {
-			const result = await card.tokenize();
-			if (result.status === 'OK') {
-				console.log(`Payment token is ${result.token}`);
-				statusContainer.innerHTML = "Payment Successful";
-				$('#payment-form').toggleClass('hidden')
-				$('#confirm').toggleClass('hidden')
-			} else {
-				let errorMessage = `Tokenization failed with status: ${result.status}`;
-				if (result.errors) {
-					errorMessage += ` and errors: ${JSON.stringify(
-							result.errors
-					)}`;
-				}
-
-				throw new Error(errorMessage);
-			}
-		} catch (e) {
-			console.error(e);
-			statusContainer.innerHTML = "Payment Failed";
-		}
-	});
-</script>
+            try {
+                const result = await card.tokenize();
+                if (result.status === 'OK') {
+                    console.log(`Payment token is ${result.token}`);
+                    statusContainer.innerHTML = "Payment Successful";
+                    $('#confirm').click();
+                } else {
+                    let errorMessage = `Tokenization failed with status: ${result.status}`;
+                    if (result.errors) {
+                        errorMessage += ` and errors: ${JSON.stringify(
+                            result.errors
+                        )}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+            } catch (e) {
+                console.error(e);
+                statusContainer.innerHTML = "Payment Failed";
+            }
+        });
+    </script>
 </body>
 </html>

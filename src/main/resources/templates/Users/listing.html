@@ -122,7 +122,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
                                 <form sec:authorize="isAuthenticated()"
                                       th:if="${search.getStartDate() != null and search.getEndDate() != null}"
                                       th:action="@{/payment}" method="post">

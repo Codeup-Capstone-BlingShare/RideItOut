@@ -2,6 +2,7 @@ package com.capstone.rideitout.Model;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -91,6 +92,7 @@ public class Trip {
         this.id = id;
     }
 
+    @DateTimeFormat(pattern="MM-dd-YYYY")
     public Date getStartDate() {
         return startDate;
     }
@@ -99,6 +101,7 @@ public class Trip {
         this.startDate = startDate;
     }
 
+    @DateTimeFormat(pattern="MM-dd-YYYY")
     public Date getEndDate() {
         return endDate;
     }

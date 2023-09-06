@@ -17,7 +17,7 @@
 	<h3>Year: <span th:text="${tripToSave.car.year}"></span></h3>
 	<h3>Make: <span th:text="${tripToSave.car.make}"></span></h3>
 	<h3>Model: <span th:text="${tripToSave.car.model}"></span></h3>
-	<h3>From: <span th:text="${tripToSave.startDate}"></span> - To: <span th:text="${tripToSave.endDate}"></span></h3>
+	<h3>From: <span th:text="${#dates.format(tripToSave.startDate, 'MM-dd-yyyy')}"></span>  To: <span th:text="${#dates.format(tripToSave.endDate, 'MM-dd-yyyy')}"></span></h3>
 	<h3>Total cost: <span th:text="${tripToSave.totalCost}"></span></h3>
 </div>
 <h2>Please enter your payment information</h2>

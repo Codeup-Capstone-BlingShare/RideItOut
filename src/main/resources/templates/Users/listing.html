@@ -42,7 +42,7 @@
                     <div class="row g-0">
                         <div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
                             <img th:src="${car.photos[0].getCarPhotoURL()}"
-                                 class="d-block w-100 rounded-start car-photos-small border-end" alt="car photo">
+                                 class="d-block w-100 rounded-start car-photos border-end" alt="car photo">
                         </div>
                         <div class="col-md-6">
                             <div class="ms-3 pb-0 pb-0">
@@ -131,7 +131,7 @@
                                     <input type="hidden" name="endDate" th:value="${search.getEndDate()}">
                                     <input type="hidden" name="carID" th:value="${car.id}">
 
-                                    <button type="submit" class="btn btn-primary" th:id="${car.id}">Book Trip</button>
+                                    <button type="submit" class="btn" th:id="${car.id}">Book Trip</button>
                                 </form>
                                 <div sec:authorize="isAuthenticated()"
                                      th:if="${search.getStartDate() == null or search.getEndDate() == null}">

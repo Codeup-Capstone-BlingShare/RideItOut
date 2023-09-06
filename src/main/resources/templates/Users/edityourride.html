@@ -14,7 +14,7 @@
 <body class="d-flex justify-content-center container text-center important w-100">
 <div th:replace="partials/navbar :: navbar"></div>
 <div class="d-flex justify-self-center justify-content-center container important row">
-	<div class="col-12 w-100 ps-5 ms-5">
+	<div class="col-12 w-100 ps-5 ms-5 mt-3">
 		<form th:action="@{/car/{id}/addPhoto(id=${car.id})}" th:method="post" th:object="${newPhoto}"
 		      class="formContainer d-flex justify-content-center w-100">
 			<input type="hidden" class="hiddenInput"
@@ -40,28 +40,28 @@
 			</div>
 		</div>
 	</div>
-	<form class="col-12 w-50" th:action="@{/listyourride}" method="post" th:object="${car}">
+	<form class="col-12 w-50" th:action="@{/car/{id}/edit(id=${car.id})}" method="post" th:object="${car}">
 		<h3 class="mt-2"><label for="make">Car Make</label><br></h3>
-		<input type="text" id="make" class=" w-100" placeholder="chevy" th:field="*{make}"/><br>
+		<input type="text" id="make" class=" w-100" th:field="*{make}"/><br>
 
 		<h3 class="mt-2"><label for="model">Car Model</label><br></h3>
-		<input type="text" id="model" class=" w-100" placeholder="corvette" th:field="*{model}"/><br>
+		<input type="text" id="model" class=" w-100" th:field="*{model}"/><br>
 
 		<h3 class="mt-2"><label for="year">Year</label><br></h3>
-		<input type="text" id="year" class=" w-100" placeholder="1969" th:field="*{year}"/><br>
+		<input type="text" id="year" class=" w-100" th:field="*{year}"/><br>
 
 		<h3 class="mt-2"><label for="mileage">MPG</label><br></h3>
-		<input type="text" id="mileage" class=" w-100" placeholder="7" th:field="*{mileage}"/><br>
+		<input type="text" id="mileage" class=" w-100" th:field="*{mileage}"/><br>
 
 		<h3 class="mt-2"><label for="price">Daily Price</label><br></h3>
-		<input type="text" id="price" class=" w-100" placeholder="250" th:field="*{pricePerDay}"/><br>
+		<input type="text" id="price" class=" w-100" th:field="*{pricePerDay}"/><br>
 
 		<h3 class="mt-2"><label for="locationCity">City</label><br></h3>
-		<input type="text" id="locationCity" class=" w-100" placeholder="San Antonio"
+		<input type="text" id="locationCity" class=" w-100"
 		       th:field="*{carLocationCity}"/><br>
 
 		<h3 class="mt-2"><label for="location">Zip Code</label><br></h3>
-		<input type="text" id="location" class=" w-100" placeholder="78015" th:field="*{carLocationZip}"/><br>
+		<input type="text" id="location" class=" w-100" th:field="*{carLocationZip}"/><br>
 
 		<div class="row mt-3">
 			<h4 class="col-auto"><label for="is_available">Is your ride available</label></h4>
@@ -94,7 +94,6 @@
 		var options = {
 			maxFiles: 1,
 			onUploadDone: function (response) {
-				// console.log(response.filesUploaded[0].url)
 				$('.hiddenInput').val(response.filesUploaded[0].url);
 
 				document.getElementById('submit-button');

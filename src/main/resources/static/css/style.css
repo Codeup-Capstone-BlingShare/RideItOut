@@ -176,6 +176,9 @@ img{
 a.listing{
     text-decoration: none;
 }
+.error{
+    color: #ED1D37;
+}
 
 @media (max-width: 992px) {
     .search-boxes{

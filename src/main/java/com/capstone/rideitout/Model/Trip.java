@@ -92,7 +92,6 @@ public class Trip {
         this.id = id;
     }
 
-    @DateTimeFormat(pattern="MM-dd-YYYY")
     public Date getStartDate() {
         return startDate;
     }
@@ -101,7 +100,6 @@ public class Trip {
         this.startDate = startDate;
     }
 
-    @DateTimeFormat(pattern="MM-dd-YYYY")
     public Date getEndDate() {
         return endDate;
     }

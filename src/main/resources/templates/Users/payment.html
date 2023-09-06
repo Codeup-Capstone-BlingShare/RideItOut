@@ -39,8 +39,8 @@
     </div>
     <h2 class="text-center">Please enter your payment information</h2>
 
-    <form th:action="@{/confirmed}" class="hidden" th:id="confirm">
-        <button type="submit">Confirm Trip</button>
+    <form th:action="@{/confirmed}" class="hidden">
+        <button id="confirm" type="submit">Confirm Trip</button>
     </form>
 
     <div id="payment-form" class="text-center">
@@ -69,8 +69,7 @@
                 if (result.status === 'OK') {
                     console.log(`Payment token is ${result.token}`);
                     statusContainer.innerHTML = "Payment Successful";
-                    $('#payment-form').toggleClass('hidden')
-                    $('#confirm').toggleClass('hidden')
+                    $('#confirm').click();
                 } else {
                     let errorMessage = `Tokenization failed with status: ${result.status}`;
                     if (result.errors) {
@@ -78,7 +77,6 @@
                             result.errors
                         )}`;
                     }
-
                     throw new Error(errorMessage);
                 }
             } catch (e) {

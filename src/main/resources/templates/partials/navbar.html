@@ -13,13 +13,13 @@
         <div class="nav-item">
             <a th:href="@{/}" class="nav-link important"><strong>Ride It Out</strong></a>
         </div>
-        <div class="nav-item ms-2">
+        <div class="nav-item ms-3">
             <a th:href="@{/aboutus}" class="nav-link important"> About Us </a>
         </div>
-        <div class="nav-item ms-2">
+        <div class="nav-item ms-3">
             <a th:href="@{/faq}" class="nav-link important"> FAQ </a>
         </div>
-        <div class="nav-item ms-2">
+        <div class="nav-item ms-3">
             <a th:href="@{/listings}" class="nav-link important"> Listings </a>
         </div>
     </div>
@@ -27,13 +27,13 @@
         <div class="nav-item" sec:authorize="not isAuthenticated()">
             <a th:href="@{/register}" class="nav-link important"> Register </a>
         </div>
-        <div class="nav-item ms-2" sec:authorize="not isAuthenticated()">
+        <div class="nav-item ms-3" sec:authorize="not isAuthenticated()">
             <a th:href="@{/login}" class="nav-link important"> Login </a>
         </div>
-        <div sec:authorize="isAuthenticated()" class="nav-item ms-2">
+        <div sec:authorize="isAuthenticated()" class="nav-item ms-3">
             <a th:href="@{/profile}" class="nav-link important"> Profile </a>
         </div>
-        <div class="nav-item logout-item ms-2" sec:authorize="isAuthenticated()">
+        <div class="nav-item logout-item ms-3" sec:authorize="isAuthenticated()">
             <form id="logoutForm" th:action="@{/logout}" th:method="post">
             </form>
             <a class="nav-link important" href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>

@@ -121,7 +121,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer d-flex justify-content-between">
+                                <div sec:authorize="isAuthenticated()"
+                                     th:if="${search.getStartDate() == null or search.getEndDate() == null}">
+                                    <p class="error mb-0">Please Select Dates</p>
+                                </div>
                                 <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
                                 <form sec:authorize="isAuthenticated()"
                                       th:if="${search.getStartDate() != null and search.getEndDate() != null}"
@@ -133,10 +137,7 @@
 
                                     <button type="submit" class="btn" th:id="${car.id}">Book Trip</button>
                                 </form>
-                                <div sec:authorize="isAuthenticated()"
-                                     th:if="${search.getStartDate() == null or search.getEndDate() == null}">
 
-                                </div>
                             </div>
                         </div>
                     </div>

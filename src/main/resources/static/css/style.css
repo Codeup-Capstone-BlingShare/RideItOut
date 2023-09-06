@@ -207,3 +207,8 @@ a.listing{
         padding: 0;
     }
 }
+
+.search-text {
+    color: black;
+    font-size: .8em;
+}

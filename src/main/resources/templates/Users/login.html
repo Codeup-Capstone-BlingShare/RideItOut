@@ -11,17 +11,16 @@
 <body>
 <div class="container">
     <div th:replace="~{partials/navbar :: navbar}"></div>
-    <h1>Log In</h1>
-    <br>
     <div th:if="${param.error}">
         Invalid Username and Password.
     </div>
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <form th:action="@{/login}" method="post" class="form-group">
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex justify-content-center pb-5 pt-2 col-4 flex-column mt-5" style="background-color: white; border-radius: 1em;">
+            <h1 class="text-center mb-3">Log In</h1>
+            <form th:action="@{/login}" method="post" class="form-group col-7 mx-auto">
                 <div class="col-12">
                     <label for="username"  class="important">Username</label>
                     <input id="username" name="username" type="text" class="form-control"/>
@@ -29,17 +28,18 @@
                 <br>
                 <div class="col-12">
                     <label for="password" class="important">Password</label>
-                    <input id="password" name="password" type="password" class="form-control"/>
+                    <input id="password" name="password" type="password" class="form-control mb-3"/>
                 </div>
+                <p class="important mb-0 text-center">Don't have an account? <a th:href="@{/register}">Sign Up!</a> </p>
                 <br>
                 <div class="d-flex justify-content-center">
-                    <input class="btn" type="submit" value="Log In"/>
+                    <input class="btn w-100" type="submit" value="Log In"/>
                 </div>
             </form>
         </div>
     </div>
+    <div th:replace="partials/footer :: footer"></div>
 </div>
-<div th:replace="partials/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/scripts.js}"></script>
 </body>

@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,10 +28,18 @@ public class SearchController {
     }
 
     @GetMapping(value = "/search")
-    public String search(Model model, @ModelAttribute("search") Search search, BindingResult result) {
+    public String search(Model model, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate, @RequestParam("searchLocation") String searchLocation) {
         model.addAttribute("mapBoxKey", MB_KEY);
         List<Car> cars = carDoa.findAll();
         List<Car> available = new ArrayList<>();
+        Search search = new Search();
+        search.setSearchLocation(searchLocation);
+        endDate = endDate.replace("-", "/");
+        startDate = startDate.replace("-", "/");
+
+        search.setStartDate(new Date(startDate));
+        search.setEndDate(new Date(endDate));
+        model.addAttribute("search", search);
 
         if (!search.getSearchLocation().equals("")) {
             cars = carDoa.findByCarLocationCityContains(search.getSearchLocation());
@@ -60,5 +69,6 @@ public class SearchController {
             model.addAttribute("listings", available);
         }
         return "Users/listing"; // return the name of the listings page template file
+//        return "test";
     }
 }

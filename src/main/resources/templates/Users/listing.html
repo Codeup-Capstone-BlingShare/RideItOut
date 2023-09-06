@@ -122,6 +122,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
+                                <h6 class="m-3">please select dates!</h6>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <form sec:authorize="isAuthenticated()"
                                       th:if="${search.getStartDate() != null and search.getEndDate() != null}"
@@ -130,12 +131,11 @@
                                     <input type="hidden" name="startDate" th:value="${search.getStartDate()}">
                                     <input type="hidden" name="endDate" th:value="${search.getEndDate()}">
                                     <input type="hidden" name="carID" th:value="${car.id}">
-
                                     <button type="submit" class="btn btn-primary" th:id="${car.id}">Book Trip</button>
                                 </form>
                                 <div sec:authorize="isAuthenticated()"
                                      th:if="${search.getStartDate() == null or search.getEndDate() == null}">
-                                    <p>please select dates</p>
+
                                 </div>
                             </div>
                         </div>

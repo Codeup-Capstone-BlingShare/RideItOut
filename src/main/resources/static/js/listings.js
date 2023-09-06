@@ -12,6 +12,20 @@ $(document).ready(function () {
 	})
 
 	$('#photoLoop .photo-item:first-child').addClass('active')
+
+	const [today] = new Date().toISOString().split('T');
+	const setMin = document.getElementById('startDate');
+		setMin.setAttribute('min', today);
+
+	$('#startDate').on('change', function () {
+		let minEnd = $('#startDate').val();
+		console.log(minEnd)
+		minEnd = new Date(minEnd);
+		minEnd.setDate(minEnd.getDate() + 1);
+		let [minEndFormatted] = minEnd.toISOString().split('T');
+		const setMinEnd = document.getElementById('endDate');
+		setMinEnd.setAttribute('min', minEndFormatted);
+	})
 })
 
 

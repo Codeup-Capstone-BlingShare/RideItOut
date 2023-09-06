@@ -37,7 +37,6 @@ public class ManageCarsController {
         List<Car> cars = carDoa.findByUser(user);
 
         for (Car car : cars) {
-            boolean isRented = false;
             Date current = new Date();
             System.out.println(current);
             List<Trip> trips = car.getTrips();

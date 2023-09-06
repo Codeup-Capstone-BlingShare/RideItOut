@@ -2,6 +2,7 @@ package com.capstone.rideitout.Model;
 
 import jakarta.annotation.Nullable;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -19,6 +20,16 @@ public class Search {
 
     public Search(String searchLocation) {
         this.searchLocation = searchLocation;
+    }
+
+    @Nullable
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    @Nullable
+    public Date getEndDate() {
+        return endDate;
     }
 }
 

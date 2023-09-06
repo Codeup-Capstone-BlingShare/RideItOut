@@ -19,7 +19,7 @@
 		</a>
 	</div>
 </div>
-<h3 class="mt-3">Cars for rent</h3>
+<h3 class="mt-3">Cars For Rent</h3>
 <div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == false}">
@@ -44,7 +44,7 @@
 	</div>
 </div>
 <hr>
-<h3>Cars rented</h3>
+<h3>Cars Rented</h3>
 <div class="car-row">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == true}">
@@ -69,7 +69,7 @@
 	</div>
 </div>
 <hr>
-<h3>Cars not Listed</h3>
+<h3>Cars Not Listed</h3>
 <div class="car-row">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == false}">

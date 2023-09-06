@@ -26,7 +26,7 @@
                 <input id="endDate" name="endDate" type="date" placeholder="mm/dd/yyyy" class="form-control">
 
                 <label for="searchLocation" class="important">City:</label>
-                <input id="searchLocation" name="searchLocation" type="text" placeholder="Enter a city"
+                <input name="searchLocation" type="text" placeholder="Enter a city"
                        class="form-control">
                 <button type="submit" class="btn w-100">Search</button>
             </form>
@@ -36,7 +36,7 @@
     <!------------------------Cards for listings-------------------------->
     <div class="container ms-5 row">
 	    <div class="d-flex justify-content-around">
-		    <h2 class="important">Available Cars: <span class="search-text" th:text="${search.searchLocation}"></span> </h2>
+		    <h2 class="important">Available Cars: <span id="searchLocation" class="search-text" th:text="${search.searchLocation}"></span> </h2>
 		    <h2 class="important" th:if="${search.getStartDate() != null and search.getEndDate() != null}">
 			    From:
 			    <span class="search-text" th:text="${#dates.format(search.startDate, 'MM-dd-yyyy')}"></span>
@@ -97,7 +97,7 @@
                                     <h4>Price:</h4>
                                     <p>$<span th:text="${car.pricePerDay}"></span> per day</p>
                                     <h4>Location:</h4>
-                                    <p th:text="${car.carLocationZip}" class="location" th:id="searchLocation"></p>
+                                    <p th:text="${car.carLocationZip}" class="location"></p>
                                 </div>
                                 <!--------------Carousel for car photos---------------->
                                 <div class="col-8">

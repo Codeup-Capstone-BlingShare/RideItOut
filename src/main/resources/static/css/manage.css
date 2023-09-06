@@ -1,6 +1,10 @@
 .car-row {
     height: 12em;
-    width: 75vw;
+    width: 90vw;
     overflow-x: scroll;
+}
+
+.card-photos {
+    box-shadow: none;
 }
 

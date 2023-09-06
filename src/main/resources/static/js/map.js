@@ -37,7 +37,6 @@ function updateMarker(map) {
 
 function moveCenter() {
 	let ifSearch = $(`#searchLocation`).html();
-	console.log(ifSearch)
 	if (ifSearch !== "") {
 		geocode(ifSearch, mapBoxKey).then(function (result) {
 			coordinates = result;

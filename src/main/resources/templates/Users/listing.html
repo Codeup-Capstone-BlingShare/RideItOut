@@ -20,14 +20,14 @@
             <!------------Search form--------------->
             <form th:action="@{/search}" th:mehod="get" class="form-group">
                 <label for="startDate" class="important">Start Date:</label>
-                <input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy" class="form-control">
+                <input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
 
                 <label for="endDate" class="important">End Date:</label>
-                <input id="endDate" name="endDate" type="date" placeholder="mm/dd/yyyy" class="form-control">
+                <input id="endDate" name="endDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
 
-                <label for="searchLocation" class="important">City:</label>
-                <input name="searchLocation" type="text" placeholder="Enter a city"
-                       class="form-control">
+                <label for="searchLocationForm" class="important">City:</label>
+                <input id="searchLocationForm" name="searchLocation" type="text" placeholder="Enter a city"
+                       class="form-control mb-2">
                 <button type="submit" class="btn w-100">Search</button>
             </form>
         </div>
@@ -35,7 +35,7 @@
     <hr>
     <!------------------------Cards for listings-------------------------->
     <div class="container ms-5 row">
-	    <div class="d-flex justify-content-around">
+	    <div class="d-flex justify-content-around mb-2">
 		    <h2 class="important">Available Cars: <span id="searchLocation" class="search-text" th:text="${search.searchLocation}"></span> </h2>
 		    <h2 class="important" th:if="${search.getStartDate() != null and search.getEndDate() != null}">
 			    From:
@@ -78,7 +78,7 @@
                                 <div class="col-4">
                                     <!----------------Owners card--------------->
                                     <h4>Owned by: </h4>
-                                    <div class="card" style="max-width: 540px;">
+                                    <div class="card owners-card" style="max-width: 540px;">
                                         <div class="row g-0">
                                             <div class="col-md-4 d-flex" th:if="${car.user.getProfilePhoto() != null &&
 										!car.user.getProfilePhoto().isEmpty()}">

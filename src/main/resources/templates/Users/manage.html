@@ -45,7 +45,7 @@
 </div>
 <hr>
 <h3>Cars Currently Rented</h3>
-<div class="car-row">
+<div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == true}">
 			<div class="card ms-3 mb-3" style="max-width: 540px;">
@@ -70,7 +70,7 @@
 </div>
 <hr>
 <h3>Cars Not Listed</h3>
-<div class="car-row">
+<div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == false}">
 			<div class="card ms-3 mb-3" style="max-width: 540px;">

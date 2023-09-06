@@ -38,7 +38,7 @@
         <h2>Available Cars</h2>
         <div class="col-6 listings">
             <div th:each="car : ${listings}">
-                <div class="card mb-3" style="max-width: 540px;">
+                <div th:if="${car.isAvailable()}" class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
                             <img th:src="${car.photos[0].getCarPhotoURL()}"
@@ -96,11 +96,11 @@
                                     <div th:if="${car.photos != null && !car.photos.isEmpty()}">
                                         <div id="carouselExampleControls" class="carousel slide"
                                              data-bs-ride="carousel">
-                                            <div class="carousel-inner car-photos" th:id="photoLoop">
+                                            <div class="carousel-inner" th:id="photoLoop">
                                                 <div th:each="photo, iter : ${car.photos}"
-                                                     class="carousel-item car-photos photo-item">
+                                                     class="carousel-item photo-item">
                                                     <img th:src="${photo.getCarPhotoURL()}"
-                                                         class="d-block w-100 car-photos"
+                                                         class="d-block w-100 carousel-photos"
                                                          alt="car photo">
                                                 </div>
                                             </div>

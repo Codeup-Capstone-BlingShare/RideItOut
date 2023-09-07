@@ -5,6 +5,7 @@
 
 .car-photos {
     height: 20em;
+    object-fit: cover;
 }
 
 .car-photos-small{

@@ -221,3 +221,8 @@ a.listing{
     color: black;
     font-size: .8em;
 }
+
+.hidden-btn {
+    visibility: hidden;
+    height: 1px;
+}

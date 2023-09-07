@@ -23,9 +23,9 @@
 <div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == false}">
-			<div class="card me-3 mb-3" style="width: 540px;">
+			<div class="card me-3 mb-3 manage-card" style="width: 540px;">
 				<div class="row g-0">
-					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+					<div class="col-md-6 d-flex mb-0 mt-0 photo-div" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
 						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>
@@ -48,11 +48,11 @@
 <div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == true and car.isRented() == true}">
-			<div class="card ms-3 mb-3" style="max-width: 540px;">
+			<div class="card me-3 mb-3 manage-card" style="width: 540px;">
 				<div class="row g-0">
-					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+					<div class="col-md-6 d-flex mb-0 mt-0 photo-div" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
-						     class="d-block w-100 rounded-start car-photos border-end" alt="car photo">
+						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>
 					<div class="col-md-6">
 						<div class="ms-3 pb-0 pb-0">
@@ -73,18 +73,18 @@
 <div class="car-row d-flex me-3">
 	<div th:each="car : ${cars}">
 		<div th:if="${car.isAvailable() == false}">
-			<div class="card ms-3 mb-3" style="max-width: 540px;">
+			<div class="card me-3 mb-3 manage-card" style="width: 540px;">
 				<div class="row g-0">
-					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+					<div class="col-md-6 d-flex mb-0 mt-0 photo-div" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
-						     class="d-block w-100 rounded-start car-photos border-end" alt="car photo">
+						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>
 					<div class="col-md-6">
 						<div class="ms-3 pb-0 pb-0">
-							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100 important">
-								<h1 class="w-100" th:text="${car.make}"></h1>
-								<p th:text="${car.model}"></p>
-								<p th:text="${car.year}"></p>
+							<a th:href="@{/car/{id}/edit (id = ${car.id})}" class="listing w-100">
+								<h1 class="w-100 important" th:text="${car.make}"></h1>
+								<p class="important" th:text="${car.model}"></p>
+								<p class="important" th:text="${car.year}"></p>
 							</a>
 						</div>
 					</div>

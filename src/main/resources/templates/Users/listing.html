@@ -1,159 +1,161 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Listing</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet'/>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/listings.css}">
-    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
+	<meta charset="UTF-8">
+	<title>Listing</title>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet'/>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/listings.css}">
+	<link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
 </head>
 <body>
 <div class="container">
-    <div th:replace="partials/navbar :: navbar"></div>
-    <h1 class="text-center">Car Listing</h1>
-    <div class="row d-flex justify-content-center">
-        <div class="col-8">
-            <!------------Search form--------------->
-            <form th:action="@{/search}" th:mehod="get" class="form-group">
-                <label for="startDate" class="important">Start Date:</label>
-                <input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
+	<div th:replace="partials/navbar :: navbar"></div>
+	<h1 class="text-center">Car Listing</h1>
+	<div class="row d-flex justify-content-center">
+		<div class="col-8">
+			<!------------Search form--------------->
+			<form th:action="@{/search}" th:mehod="get" class="form-group">
+				<label for="startDate" class="important">Start Date:</label>
+				<input id="startDate" name="startDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
 
-                <label for="endDate" class="important">End Date:</label>
-                <input id="endDate" name="endDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
+				<label for="endDate" class="important">End Date:</label>
+				<input id="endDate" name="endDate" type="date" placeholder="mm/dd/yyyy" class="form-control mb-2">
 
-                <label for="searchLocationForm" class="important">City:</label>
-                <input id="searchLocationForm" name="searchLocation" type="text" placeholder="Enter a city"
-                       class="form-control mb-2">
-                <button type="submit" class="btn w-100">Search</button>
-            </form>
-        </div>
-    </div>
-    <hr>
-    <!------------------------Cards for listings-------------------------->
-    <div class="container ms-5 row">
-	    <div class="d-flex justify-content-around mb-2">
-		    <h2 class="important">Available Cars: <span id="searchLocation" class="search-text" th:text="${search.searchLocation}"></span> </h2>
-		    <h2 class="important" th:if="${search.getStartDate() != null and search.getEndDate() != null}">
-			    From:
-			    <span class="search-text" th:text="${#dates.format(search.startDate, 'MM-dd-yyyy')}"></span>
-			    To:
-			    <span class="search-text" th:text="${#dates.format(search.endDate, 'MM-dd-yyyy')}"></span>
-		    </h2>
-	    </div>
-        <div class="col-6 listings">
-            <div th:each="car : ${listings}">
-                <div th:if="${car.isAvailable()}" class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
-                            <img th:src="${car.photos[0].getCarPhotoURL()}"
-                                 class="d-block w-100 rounded-start car-photos border-end" alt="car photo">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="ms-3 pb-0 pb-0">
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#" class="listing w-100">
-                                    <h1 class="w-100 important" th:text="${car.make}"></h1>
-                                    <p th:text="${car.model}" class="important"></p>
-                                    <p th:text="${car.year}" class="important"></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!------------------- Modals for individual cars -------------------->
-                <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-fullscreen-md-down">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5 w-100" id="exampleModalLabel">
-                                    <span th:text="${car.year}"></span>
-                                    <span th:text="${car.make}"></span>,
-                                    <span th:text="${car.model}"></span>
-                                </h1>
-                            </div>
-                            <div class="modal-body row">
-                                <div class="col-4">
-                                    <!----------------Owners card--------------->
-                                    <h4>Owned by: </h4>
-                                    <div class="card owners-card" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-md-4 d-flex" th:if="${car.user.getProfilePhoto() != null &&
-										!car.user.getProfilePhoto().isEmpty()}">
-                                                <img th:src="${car.user.getProfilePhoto()}"
-                                                     class="d-block w-100 rounded-start" alt="Profile Photo">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <h5 th:text="${car.user.getUsername()}"></h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h4 class="mt-2">MPG: </h4>
-                                    <p><span th:text="${car.mileage}"></span></p>
-                                    <h4>Price:</h4>
-                                    <p>$<span th:text="${car.pricePerDay}"></span> per day</p>
-                                    <h4>Location:</h4>
-                                    <p th:text="${car.carLocationZip}" class="location"></p>
-                                </div>
-                                <!--------------Carousel for car photos---------------->
-                                <div class="col-8">
-                                    <div th:if="${car.photos != null && !car.photos.isEmpty()}">
-                                        <div id="carouselExampleControls" class="carousel slide"
-                                             data-bs-ride="carousel">
-                                            <div class="carousel-inner" th:id="photoLoop">
-                                                <div th:each="photo, iter : ${car.photos}"
-                                                     class="carousel-item photo-item">
-                                                    <img th:src="${photo.getCarPhotoURL()}"
-                                                         class="d-block w-100 carousel-photos"
-                                                         alt="car photo">
-                                                </div>
-                                            </div>
-                                            <button class="carousel-control-prev" type="button"
-                                                    data-bs-target="#carouselExampleControls"
-                                                    data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button"
-                                                    data-bs-target="#carouselExampleControls"
-                                                    data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
+				<label for="searchLocationForm" class="important">City:</label>
+				<input id="searchLocationForm" name="searchLocation" type="text" placeholder="Enter a city"
+				       class="form-control mb-2">
+				<button type="submit" class="btn w-100">Search</button>
+			</form>
+		</div>
+	</div>
+	<hr>
+	<!------------------------Cards for listings-------------------------->
+	<div class="container ms-5 row">
+		<div class="d-flex justify-content-around mb-2">
+			<h2 class="important">Available Cars: <span id="searchLocation" class="search-text"
+			                                            th:text="${search.searchLocation}"></span></h2>
+			<h2 class="important" th:if="${search.getStartDate() != null and search.getEndDate() != null}">
+				From:
+				<span class="search-text" th:text="${#dates.format(search.startDate, 'MM-dd-yyyy')}"></span>
+				To:
+				<span class="search-text" th:text="${#dates.format(search.endDate, 'MM-dd-yyyy')}"></span>
+			</h2>
+		</div>
+		<div class="col-6 listings">
+			<div th:if="${car.isAvailable()}" th:each="car : ${listings}">
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row g-0">
+						<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+							<img th:src="${car.photos[0].getCarPhotoURL()}"
+							     class="d-block w-100 rounded-start car-photos border-end" alt="car photo">
+						</div>
+						<div class="col-md-6">
+							<div class="ms-3 pb-0 pb-0">
+								<a type="button" data-bs-toggle="modal" data-bs-target="#" class="listing w-100">
+									<h1 class="w-100 important" th:text="${car.make}"></h1>
+									<p th:text="${car.model}" class="important"></p>
+									<p th:text="${car.year}" class="important"></p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!------------------- Modals for individual cars -------------------->
+				<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-fullscreen-md-down">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5 w-100" id="exampleModalLabel">
+									<span th:text="${car.year}"></span>
+									<span th:text="${car.make}"></span>,
+									<span th:text="${car.model}"></span>
+								</h1>
+							</div>
+							<div class="modal-body row">
+								<div class="col-4">
+									<!----------------Owners card--------------->
+									<h4>Owned by: </h4>
+									<div class="card owners-card" style="max-width: 540px;">
+										<div class="row g-0">
+											<div class="col-md-4 d-flex owners-card"
+											     th:if="${car.user.getProfilePhoto() != null &&
+											     !car.user.getProfilePhoto().isEmpty()}">
+												<img th:src="${car.user.getProfilePhoto()}"
+												     class="d-block" alt="Profile Photo">
+											</div>
+											<div class="col-md-8">
+												<div class="card-body">
+													<h5 th:text="${car.user.getUsername()}"></h5>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h4 class="mt-2">MPG: </h4>
+									<p><span th:text="${car.mileage}"></span></p>
+									<h4>Price:</h4>
+									<p>$<span th:text="${car.pricePerDay}"></span> per day</p>
+									<h4>Location:</h4>
+									<p th:text="${car.carLocationZip}" class="location"></p>
+								</div>
+								<!--------------Carousel for car photos---------------->
+								<div class="col-8">
+									<div th:if="${car.photos != null && !car.photos.isEmpty()}">
+										<div id="carouselExampleControls" class="carousel slide"
+										     data-bs-ride="carousel">
+											<div class="carousel-inner" th:id="photoLoop">
+												<div th:each="photo, iter : ${car.photos}"
+												     class="carousel-item photo-item">
+													<img th:src="${photo.getCarPhotoURL()}"
+													     class="d-block w-100 carousel-photos"
+													     alt="car photo">
+												</div>
+											</div>
+											<button class="carousel-control-prev" type="button"
+											        data-bs-target="#carouselExampleControls"
+											        data-bs-slide="prev">
+												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="visually-hidden">Previous</span>
+											</button>
+											<button class="carousel-control-next" type="button"
+											        data-bs-target="#carouselExampleControls"
+											        data-bs-slide="next">
+												<span class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="visually-hidden">Next</span>
+											</button>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer d-flex justify-content-between">
-                                <div sec:authorize="isAuthenticated()"
-                                     th:if="${search.getStartDate() == null or search.getEndDate() == null}">
-                                    <p class="error mb-0">Please Select Dates</p>
-                                </div>
-                                <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                                <form sec:authorize="isAuthenticated()"
-                                      th:if="${search.getStartDate() != null and search.getEndDate() != null}"
-                                      th:action="@{/payment}" method="post">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer d-flex justify-content-between">
+								<div sec:authorize="isAuthenticated()"
+								     th:if="${search.getStartDate() == null or search.getEndDate() == null}">
+									<p class="error mb-0">Please Select Dates</p>
+								</div>
+								<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+								<form sec:authorize="isAuthenticated()"
+								      th:if="${search.getStartDate() != null and search.getEndDate() != null}"
+								      th:action="@{/payment}" method="post">
 
-                                    <input type="hidden" name="startDate" th:value="${search.getStartDate()}">
-                                    <input type="hidden" name="endDate" th:value="${search.getEndDate()}">
-                                    <input type="hidden" name="carID" th:value="${car.id}">
+									<input type="hidden" name="startDate" th:value="${search.getStartDate()}">
+									<input type="hidden" name="endDate" th:value="${search.getEndDate()}">
+									<input type="hidden" name="carID" th:value="${car.id}">
 
-                                    <button type="submit" class="btn" th:id="${car.id}">Book Trip</button>
-                                </form>
+									<button type="submit" class="btn" th:id="${car.id}">Book Trip</button>
+								</form>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="map" class="col-6 mapbox"></div>
-    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="map" class="col-6 mapbox"></div>
+	</div>
 </div>
 <div th:replace="partials/footer :: footer"></div>
 
@@ -170,7 +172,7 @@
         crossorigin="anonymous"></script>
 
 <script>
-    const mapBoxKey = "[[${mapBoxKey}]]";
+	const mapBoxKey = "[[${mapBoxKey}]]";
 </script>
 <script th:src="@{/js/map.js}"></script>
 <script th:src="@{/js/listings.js}"></script>

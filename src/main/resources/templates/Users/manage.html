@@ -25,7 +25,7 @@
 		<div th:if="${car.isAvailable() == true and car.isRented() == false}">
 			<div class="card me-3 mb-3 manage-card" style="width: 540px;">
 				<div class="row g-0">
-					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+					<div class="col-md-6 d-flex mb-0 mt-0 photo-div" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
 						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>
@@ -50,7 +50,7 @@
 		<div th:if="${car.isAvailable() == true and car.isRented() == true}">
 			<div class="card me-3 mb-3 manage-card" style="width: 540px;">
 				<div class="row g-0">
-					<div class="col-md-6 d-flex mb-0 mt-0" th:if="${car.photos != null && !car.photos.isEmpty()}">
+					<div class="col-md-6 d-flex mb-0 mt-0 photo-div" th:if="${car.photos != null && !car.photos.isEmpty()}">
 						<img th:src="${car.photos[0].getCarPhotoURL()}"
 						     class="d-block w-100 rounded-start card-photos" alt="car photo">
 					</div>

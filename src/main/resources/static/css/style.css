@@ -43,9 +43,12 @@ html {
 }
 
 .card-img-top{
-    width: 100%;
-    height: 200px;
+    width: auto;
+    height: 275px;
     object-fit: cover;
+}
+a:hover {
+    color: black;
 }
 
 .right-container li.step p {
@@ -144,6 +147,10 @@ img{
 .form-control{
     width:100%;
 }
+.card-link {
+    color: #ED1D37;
+}
+
 
 .navbar{
     background-color: transparent;

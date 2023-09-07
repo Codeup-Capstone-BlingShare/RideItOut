@@ -76,13 +76,14 @@
 		</div>
 	</form>
 
-	<div class="px-2">
-		<form th:action="@{/car/{id}/delete(id=${car.id})}" method="post"
-		      class="formContainer d-flex my-3 mx-3 w-100 ">
-			<button class="btn" type="submit">Delete Car</button>
-		</form>
-	</div>
 
+		<form  th:action="@{/car/{id}/delete(id=${car.id})}" method="post"
+		      class="formContainer my-3 mx-2 w-50 ">
+			<div class="w-100 d-flex justify-content-end">
+			<button class="btn" type="submit">Delete Car</button>
+			</div>
+
+		</form>
 </div>
 
 <div th:replace="partials/footer :: footer"></div>

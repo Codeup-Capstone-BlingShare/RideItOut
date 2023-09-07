@@ -1,3 +1,8 @@
 .hidden {
     visibility: hidden;
 }
+
+
+.delete-btn {
+    width: 120px;
+}

@@ -70,31 +70,14 @@
             </select><br>
         </div>
         <div class="formContainer d-flex justify-content-end w-100">
-            <button class="btn" type="submit">Update Ride</button>
+            <button class="btn delete-btn" type="submit">Update Ride</button>
         </div>
     </form>
-
-		<h3 class="mt-2"><label for="location">Zip Code</label><br></h3>
-		<input type="text" id="location" class=" w-100" th:field="*{carLocationZip}"/><br>
-
-		<div class="row mt-3">
-			<h4 class="col-auto"><label for="is_available">Is your ride available</label></h4>
-			<select class="col-auto btn" id="is_available" th:field="*{available}">
-
-				<option value="true">Yes</option>
-				<option value="false">No</option>
-			</select><br>
-		</div>
-		<div class="formContainer d-flex justify-content-end w-100">
-			<button class="btn" type="submit">Update Ride</button>
-		</div>
-	</form>
-
 
 		<form  th:action="@{/car/{id}/delete(id=${car.id})}" method="post"
 		      class="formContainer my-3 mx-2 w-50 ">
 			<div class="w-100 d-flex justify-content-end">
-			<button class="btn" type="submit">Delete Car</button>
+			<button class="btn delete-btn" type="submit">Delete Car</button>
 			</div>
 		</form>
 </div>

@@ -45,7 +45,6 @@ public class PaymentController {
                              @RequestParam(name = "endDate") Date endDate,
                              @RequestParam(name = "carID") long carID,
                              @ModelAttribute("tripToSave") Trip tripToSave) {
-        System.out.println("here");
         model.addAttribute("squareKey", SQUARE_KEY);
         model.addAttribute("squareUser", SQUARE_USER);
 
@@ -57,8 +56,6 @@ public class PaymentController {
         trip.setTotalCost((trip.getStartDate().getTime() -
                 trip.getEndDate().getTime()) / -86400000 * car.getPricePerDay());
         trip.setConfirmationNumber(random());
-        System.out.println(trip.getCar().getId());
-        System.out.println(trip.getCar().getPhotos().get(0).getCarPhotoURL());
 
         model.addAttribute("tripToSave", trip);
 

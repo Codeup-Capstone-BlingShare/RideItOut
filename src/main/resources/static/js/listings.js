@@ -19,7 +19,6 @@ $(document).ready(function () {
 
 	$('#startDate').on('change', function () {
 		let minEnd = $('#startDate').val();
-		console.log(minEnd)
 		minEnd = new Date(minEnd);
 		minEnd.setDate(minEnd.getDate() + 1);
 		let [minEndFormatted] = minEnd.toISOString().split('T');

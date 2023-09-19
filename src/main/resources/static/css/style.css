@@ -236,3 +236,54 @@ a.listing{
     visibility: hidden;
     height: 1px;
 }
+
+.hidden {
+    visibility: hidden;
+}
+
+
+.delete-btn {
+    width: 120px;
+}
+
+.car-listing-photos {
+    height: 20em;
+    object-fit: cover;
+}
+.listings {
+    height: 40vw;
+    overflow-y: scroll
+}
+
+.car-photos-small{
+    box-shadow: none;
+}
+
+.owners-card {
+    height: 4em;
+}
+
+h6 {
+    color: #ED1D37;
+}
+
+.car-row {
+    height: 12em;
+    width: 90vw;
+    overflow-x: scroll;
+}
+
+.photo-div {
+    height: 10.28em;
+}
+
+.card-photos {
+    box-shadow: none;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.manage-card {
+    height: 10.37em;
+    width: 31.11em;
+}
